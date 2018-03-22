@@ -3,10 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { LoginComponent } from './components/login/login.component';
-
+import { FacebookComponent } from './components/facebook/facebook.component';
 
 const routes: Routes = [
-    {path: 'login', component: LoginComponent}
+    {path: 'login', component: LoginComponent},
+    {path:'auth/facebook/callback',component: FacebookComponent}
 ]
 
 @NgModule({
@@ -20,5 +21,6 @@ const routes: Routes = [
 export class AppRoutingModule{}
 export const routingComponents = [
     NavBarComponent,
-    LoginComponent
+    LoginComponent,
+    FacebookComponent
 ]
