@@ -7,6 +7,7 @@ import { FacebookComponent } from './components/facebook/facebook.component';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent},
+    {path: 'facebook', component: FacebookComponent},
     {path:'auth/facebook/callback',component: FacebookComponent}
 ]
 

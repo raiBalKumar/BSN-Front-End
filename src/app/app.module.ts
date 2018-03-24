@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthService } from 'angular2-oauth2/oauth-service';
 
 import { AppComponent } from './app.component';
 import { routingComponents } from './app-routing.module';
@@ -19,13 +19,13 @@ import { AuthService } from './services/auth.service';
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
-    OAuthModule.forRoot(),
     HttpClientModule,
     AppRoutingModule
   ],
   providers: [
     FacebookAuthService,
-    AuthService
+    AuthService,
+    OAuthService
   ],
   bootstrap: [AppComponent]
 })

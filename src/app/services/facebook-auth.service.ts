@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { HttpClient } from '@angular/common/http';
-import { OAuthService } from 'angular-oauth2-oidc';
+import { OAuthService } from 'angular2-oauth2/oauth-service';
 import { environment } from '../../environments/environment';
 
 @Injectable()
