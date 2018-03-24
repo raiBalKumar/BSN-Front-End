@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-nav-bar',
