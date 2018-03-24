@@ -39,7 +39,18 @@ export class LoginComponent implements OnInit {
   onSubmitRegister(value:{}){
     console.log("submitted value: ",value);
     this.authService.registerUser(value).subscribe((data)=>{
-      console.log(data,"msg from nodejs for anuglar");
+      if(data.success){
+        this.flashMessage.show(data.msg,{
+          cssClass: 'alert-success',
+          timeout: 3000
+        })
+      } else {
+        this.flashMessage.show(data.msg, { 
+          cssClass: 'alert-danger',
+          timeout: 3000
+        });
+      }
+      
     });
     this.ref.close();
   }
