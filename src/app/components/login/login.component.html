@@ -1,1 +1,50 @@
-<button class='btn facebook-btn text-white' (click)="onFacebookLogin($event)">Sign in with Facebook</button>
+<div class="text-center form-signin loginFrame my-5">
+    <form (submit)="onLoginSubmit()">
+  
+      <!-- social login start  -->
+  
+      <div class="btn-group py-3">
+        <a class='btn facebook-btn disabled text-white'>
+          <i class="fa fa-facebook"></i>
+        </a>
+        <a class='btn facebook-btn text-white' (click)="onFacebookLogin($event)">
+          <i class="fa">Sign in with Facebook</i>
+        </a>
+      </div>
+      <br />
+      <br />
+  
+      <!-- end of social login -->
+      <h1 class="h5 mb-2 font-weight-normal text-white fa">Log in with email</h1>
+  
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" name="email" class="form-control fa" [(ngModel)]="email" placeholder="Email address" required autofocus>
+      <br>
+      <br>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" name="password" class="form-control fa" [(ngModel)]="password" placeholder="Password" required>
+  
+      <input class="fa btn btn-lg btn-block btn-logIn mt-4 " type="submit" value="Sign in">
+      <br>
+      <br>
+    </form>
+  
+    <!-- Button trigger modal -->
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header bg-dark text-white">
+        <h4 class="modal-title ">Register</h4>
+        <button type="button" class="close text-white" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  
+      <app-register (submit_register)="onSubmitRegister($event)" ></app-register>
+    </ng-template>
+  
+    <button class="btn btn-lg btn-block btn-register fa" (click)="open(content)">Sign up</button>
+    <br>
+    <br>
+    <hr>
+    
+  
+  </div>
