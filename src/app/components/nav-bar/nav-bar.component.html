@@ -11,26 +11,26 @@
 
         <div class="navbar-collapse" [ngbCollapse]="navbarCollapsed" id="navbarContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item btn-sm btn" [routerLinkActive]="['active']">
+                <li *ngIf="authService.isAuthenticated()" class="nav-item btn-sm btn" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['/dashboard']" (click)="navbarCollapsed = true">Dashboard</a>
                 </li>&nbsp;
-                <li class="nav-item btn-sm btn" [routerLinkActive]="['active']">
+                <li *ngIf="authService.isAuthenticated()" class="nav-item btn-sm btn" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['/profile']" (click)="navbarCollapsed = true">Profile</a>
                 </li>&nbsp;
-                <li class="nav-item btn-sm btn" [routerLinkActive]="['active']">
+                <li *ngIf="authService.isAuthenticated()" class="nav-item btn-sm btn" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['/clubs']" (click)="navbarCollapsed = true">Clubs</a>
                 </li>&nbsp;
-                <li class="nav-item btn-sm btn" [routerLinkActive]="['active']">
+                <li *ngIf="authService.isAuthenticated()" class="nav-item btn-sm btn" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['/tournaments']" (click)="navbarCollapsed = true">Tournaments</a>
                 </li>&nbsp;
             </ul>
 
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item  btn btn-sm">
+                <li *ngIf="!authService.isAuthenticated()" class="nav-item  btn btn-sm">
                     <a href="" class="nav-link" [routerLink]="['/login']" (click)="navbarCollapsed = true">Login</a>
                 </li>&nbsp;
-                <li class="nav-item  btn btn-sm">
-                    <a class="nav-link" (click)="LogOut()">Logout</a>
+                <li *ngIf="authService.isAuthenticated()" class="nav-item  btn btn-sm">
+                    <a href="" class="nav-link" (click)="logout()">Logout</a>
                 </li>&nbsp;
             </ul>
 

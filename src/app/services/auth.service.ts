@@ -28,11 +28,11 @@ export class AuthService {
   }
   
   authenticateUser(user): Observable<any>{
-    return this.http.post('http://localhost:8080/users/authenticate', user); 
+    return this.http.post('http://localhost:8080/api/auth/login', user); 
   }
 
   registerUser(user): Observable<any>{
-    return this.http.post('http://localhost:8080/auth/register',user);
+    return this.http.post('http://localhost:8080/api/auth/register',user);
   }
 
   storeUserData(token, user){

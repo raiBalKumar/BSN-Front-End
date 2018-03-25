@@ -63,6 +63,9 @@
       box-shadow: 0 0.5px rgb(46, 47, 48);
       transform: translateY(3px);
   }
+  .bg-color {
+    background: linear-gradient(180deg, rgb(4, 126, 182),rgb(40, 148, 211),rgb(8, 137, 197));
+  }
 
 
   

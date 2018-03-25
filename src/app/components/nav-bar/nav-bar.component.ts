@@ -1,6 +1,8 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 
 @Component({
@@ -10,12 +12,17 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private router: Router,
+              private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
   }
 
-  LogOut() {
+  logout(){
     this.authService.logOut();
+    this.flashMessage.show("You're logged out", { cssClass: "alert-success", timeout: 3000});
+    this.router.navigate(['/login']);
+    return false;
   }
 }
