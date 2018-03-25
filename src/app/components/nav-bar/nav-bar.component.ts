@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -9,9 +10,12 @@ import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
+  LogOut() {
+    this.authService.logOut();
+  }
 }

@@ -9,7 +9,7 @@ export class FacebookAuthService {
 
   constructor(private router: Router, private oauthService: OAuthService) { 
     this.oauthService.loginUrl = "https://www.facebook.com/v2.11/dialog/oauth"
-    this.oauthService.redirectUri = window.location.origin + "/auth/facebook/callback";
+    this.oauthService.redirectUri = /*window.location.origin*/ "http://localhost:4200/auth/facebook/callback";
     this.oauthService.clientId = environment.facebookAppId;
     this.oauthService.scope = "email user_friends manage_pages";
     this.oauthService.setStorage(localStorage);

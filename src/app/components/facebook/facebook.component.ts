@@ -7,7 +7,7 @@ import { parse } from 'query-string';
 
 
 @Component({
-  selector: 'app-facebook',
+  // selector: 'app-facebook',
   templateUrl: './facebook.component.html',
   styleUrls: ['./facebook.component.css']
 })
@@ -19,13 +19,11 @@ export class FacebookComponent implements OnInit {
 
   ngOnInit() {
     if(this.authService.isAuthenticated()){
-      //need to change back to profile path
-      this.router.navigate(['/facebook']);
+      this.router.navigate(['/profile']);
+    } else {
+      this.route.fragment.subscribe((fragment:string)=>{
+        this.authService.facebookLogin(parse(fragment).access_token);
+      });
     }
-
-    this.route.fragment.subscribe((fragment:string)=>{
-      this.authService.facebookLogin(parse(fragment).access_token);
-    });
   }
-
 }

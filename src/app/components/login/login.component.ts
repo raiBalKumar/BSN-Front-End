@@ -66,16 +66,9 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-  
-
 
   onFacebookLogin() {
     this.facebookAuthService.logIn();
-  }
-
-  onFacebookLogOut() {
-    this.authService.logOut();
-    this.router.navigate(["/login"]);
   }
 
 }

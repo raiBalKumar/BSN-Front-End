@@ -3,26 +3,30 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
 import { environment} from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
+import { FacebookAuthService } from './facebook-auth.service';
 
 
 @Injectable()
 export class AuthService {
   token: string = null;
   user: any;
-  constructor(private router: Router,private http: HttpClient) {
-    this.token = localStorage.getItem('myToken');
-
-   }
+  constructor(private router: Router,
+              private http: HttpClient,
+              private facebookAuthService: FacebookAuthService) {
+                this.token = localStorage.getItem('myToken');
+              }
 
   facebookLogin(access_token){
-    return this.http.post(`${environment.apiServer}/api/login/facebook`,{access_token:access_token}).subscribe((res)=>{
-        this.token = res.json().token;
+    return this.http.post(`${environment.apiServer}/api/login/facebook`,{access_token:access_token})
+      .subscribe((res: any)=>{
+        this.token = res.token;
         localStorage.setItem('myToken',this.token);
         this.router.navigate(['/profile']);
       },(err)=>{
           alert("You are not logged in. Dude!");
       });
   }
+  
   authenticateUser(user): Observable<any>{
     return this.http.post('http://localhost:8080/users/authenticate', user); 
   }
@@ -45,6 +49,8 @@ export class AuthService {
   logOut(){
     this.token = null;
     this.user = null;
+    this.facebookAuthService.logOut();
     localStorage.removeItem('myToken');
+    this.router.navigate(['/login'])
   }
 }

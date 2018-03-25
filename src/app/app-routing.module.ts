@@ -2,6 +2,7 @@ import { ClubsComponent } from './components/clubs/clubs.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './services/auth-guard.service';
 
 import { LoginComponent } from './components/login/login.component';
 import { FacebookComponent } from './components/facebook/facebook.component';

@@ -14,6 +14,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { FacebookAuthService } from './services/facebook-auth.service';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ClubsComponent } from './components/clubs/clubs.component';
@@ -43,7 +44,8 @@ import { TournamentsComponent } from './components/tournaments/tournaments.compo
     FacebookAuthService,
     AuthService,
     OAuthService,
-    FlashMessagesService
+    FlashMessagesService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
