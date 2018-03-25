@@ -15,3 +15,9 @@ header {
     transform: translateY(2px);
 }
  
+.colorme  a {
+    color: #fff !important;
+}
+.colorme {
+    box-shadow: 1px 2px 1px #fff;
+}
