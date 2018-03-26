@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
+    delete this.userForm.value.confirm_password;
     this.submit.emit(this.userForm.value);
   }
 

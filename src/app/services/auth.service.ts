@@ -9,13 +9,16 @@ import { FacebookAuthService } from './facebook-auth.service';
 @Injectable()
 export class AuthService {
   token: string = null;
-  user: any;
+  user$: Observable<Models.User>;
+
   constructor(private router: Router,
               private http: HttpClient,
-              private facebookAuthService: FacebookAuthService) {
+              private facebookAuthService: FacebookAuthService) 
+              {
                 this.token = localStorage.getItem('myToken');
-                this.user = JSON.parse(localStorage.getItem('user'));
+                this.user$ = JSON.parse(localStorage.getItem('user'));
               }
+
 
   facebookLogin(access_token){
     return this.http.post(`${environment.apiServer}/api/login/facebook`,{access_token:access_token})
@@ -40,11 +43,11 @@ export class AuthService {
     localStorage.setItem('myToken', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.token = token;
-    this.user = user;
+    this.user$ = user;
   }
 
   getUser(){
-    return this.user;
+    return this.user$;
   }
 
   isAuthenticated(){
@@ -53,7 +56,7 @@ export class AuthService {
 
   logOut(){
     this.token = null;
-    this.user = null;
+    this.user$ = null;
     this.facebookAuthService.logOut();
     localStorage.removeItem('myToken');
     this.router.navigate(['/login'])

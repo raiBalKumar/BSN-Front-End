@@ -1,5 +1,7 @@
+import { async } from '@angular/core/testing';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-profile',
@@ -7,14 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user: Models.User;
+  user$: Observable<Models.User>;
+  image: string;
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.user = this.authService.getUser();
-    if(!this.user.image){
-      this.user.image = 'assets/img/zizou.png';
-    }
+    this.user$ = this.authService.user$;
+    console.log("user",this.user$);
+    this.image = 'assets/img/zizou.png';
+    
+   
   }
 
 }
