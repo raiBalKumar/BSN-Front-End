@@ -14,6 +14,7 @@ export class AuthService {
               private http: HttpClient,
               private facebookAuthService: FacebookAuthService) {
                 this.token = localStorage.getItem('myToken');
+                this.user = JSON.parse(localStorage.getItem('user'));
               }
 
   facebookLogin(access_token){
@@ -28,18 +29,22 @@ export class AuthService {
   }
   
   authenticateUser(user): Observable<any>{
-    return this.http.post('http://localhost:8080/api/auth/login', user); 
+    return this.http.post(`${environment.apiServer}/api/auth/login`, user); 
   }
 
   registerUser(user): Observable<any>{
-    return this.http.post('http://localhost:8080/api/auth/register',user);
+    return this.http.post(`${environment.apiServer}/api/auth/register`,user);
   }
 
   storeUserData(token, user){
-    localStorage.setItem('id_token', token);
+    localStorage.setItem('myToken', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.token = token;
     this.user = user;
+  }
+
+  getUser(){
+    return this.user;
   }
 
   isAuthenticated(){
