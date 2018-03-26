@@ -34,8 +34,4 @@ export class RegisterComponent implements OnInit {
     return password.get('password').value === password.get('confirm_password').value
        ? null : {'mismatch': true};
  }
-
-  
-
-
 }
