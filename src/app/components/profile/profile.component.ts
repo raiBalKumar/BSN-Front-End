@@ -32,11 +32,6 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-<<<<<<< HEAD
-=======
-    this.user$ = this.authService.getUser();
-    console.log("user",this.user$);
->>>>>>> e80dbf7e7c8fe42782435da5d01dd5e27d2d0929
     this.image = 'assets/img/zizou.png';
 
     // Get the profile in the first beginning
