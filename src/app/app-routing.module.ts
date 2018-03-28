@@ -11,11 +11,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent},
-    {path: 'auth/facebook/callback',component: FacebookComponent},
-    {path: 'dashboard', component: DashboardComponent},
-    {path: 'profile', component: ProfileComponent},
-    {path: 'clubs', component: ClubsComponent},
-    {path: 'tournaments', component: TournamentsComponent}
+    {path: 'auth/facebook/callback',component: FacebookComponent,},
+    {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
+    {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
+    {path: 'clubs', component: ClubsComponent, canActivate:[AuthGuard]},
+    {path: 'tournaments', component: TournamentsComponent, canActivate:[AuthGuard]}
 ]
 
 @NgModule({
