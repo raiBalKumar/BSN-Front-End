@@ -1,0 +1,33 @@
+<div class="row mb-3">
+  <div class="col text-center">
+    <a [ngClass]="{'bg-danger': color}" class="btn bg-warning fa text-white" (click)="search($event)">Show players in market</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col holder">
+
+    <div class="box" *ngFor="let player of (players$ | async)?.invitedPlayers">
+      <div class="card player-card">
+        <img class="card-img-top img-fluid" src="{{player.img}}" width='220px' height='220px' alt="Player picture">
+        <div class="card-block">
+          <h4 class="card-title">{{player.firstname}} {{player.lastname}}</h4>
+          <p class="card-text">Position: {{player.position}}</p>
+          <p class="card-text">Location: {{player.location}}</p>
+        </div>
+        <a class="btn btn-danger bnt-block text-white" (click)="invitation(player.user_id,$event)">Cancel</a>
+      </div>
+    </div>
+
+    <div class="box" *ngFor="let player of (players$ | async)?.players">
+      <div class="card player-card">
+        <img class="card-img-top img-fluid" src="{{player.img}}" width='220px' height='220px' alt="Player picture">
+        <div class="card-block">
+          <h4 class="card-title">{{player.firstname}} {{player.lastname}}</h4>
+          <p class="card-text">Position: {{player.position}}</p>
+          <p class="card-text">Location: {{player.location}}</p>
+        </div>
+        <a class="btn btn-info bnt-block text-white" (click)="invitation(player.user_id,$event)">Invite</a>
+      </div>
+    </div>
+  </div>
+</div>

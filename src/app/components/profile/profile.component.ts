@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.user$ = this.authService.user$;
+    this.user$ = this.authService.getUser();
     console.log("user",this.user$);
     this.image = 'assets/img/zizou.png';
     

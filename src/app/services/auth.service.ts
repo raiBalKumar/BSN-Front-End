@@ -2,21 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
 import { environment} from '../../environments/environment';
-import { Observable } from 'rxjs/Observable';
+import { Observable} from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs';
 import { FacebookAuthService } from './facebook-auth.service';
+import { tap } from 'rxjs/operators';
 
 
 @Injectable()
 export class AuthService {
   token: string = null;
-  user$: Observable<Models.User>;
-
+  user:any;
+  
   constructor(private router: Router,
               private http: HttpClient,
               private facebookAuthService: FacebookAuthService) 
               {
                 this.token = localStorage.getItem('myToken');
-                this.user$ = JSON.parse(localStorage.getItem('user'));
+                this.user = JSON.parse(localStorage.getItem('user'));
               }
 
 
@@ -37,17 +39,19 @@ export class AuthService {
 
   registerUser(user): Observable<any>{
     return this.http.post(`${environment.apiServer}/api/auth/register`,user);
+    
+                   
   }
 
   storeUserData(token, user){
     localStorage.setItem('myToken', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.token = token;
-    this.user$ = user;
+    this.user = user;
   }
 
   getUser(){
-    return this.user$;
+    return this.user;
   }
 
   isAuthenticated(){
@@ -56,8 +60,9 @@ export class AuthService {
 
   logOut(){
     this.token = null;
-    this.user$ = null;
+    this.user = null;
     this.facebookAuthService.logOut();
     localStorage.removeItem('myToken');
+    localStorage.removeItem('user');
   }
 }

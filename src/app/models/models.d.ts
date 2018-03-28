@@ -3,11 +3,12 @@ declare module Models {
         firstname: string,
         lastname: string,
         email: string,
-        image? : string | null,
-        position? : string | null,
-        team_id? : number | null,
+        image? : string,
+        position? : string,
+        team_id? : number,
         status : string,
         user_id?: number,
-        location?: string | null
+        location?: string,
+        teamname?: string
     }
 }

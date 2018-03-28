@@ -19,6 +19,9 @@ import { FlashMessagesService, FlashMessagesModule } from 'angular2-flash-messag
 import { ProfileComponent } from './components/profile/profile.component';
 import { ClubsComponent } from './components/clubs/clubs.component';
 import { TournamentsComponent } from './components/tournaments/tournaments.component';
+import { DashboardService } from './services/dashboard.service';
+import { RequestsComponent } from './components/requests/requests.component';
+import { PlayerMarketComponent } from './components/player-market/player-market.component';
 
 
 @NgModule({
@@ -30,7 +33,10 @@ import { TournamentsComponent } from './components/tournaments/tournaments.compo
     DashboardComponent,
     ProfileComponent,
     ClubsComponent,
-    TournamentsComponent
+    TournamentsComponent,
+    RequestsComponent,
+    PlayerMarketComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,8 @@ import { TournamentsComponent } from './components/tournaments/tournaments.compo
     AuthService,
     OAuthService,
     FlashMessagesService,
-    AuthGuard
+    AuthGuard,
+    DashboardService
   ],
   bootstrap: [AppComponent]
 })
