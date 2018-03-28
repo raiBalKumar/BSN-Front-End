@@ -10,4 +10,15 @@ declare module Models {
         user_id?: number,
         location?: string | null
     }
+
+    interface Profile{
+        firstname: string,
+        lastname: string,
+        location: string,
+        position: string,
+        status: string,
+        image?: string,
+        teamname?: string,
+        // teamLogo?: string
+    }
 }
