@@ -4,7 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { OAuthService } from 'angular2-oauth2/oauth-service';
-import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { routingComponents } from './app-routing.module';
@@ -19,6 +19,7 @@ import { FlashMessagesService, FlashMessagesModule } from 'angular2-flash-messag
 import { ProfileComponent } from './components/profile/profile.component';
 import { ClubsComponent } from './components/clubs/clubs.component';
 import { TournamentsComponent } from './components/tournaments/tournaments.component';
+import { UserService } from './services/user.service';
 import { DashboardService } from './services/dashboard.service';
 import { RequestsComponent } from './components/requests/requests.component';
 import { PlayerMarketComponent } from './components/player-market/player-market.component';
@@ -47,7 +48,7 @@ import { CreateTeamFormComponent } from './components/create-team-form/create-te
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FlashMessagesModule
+    FlashMessagesModule,
   ],
   providers: [
     FacebookAuthService,
@@ -55,6 +56,7 @@ import { CreateTeamFormComponent } from './components/create-team-form/create-te
     OAuthService,
     FlashMessagesService,
     AuthGuard,
+    UserService,
     DashboardService
   ],
   bootstrap: [AppComponent]

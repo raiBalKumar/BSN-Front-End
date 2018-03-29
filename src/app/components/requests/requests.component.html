@@ -1,5 +1,5 @@
-<div *ngIf="user.status === 'manager'">
-  <p>{{user.status}}</p>
+<div *ngIf="status === 'manager'">
+  <p>{{status}}</p>
   <div class="box" *ngIf="requests">
     <div class="card" *ngFor="let request of requests">
       
@@ -27,7 +27,7 @@
   </div>
 </div>
 
-<div *ngIf="user.status === 'player'">
+<div *ngIf="status === 'player'">
   <div class="box" *ngIf="requests">
    
     <div class="card" *ngFor="let request of requests">
@@ -55,5 +55,5 @@
   </div>
 </div>
 
-<div *ngIf="user.status === 'organizer'">
+<div *ngIf="status === 'organizer'">
 </div>

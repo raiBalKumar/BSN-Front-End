@@ -1,30 +1,70 @@
 <div class="container">
-  <div class="row my-5">
-    <div class="col-md-4">
-      <div *ngIf="user$.image">
-        <img src="{{user$.image}}" alt="" class="img-fluid">
-      </div>
-      <div *ngIf="!user$.image">
-        <img src="{{image}}" alt="" class="img-fluid">
-      </div>
-    </div>
-    <div class="col-md-8">
-      <div class="row">
-        <div class="col-md-6">
-          <h2>{{user$.firstname}} {{user$.lastname}}</h2>
-          <hr>
-          <p>Position: {{user$.position}}</p>
-          <p>Height: {{user$.height}}</p>
-          <p>Team: {{user$.teamname}}</p>
-          <p>Age: {{user$.age}}</p>
+  <div *ngIf="user">
+    <div class="row my-5">
+
+      <div class="col-md-4">
+        <h1>{{user.status}} Portal</h1>
+        <div *ngIf="user.image; else defaultImage">
+          <img src="{{user.image}}" alt="" class="img-fluid">
         </div>
-        <div class="col-md-6">
+        <ng-template #defaultImage>
+          <img src="{{image}}" alt="" class="img-fluid">
+        </ng-template>
+      </div>
 
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-6">
+            <div *ngIf="editing; then editingBlock else editedBlock"></div>
+
+            <ng-template #editedBlock>
+              <button (click)='onEdit()'>Edit</button>
+              <h2>{{user.firstname}} {{user.lastname}}</h2>
+              <hr>
+              <p>Team: {{user.teamname}}</p>
+              <p>Location: {{user.location}}</p>
+              
+            </ng-template>
+
+            <ng-template #editingBlock>
+              <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                <button (click)='back()'>Back</button>
+                <hr>
+
+                <div class="form-group">
+                  <label>First Name: </label>
+                  <input type='text' name="firstname" class="form-control width-50" formControlName="firstname" />
+                  <div *ngIf="editForm.controls['firstname'].dirty && editForm.controls['firstname'].hasError('required')" class="prompt">
+                    This field is required
+                  </div>
+                  <div *ngIf="editForm.controls['firstname'].dirty && editForm.controls['firstname'].hasError('minlength')" class="prompt">
+                    Minimum 2 characters
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Last Name: </label>
+                  <input type='text' name="lastname" class="form-control width-50" formControlName="lastname" />
+                </div>
+
+                <div class="form-group">
+                  <label>Location: </label>
+                  <select formControlName="location" class="form-control width-50">
+                    <option *ngFor="let location of locations" [ngValue]="location">
+                      {{ location }}
+                    </option>
+                  </select>
+                </div>
+
+                <input type='submit' value="Submit" class="btn btn-warning btn-block text-white" [disabled]="!editForm.valid" />
+              </form>
+            </ng-template>
+          </div>
+
+          <div class="col-md-6"></div>
         </div>
       </div>
 
     </div>
-
   </div>
-
 </div>

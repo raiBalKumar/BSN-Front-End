@@ -11,4 +11,15 @@ declare module Models {
         location?: string,
         teamname?: string
     }
+
+    interface Profile{
+        firstname: string,
+        lastname: string,
+        location: string,
+        position: string,
+        status: string,
+        image?: string,
+        teamname?: string,
+        // teamLogo?: string
+    }
 }

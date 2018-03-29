@@ -11,15 +11,16 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class AuthService {
   token: string = null;
-  private subject = new BehaviorSubject<any>([]);
-  user = this.subject.asObservable();
-  
+  status:Observable<any>;
+  // user$: Observable<Models.User>;
+
   constructor(private router: Router,
               private http: HttpClient,
               private facebookAuthService: FacebookAuthService) 
               {
                 this.token = localStorage.getItem('myToken');
-                this.user = JSON.parse(localStorage.getItem('user'));
+                this.status = JSON.parse(localStorage.getItem('status'));
+                // this.user$ = JSON.parse(localStorage.getItem('user'));
               }
 
 
@@ -39,19 +40,19 @@ export class AuthService {
   }
 
   registerUser(user): Observable<any>{
-    return this.http.post(`${environment.apiServer}/api/auth/register`,user);            
+    return this.http.post(`${environment.apiServer}/api/auth/register`,user);           
   }
 
-  storeUserData(token, user){
+  storeUserData(token, status){
     localStorage.setItem('myToken', token);
-    localStorage.setItem('user', JSON.stringify(user));
+    // localStorage.setItem('status', status);
+    localStorage.setItem('status', JSON.stringify(status));
     this.token = token;
-    this.user = user;
+    this.status = status;
   }
 
-
-  getUser(){
-    return this.user;
+  getStatus(){
+    return this.status;
   }
 
   isAuthenticated(){
@@ -60,9 +61,9 @@ export class AuthService {
 
   logOut(){
     this.token = null;
-    this.user = null;
+    this.status = null;
     this.facebookAuthService.logOut();
     localStorage.removeItem('myToken');
-    localStorage.removeItem('user');
+    localStorage.removeItem('status');
   }
 }

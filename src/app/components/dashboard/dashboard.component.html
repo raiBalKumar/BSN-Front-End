@@ -1,9 +1,9 @@
 <div class="container dash">
   <h2>Dashboard</h2>
-  <p>{{user.status}}</p>
+  <p>{{status}}</p>
   <hr>
   <p>//Todo profile </p>
-  <app-requests [user]="user"></app-requests>
+  <app-requests></app-requests>
   <br>
   <br>
 
@@ -23,8 +23,14 @@
     <a class="btn btn-info btn-lg text-white create " (click)="open(content)">
       <small>Form your team</small>
     </a>
+  <app-requests [status]="status"></app-requests>
+  <br>
+  <br>
+  <div *ngIf="status === 'manager'">
+    <app-player-market></app-player-market>
   </div>
   <div *ngIf="user.status === 'manager' && user.team_id !== null">
     <app-player-market></app-player-market>
   </div>
+</div>
 </div>

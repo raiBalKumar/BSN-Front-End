@@ -2,6 +2,7 @@ import { AuthService } from './../../services/auth.service';
 import { DashboardService } from './../../services/dashboard.service';
 import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -12,13 +13,15 @@ import { Observable } from 'rxjs/Observable';
 export class DashboardComponent implements OnInit {
   user: Observable<any>;
   ref: NgbModalRef;
+
   constructor(private dashboardService: DashboardService,
               private authService: AuthService,
               private modalService: NgbModal,
             ) { }
 
   ngOnInit() {
-     this.user = this.authService.getUser();
+    this.user = this.authService.getStatus();
+    console.log("user...",this.user);
     // console.log(this.user$);
     // this.dashboardService.getDashboard().subscribe(value => {
     //   this.user = value;

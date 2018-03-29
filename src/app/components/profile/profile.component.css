@@ -1,0 +1,13 @@
+h1{
+    text-transform:capitalize;
+}
+
+.width-50{
+    float: right;
+    width: 50%;
+}
+
+.prompt{
+    margin-top: 15px;
+    color: red;
+}
