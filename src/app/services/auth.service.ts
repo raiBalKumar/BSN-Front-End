@@ -11,6 +11,7 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class AuthService {
   token: string = null;
+  status: string = null;
   // user$: Observable<Models.User>;
 
   constructor(private router: Router,
@@ -18,6 +19,7 @@ export class AuthService {
               private facebookAuthService: FacebookAuthService) 
               {
                 this.token = localStorage.getItem('myToken');
+                this.status = localStorage.getItem('status');
                 // this.user$ = JSON.parse(localStorage.getItem('user'));
               }
 
@@ -38,21 +40,20 @@ export class AuthService {
   }
 
   registerUser(user): Observable<any>{
-    return this.http.post(`${environment.apiServer}/api/auth/register`,user);
-    
-                   
+    return this.http.post(`${environment.apiServer}/api/auth/register`,user);           
   }
 
-  storeUserData(token, user){
+  storeUserData(token, status){
     localStorage.setItem('myToken', token);
+    localStorage.setItem('status', status);
     // localStorage.setItem('user', JSON.stringify(user));
     this.token = token;
     // this.user$ = user;
   }
 
-  // getUser(){
-  //   return this.user$;
-  // }
+  getStatus(){
+    return this.status;
+  }
 
   isAuthenticated(){
     return this.token != null;
@@ -63,6 +64,6 @@ export class AuthService {
     // this.user$ = null;
     this.facebookAuthService.logOut();
     localStorage.removeItem('myToken');
-    localStorage.removeItem('user');
+    localStorage.removeItem('status');
   }
 }

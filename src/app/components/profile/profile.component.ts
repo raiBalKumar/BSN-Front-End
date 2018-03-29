@@ -74,13 +74,17 @@ export class ProfileComponent implements OnInit {
           err => { throw err }
         );
 
-      swal(
-        'Updated!'
-      )
+      swal({
+          type: 'success',
+          confirmButtonText: 'Thank you',
+          width: 300,
+        })
     } else if (result.dismiss === swal.DismissReason.cancel) {
-      swal(
-        'Cancelled',
-      )
+      swal({
+        type: 'error',
+        confirmButtonText: 'Canceled',
+        width: 300,
+      })
     }
   }
 
@@ -97,10 +101,10 @@ export class ProfileComponent implements OnInit {
   // Using swal lib -> https://github.com/sweetalert2/sweetalert2
   swalSetUp() {
     return swal({
-      title: 'Updated your information?',
-      type: 'warning',
+      title: 'Are you sure?',
+      type: 'info',
       showCancelButton: true,
-      confirmButtonText: 'Confirm',
+      confirmButtonText: 'Yes',
       cancelButtonText: 'Cancel'
     })
   }

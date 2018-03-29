@@ -9,32 +9,32 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./requests.component.css']
 })
 export class RequestsComponent implements OnInit {
-  requests:any;
-  @Input() user:any;
+  requests: any;
+  @Input() status: any;
 
   constructor(private dashboardService: DashboardService,
-             ) {console.log("constructor") }
+  ) { console.log("constructor") }
 
   ngOnInit() {
     console.log("requestsssssss");
-    if(this.user.status === "manager"){
-        this.dashboardService.checkManagerRequest().subscribe(result=>{
-          this.requests = result;
-          console.log("requests...is here",this.requests)
-        })
-    }else if(this.user.status === "player"){
-        this.dashboardService.checkPlayerRequest().subscribe(result=>{
-          this.requests = result;
-          console.log("request arrived,", this.requests)
-        })
-    }else if(this.user.status === "organizer"){
-        this.dashboardService.checkOrganizerRequest().subscribe(result=>{
-          this.requests = result;
-        })
+    if (this.status === "manager") {
+      this.dashboardService.checkManagerRequest().subscribe(result => {
+        this.requests = result;
+        console.log("requests...is here", this.requests)
+      })
+    } else if (this.status === "player") {
+      this.dashboardService.checkPlayerRequest().subscribe(result => {
+        this.requests = result;
+        console.log("request arrived,", this.requests)
+      })
+    } else if (this.status === "organizer") {
+      this.dashboardService.checkOrganizerRequest().subscribe(result => {
+        this.requests = result;
+      })
     }
-    
+
   }
-  
-    
+
+
 
 }

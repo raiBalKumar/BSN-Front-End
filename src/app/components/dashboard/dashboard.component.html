@@ -1,10 +1,12 @@
 <div class="container dash">
   <h2>Dashboard</h2>
-  <p>{{user.status}}</p>
+  <p>{{status}}</p>
   <hr>
   <p>//Todo profile </p>
-  <app-requests [user]="user"></app-requests><br><br>
-  <div *ngIf="user.status === 'manager'">
-      <app-player-market></app-player-market>
+  <app-requests [status]="status"></app-requests>
+  <br>
+  <br>
+  <div *ngIf="status === 'manager'">
+    <app-player-market></app-player-market>
   </div>
 </div>
