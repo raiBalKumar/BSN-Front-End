@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FacebookComponent } from './components/facebook/facebook.component';
 import { TournamentsComponent } from './components/tournaments/tournaments.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CreateTournamentComponent } from './components/create-tournament/create-tournament.component';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -15,7 +16,10 @@ const routes: Routes = [
     {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
     {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
     {path: 'clubs', component: ClubsComponent, canActivate:[AuthGuard]},
-    {path: 'tournaments', component: TournamentsComponent, canActivate:[AuthGuard]}
+    {path: 'tournaments', component: TournamentsComponent, canActivate:[AuthGuard]},
+    // need to set authentication to restrict only organizer can create tournament
+    {path: 'tournament/create', component: CreateTournamentComponent, canActivate: [AuthGuard]}
+    // end
 ]
 
 @NgModule({

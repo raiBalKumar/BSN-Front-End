@@ -1,9 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-//test http module
-import { HttpModule } from '@angular/http';
-//
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { OAuthService } from 'angular2-oauth2/oauth-service';
@@ -23,6 +20,7 @@ import { FlashMessagesService, FlashMessagesModule } from 'angular2-flash-messag
 import { ProfileComponent } from './components/profile/profile.component';
 import { ClubsComponent } from './components/clubs/clubs.component';
 import { TournamentsComponent } from './components/tournaments/tournaments.component';
+import { CreateTournamentComponent } from './components/create-tournament/create-tournament.component';
 
 
 @NgModule({
@@ -34,7 +32,8 @@ import { TournamentsComponent } from './components/tournaments/tournaments.compo
     DashboardComponent,
     ProfileComponent,
     ClubsComponent,
-    TournamentsComponent
+    TournamentsComponent,
+    CreateTournamentComponent
   ],
   imports: [
     BrowserModule,
@@ -43,10 +42,7 @@ import { TournamentsComponent } from './components/tournaments/tournaments.compo
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FlashMessagesModule,
-    //test http module
-    HttpModule
-    //
+    FlashMessagesModule
   ],
   providers: [
     FacebookAuthService,
