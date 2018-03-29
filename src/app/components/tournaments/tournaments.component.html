@@ -20,7 +20,7 @@
           <li>Winner prize - {{list.winner_prize}}</li>
           <li>Runnerup prize - {{list.runnerup_prize}}</li>
           <li>Entry fee - {{list.entry_fee}}</li>
-          <li>Date - {{list.date}}</li>
+          <li>Date - {{ list.date | date: 'd' }} / {{ list.date | date: 'MM'}} / {{ list.date | date: 'y'}}</li>
           <li>Entry fee - {{list.location}}</li>
         </div>
       </div>

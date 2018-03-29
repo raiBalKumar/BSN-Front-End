@@ -4,7 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { OAuthService } from 'angular2-oauth2/oauth-service';
-import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { routingComponents } from './app-routing.module';
@@ -21,6 +21,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ClubsComponent } from './components/clubs/clubs.component';
 import { TournamentsComponent } from './components/tournaments/tournaments.component';
 import { CreateTournamentComponent } from './components/create-tournament/create-tournament.component';
+import { UserService } from './services/user.service';
+import { DashboardService } from './services/dashboard.service';
+import { RequestsComponent } from './components/requests/requests.component';
+import { PlayerMarketComponent } from './components/player-market/player-market.component';
+import { CreateTeamFormComponent } from './components/create-team-form/create-team-form.component';
 
 
 @NgModule({
@@ -33,7 +38,11 @@ import { CreateTournamentComponent } from './components/create-tournament/create
     ProfileComponent,
     ClubsComponent,
     TournamentsComponent,
-    CreateTournamentComponent
+    CreateTournamentComponent,
+    RequestsComponent,
+    PlayerMarketComponent,
+    CreateTeamFormComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -42,7 +51,7 @@ import { CreateTournamentComponent } from './components/create-tournament/create
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FlashMessagesModule
+    FlashMessagesModule,
   ],
   providers: [
     FacebookAuthService,
@@ -50,7 +59,9 @@ import { CreateTournamentComponent } from './components/create-tournament/create
     OAuthService,
     FlashMessagesService,
     AuthGuard,
-    TournamentService
+    TournamentService,
+    UserService,
+    DashboardService
   ],
   bootstrap: [AppComponent]
 })

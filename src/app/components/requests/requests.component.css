@@ -1,0 +1,27 @@
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.card {
+    margin-top: 15px;
+    margin-left: 15px;
+    border: none;
+    box-shadow: 1px 1px 2px #000;
+}
+.card + .card {
+    margin-left: 15px;
+
+}
+.card-header {
+    color: #fff;
+    height: 3em !important;
+    display: block;
+}
+.btn {
+    box-shadow: 1px 1px 2px #000;
+}
+
+   
+    
