@@ -3,8 +3,28 @@
   <p>{{user.status}}</p>
   <hr>
   <p>//Todo profile </p>
-  <app-requests [user]="user"></app-requests><br><br>
-  <div *ngIf="user.status === 'manager'">
-      <app-player-market></app-player-market>
+  <app-requests [user]="user"></app-requests>
+  <br>
+  <br>
+
+  <div *ngIf="user.status === 'manager' && user.team_id === null" class="text-center ">
+    <!-- create team template -->
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header bg-color text-white">
+        <h4 class="modal-title ">Register</h4>
+        <button type="button" class="close text-white" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <app-create-team-form></app-create-team-form>
+      <!-- <app-register (submit_register)="onSubmitRegister($event)"></app-register> -->
+    </ng-template>
+
+    <a class="btn btn-info btn-lg text-white create " (click)="open(content)">
+      <small>Form your team</small>
+    </a>
+  </div>
+  <div *ngIf="user.status === 'manager' && user.team_id !== null">
+    <app-player-market></app-player-market>
   </div>
 </div>

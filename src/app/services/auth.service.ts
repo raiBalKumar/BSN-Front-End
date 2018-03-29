@@ -11,7 +11,8 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class AuthService {
   token: string = null;
-  user:any;
+  private subject = new BehaviorSubject<any>([]);
+  user = this.subject.asObservable();
   
   constructor(private router: Router,
               private http: HttpClient,
@@ -38,9 +39,7 @@ export class AuthService {
   }
 
   registerUser(user): Observable<any>{
-    return this.http.post(`${environment.apiServer}/api/auth/register`,user);
-    
-                   
+    return this.http.post(`${environment.apiServer}/api/auth/register`,user);            
   }
 
   storeUserData(token, user){
@@ -49,6 +48,7 @@ export class AuthService {
     this.token = token;
     this.user = user;
   }
+
 
   getUser(){
     return this.user;

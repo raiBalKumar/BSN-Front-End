@@ -22,6 +22,7 @@ import { TournamentsComponent } from './components/tournaments/tournaments.compo
 import { DashboardService } from './services/dashboard.service';
 import { RequestsComponent } from './components/requests/requests.component';
 import { PlayerMarketComponent } from './components/player-market/player-market.component';
+import { CreateTeamFormComponent } from './components/create-team-form/create-team-form.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { PlayerMarketComponent } from './components/player-market/player-market.
     ClubsComponent,
     TournamentsComponent,
     RequestsComponent,
-    PlayerMarketComponent
+    PlayerMarketComponent,
+    CreateTeamFormComponent
     
   ],
   imports: [
