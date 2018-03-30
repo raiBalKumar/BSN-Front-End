@@ -8,11 +8,11 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./tournaments.component.css']
 })
 export class TournamentsComponent implements OnInit {
-  listAllTournaments: Observable<any>;
+  listAllTournaments: Observable<object[]>;
 
   constructor(private tournamentService: TournamentService) { }
 
   ngOnInit() {    
-    this.listAllTournaments = this.tournamentService.listAllTournaments();
+      this.listAllTournaments = this.tournamentService.tournament$;    
   }
 }

@@ -18,25 +18,22 @@ export class CreateTournamentComponent implements OnInit {
               private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
-   this.createTournamentForm = this._formBuilder.group({
-    tournament_name: [null],
-    category: [null],
-    number_of_teams: [null],
-    game_size: [null],
-    winner_prize: [null],
-    runnerup_prize: [null],
-    entry_fee: [null],
-    date: [null],
-    location: [null]
-    
-   })
+    this.createTournamentForm = this._formBuilder.group({
+      tournament_name: [null],
+      category: [null],
+      number_of_teams: [null],
+      game_size: [null],
+      winner_prize: [null],
+      runnerup_prize: [null],
+      entry_fee: [null],
+      date: [null],
+      location: [null]
+      
+    })
   }
 
   createTournament() {
-    this.tournamentService.createTournament(this.createTournamentForm.value)
-      .subscribe(res => {
-        this.flashMessage.show("You've created new tournament!", { cssClass: "alert-success", timeout: 3000});
-        this.router.navigate(["/tournaments"]);
-      })
+    this.tournamentService.createTournament(this.createTournamentForm.value);
+    this.router.navigate(["/tournaments"]);
   }
 }
