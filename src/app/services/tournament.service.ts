@@ -7,11 +7,15 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class TournamentService {
   tournament$: BehaviorSubject<object[]>;
+  // use this variable to pass tournament information for edit action 
+  // (using createComponent to render edit form)
+  singleTournamentPost: BehaviorSubject<object>;
 
   constructor(private http: HttpClient, 
               private authService: AuthService) 
               {
                 this.tournament$ = new BehaviorSubject([]);
+                this.singleTournamentPost = new BehaviorSubject({});
                 this.listAllTournaments();
               }
 
@@ -31,4 +35,14 @@ export class TournamentService {
         this.listAllTournaments();
       })
   }
+
+  update(id, updateFormData) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+    let options = {headers:headers};
+    this.http.put(`${environment.apiServer}/api/organizers/tournament/${id}`, {updateFormData}, options)
+      .subscribe((res) => {
+        this.listAllTournaments();
+      })
+  }
 }
+

@@ -4,7 +4,6 @@
 
 <div class="container" *ngFor="let list of listAllTournaments | async">
   <div class="row">
-
     <div class="col-md-4 img-thumbnail">
       <img src="../../../assets/img/zizou.png">
     </div>
@@ -27,8 +26,7 @@
     </div>
 
     <div class="col-md-4">
-      <div class="btn btn-info">Edit Tournament</div>
+      <div class="btn btn-info" (click)="onEdit(list)">Edit Tournament</div>
     </div>
-
   </div>
 </div>

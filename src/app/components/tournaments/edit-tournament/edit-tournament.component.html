@@ -1,0 +1,74 @@
+<p>
+  edit-tournament works!
+</p>
+<div class="container">
+    <form [formGroup]="editTournamentForm" (ngSubmit)="onUpdate()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Name of tournament</label>
+              <input type="text" class="form-control" name="tournament_name" formControlName="tournament_name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Category</label>
+              <input type="text" class="form-control" name="category" formControlName="category">
+            </div>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Number of team</label>
+              <input type="text" class="form-control" name="number_of_teams" formControlName="number_of_teams">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Game size</label>
+              <input type="text" class="form-control" name="game_size" formControlName="game_size">
+            </div>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Winner prize</label>
+              <input type="text" class="form-control" name="winner_prize" formControlName="winner_prize">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Runner up prize</label>
+              <input type="text" class="form-control" name="runnerup_prize" formControlName="runnerup_prize">
+            </div>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Entry fee</label>
+              <input type="text" class="form-control" name="entry_fee" formControlName="entry_fee">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" class="form-control" name="date" formControlName="date">
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" class="form-control" name="location" formControlName="location">
+        </div>
+  
+        <input type='submit' value="Update" class="btn btn-success" />
+    </form>
+  </div>
+  

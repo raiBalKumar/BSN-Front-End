@@ -20,12 +20,13 @@ import { FlashMessagesService, FlashMessagesModule } from 'angular2-flash-messag
 import { ProfileComponent } from './components/profile/profile.component';
 import { ClubsComponent } from './components/clubs/clubs.component';
 import { TournamentsComponent } from './components/tournaments/tournaments.component';
-import { CreateTournamentComponent } from './components/create-tournament/create-tournament.component';
+import { CreateTournamentComponent } from './components/tournaments/create-tournament/create-tournament.component';
 import { UserService } from './services/user.service';
 import { DashboardService } from './services/dashboard.service';
 import { RequestsComponent } from './components/requests/requests.component';
 import { PlayerMarketComponent } from './components/player-market/player-market.component';
 import { CreateTeamFormComponent } from './components/create-team-form/create-team-form.component';
+import { EditTournamentComponent } from './components/tournaments/edit-tournament/edit-tournament.component';
 
 
 @NgModule({
@@ -41,8 +42,8 @@ import { CreateTeamFormComponent } from './components/create-team-form/create-te
     CreateTournamentComponent,
     RequestsComponent,
     PlayerMarketComponent,
-    CreateTeamFormComponent
-    
+    CreateTeamFormComponent,
+    EditTournamentComponent    
   ],
   imports: [
     BrowserModule,
