@@ -43,7 +43,7 @@ import { EditTournamentComponent } from './components/tournaments/edit-tournamen
     RequestsComponent,
     PlayerMarketComponent,
     CreateTeamFormComponent,
-    EditTournamentComponent    
+    EditTournamentComponent
   ],
   imports: [
     BrowserModule,
