@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -6,6 +7,9 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
+  private subject = new BehaviorSubject<any>([]);
+  user$ = this.subject.asObservable();
+  
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getProfile() {

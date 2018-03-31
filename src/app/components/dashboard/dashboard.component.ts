@@ -11,17 +11,26 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  user: Observable<any>;
+  user: Observable<Models.User>;
   ref: NgbModalRef;
 
   constructor(private dashboardService: DashboardService,
               private authService: AuthService,
+              private userService: UserService,
               private modalService: NgbModal,
-            ) { }
+            ) { 
+              console.log("clubs");
+
+            }
 
   ngOnInit() {
-    this.user = this.authService.getStatus();
-    console.log("user...",this.user);
+    this.dashboardService.getUserInfo();
+
+    this.dashboardService.user$.subscribe(user => {
+      this.user = user;
+      console.log("user...",this.user);
+
+    });
     // console.log(this.user$);
     // this.dashboardService.getDashboard().subscribe(value => {
     //   this.user = value;
@@ -36,8 +45,9 @@ export class DashboardComponent implements OnInit {
       
     });
   }
-  onSubmitRegister(value:{}){
-   
+  onCreateClub(value:{}){
+   console.log("club name: ",value);
+    this.dashboardService.createTeam(value);
     this.ref.close();
   }
 }

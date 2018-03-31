@@ -9,6 +9,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class DashboardService {
+  //User info
+  private playerSubject = new BehaviorSubject<any>({});
+  user$ = this.playerSubject.asObservable();
   
   // players in market variable
   private subject = new BehaviorSubject<any>([]);
@@ -48,16 +51,17 @@ export class DashboardService {
     return this.http.get(`${environment.apiServer}/api/organizers/getRequests`,httpOptions);
   }
   
-  // todo.... not yet functional
-  // getDashboard(): Observable<any>{
-  //     const httpOptions = {
-  //       headers: new HttpHeaders({
-  //         'Authorization': 'Bearer ' + this.authService.token 
-  //       })
-  //     };
-  //     return this.http.get(`${environment.apiServer}/api/users/dashboard`, httpOptions);
+  getUserInfo(){
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Authorization': 'Bearer ' + this.authService.token 
+        })
+      };
+      return this.http.get(`${environment.apiServer}/api/users/dashboard`, httpOptions).subscribe(user=>{
+        this.playerSubject.next(user);
+      })
                            
-  // }
+  }
 
 
   // show players in the market
@@ -94,6 +98,19 @@ export class DashboardService {
       })
     }; 
     return this.http.post(`${environment.apiServer}/api/managers/cancelInvitation`,{id},httpOptions);
+  }
+
+  // create new team for manager
+  createTeam(team){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.authService.token 
+      })
+    }; 
+    return this.http.post(`${environment.apiServer}/api/managers/createTeam`,team, httpOptions).subscribe(()=>{
+      this.getUserInfo();
+    });
   }
   
 }

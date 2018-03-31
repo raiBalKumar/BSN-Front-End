@@ -1,3 +1,4 @@
+import { DashboardService } from './../../services/dashboard.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./clubs.component.css']
 })
 export class ClubsComponent implements OnInit {
-
-  constructor() { }
+ user:any;
+  constructor(private dashboardService: DashboardService) { }
 
   ngOnInit() {
+    this.dashboardService.user$.subscribe(user=>{
+      this.user = user;
+    })
   }
 
 }

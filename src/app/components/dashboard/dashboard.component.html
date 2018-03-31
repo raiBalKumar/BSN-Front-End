@@ -1,6 +1,7 @@
 <div class="container dash">
   <h2>Dashboard</h2>
-  <p>{{status}}</p>
+  <p>{{user.status}}</p>
+  <p>{{user.team_id}}</p>
   <hr>
   <p>//Todo profile </p>
   <app-requests></app-requests>
@@ -10,27 +11,25 @@
   <div *ngIf="user.status === 'manager' && user.team_id === null" class="text-center ">
     <!-- create team template -->
     <ng-template #content let-c="close" let-d="dismiss">
-      <div class="modal-header bg-color text-white">
-        <h4 class="modal-title ">Register</h4>
+      <div class="modal-header bg-info text-white">
+        <h4 class="modal-title ">Creat your own team</h4>
         <button type="button" class="close text-white" aria-label="Close" (click)="d('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <app-create-team-form></app-create-team-form>
+      <app-create-team-form (newClub)="onCreateClub($event)"></app-create-team-form>
       <!-- <app-register (submit_register)="onSubmitRegister($event)"></app-register> -->
     </ng-template>
 
     <a class="btn btn-info btn-lg text-white create " (click)="open(content)">
       <small>Form your team</small>
     </a>
-  <app-requests [status]="status"></app-requests>
   <br>
   <br>
-  <div *ngIf="status === 'manager'">
-    <app-player-market></app-player-market>
   </div>
+  
   <div *ngIf="user.status === 'manager' && user.team_id !== null">
     <app-player-market></app-player-market>
   </div>
-</div>
+
 </div>

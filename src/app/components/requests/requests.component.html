@@ -1,5 +1,5 @@
-<div *ngIf="status === 'manager'">
-  <p>{{status}}</p>
+<div *ngIf="user.status === 'manager'">
+  <p>{{user.status}} from requests</p>
   <div class="box" *ngIf="requests">
     <div class="card" *ngFor="let request of requests">
       
@@ -27,7 +27,8 @@
   </div>
 </div>
 
-<div *ngIf="status === 'player'">
+<div *ngIf="user.status === 'player'">
+  <p>this is player requests</p>
   <div class="box" *ngIf="requests">
    
     <div class="card" *ngFor="let request of requests">

@@ -10,28 +10,35 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RequestsComponent implements OnInit {
   requests: any;
-  @Input() status: any;
+  user:any;
 
   constructor(private dashboardService: DashboardService,
   ) { console.log("constructor") }
 
   ngOnInit() {
+    this.dashboardService.user$.subscribe(user => {
+      this.user = user;
+      console.log("user from requests",this.user);
+
+  
     console.log("requestsssssss");
-    if (this.status === "manager") {
+    if (this.user.status === "manager") {
+      console.log("i am manager");
       this.dashboardService.checkManagerRequest().subscribe(result => {
         this.requests = result;
         console.log("requests...is here", this.requests)
       })
-    } else if (this.status === "player") {
+    } else if (this.user.status === "player") {
       this.dashboardService.checkPlayerRequest().subscribe(result => {
         this.requests = result;
         console.log("request arrived,", this.requests)
       })
-    } else if (this.status === "organizer") {
+    } else if (this.user.status === "organizer") {
       this.dashboardService.checkOrganizerRequest().subscribe(result => {
         this.requests = result;
       })
     }
+  })
 
   }
 

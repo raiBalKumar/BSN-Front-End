@@ -11,7 +11,7 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class AuthService {
   token: string = null;
-  status:Observable<any>;
+  // status:Observable<any>;
   // user$: Observable<Models.User>;
 
   constructor(private router: Router,
@@ -19,7 +19,7 @@ export class AuthService {
               private facebookAuthService: FacebookAuthService) 
               {
                 this.token = localStorage.getItem('myToken');
-                this.status = JSON.parse(localStorage.getItem('status'));
+                // this.status = JSON.parse(localStorage.getItem('status'));
                 // this.user$ = JSON.parse(localStorage.getItem('user'));
               }
 
@@ -43,17 +43,17 @@ export class AuthService {
     return this.http.post(`${environment.apiServer}/api/auth/register`,user);           
   }
 
-  storeUserData(token, status){
+  storeUserData(token){
     localStorage.setItem('myToken', token);
     // localStorage.setItem('status', status);
-    localStorage.setItem('status', JSON.stringify(status));
+    // localStorage.setItem('status', JSON.stringify(status));
     this.token = token;
-    this.status = status;
+    // this.status = status;
   }
 
-  getStatus(){
-    return this.status;
-  }
+  // getStatus(){
+  //   return this.status;
+  // }
 
   isAuthenticated(){
     return this.token != null;
@@ -61,9 +61,9 @@ export class AuthService {
 
   logOut(){
     this.token = null;
-    this.status = null;
+    // this.status = null;
     this.facebookAuthService.logOut();
     localStorage.removeItem('myToken');
-    localStorage.removeItem('status');
+    // localStorage.removeItem('status');
   }
 }
