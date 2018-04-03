@@ -3,31 +3,66 @@
 </p>
 
 <div class="container" *ngFor="let list of listAllTournaments | async">
-  <div class="row">
-    <div class="col-md-4 img-thumbnail">
-      <img src="../../../assets/img/zizou.png">
-    </div>
-
-    <div class="col-md-4">
-      <div class="list-group">
-        <div class="list-group-item">
-          <li>Tournament id - {{list.tournament_id}}</li>
-          <li>Tournament name - {{list.tournament_name}}</li>
-          <li>Category - {{list.category}}</li>
-          <li>Number of team - {{list.number_of_teams}}</li>
-          <li>Game size - {{list.game_size}}</li>
-          <li>Winner prize - {{list.winner_prize}}</li>
-          <li>Runnerup prize - {{list.runnerup_prize}}</li>
-          <li>Entry fee - {{list.entry_fee}}</li>
-          <li>Date - {{ list.date | date: 'd' }} / {{ list.date | date: 'MM'}} / {{ list.date | date: 'y'}}</li>
-          <li>Entry fee - {{list.location}}</li>
+  <!-- if user is organizer -->
+  <div *ngIf="userStatus.status === 'organizer' && userStatus.user_id === list.organizer_id">
+    <div class="row">
+      <div class="col-md-4 img-thumbnail">
+        <img src="../../../assets/img/zizou.png">
+      </div>
+  
+      <div class="col-md-4">
+        <div class="list-group">
+          <div class="list-group-item">
+            <li>Tournament id - {{list.tournament_id}}</li>
+            <li>Tournament name - {{list.tournament_name}}</li>
+            <li>Category - {{list.category}}</li>
+            <li>Number of team - {{list.number_of_teams}}</li>
+            <li>Game size - {{list.game_size}}</li>
+            <li>Winner prize - {{list.winner_prize}}</li>
+            <li>Runnerup prize - {{list.runnerup_prize}}</li>
+            <li>Entry fee - {{list.entry_fee}}</li>
+            <li>Date - {{ list.date | date: 'd' }} / {{ list.date | date: 'MM'}} / {{ list.date | date: 'y'}}</li>
+            <li>Entry fee - {{list.location}}</li>
+          </div>
         </div>
       </div>
+  
+      <div class="col-md-4">
+        <a class="btn btn-info" [routerLink]="['/tournament/edit', list.tournament_id]">Edit</a>
+        <div class="btn btn-danger" (click)="onDelete(list.tournament_id)">Delete</div>
+      </div>
     </div>
+  </div>
 
-    <div class="col-md-4">
-      <div class="btn btn-info" (click)="onEdit(list)">Edit</div>
-      <div class="btn btn-danger" (click)="onDelete(list.tournament_id)">Delete</div>
+  <!-- if user is manager / player -->
+  <div *ngIf="userStatus.status != 'organizer'">
+      <div class="row">
+      <div class="col-md-4 img-thumbnail">
+        <img src="../../../assets/img/zizou.png">
+      </div>
+  
+      <div class="col-md-4">
+        <div class="list-group">
+          <div class="list-group-item">
+            <li>Tournament id - {{list.tournament_id}}</li>
+            <li>Tournament name - {{list.tournament_name}}</li>
+            <li>Category - {{list.category}}</li>
+            <li>Number of team - {{list.number_of_teams}}</li>
+            <li>Game size - {{list.game_size}}</li>
+            <li>Winner prize - {{list.winner_prize}}</li>
+            <li>Runnerup prize - {{list.runnerup_prize}}</li>
+            <li>Entry fee - {{list.entry_fee}}</li>
+            <li>Date - {{ list.date | date: 'd' }} / {{ list.date | date: 'MM'}} / {{ list.date | date: 'y'}}</li>
+            <li>Entry fee - {{list.location}}</li>
+          </div>
+        </div>
+      </div>
+  
+      <div *ngIf="userStatus.status === 'manager' && userStatus.team_id === null">
+        <div class="col-md-4">
+            <div class="btn btn-success" (click)="sendRequest({event: $event, tournamentInfo: list})">Join</div>
+        </div> 
+      </div>
     </div>
   </div>
 </div>

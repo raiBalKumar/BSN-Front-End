@@ -95,5 +95,4 @@ export class DashboardService {
     }; 
     return this.http.post(`${environment.apiServer}/api/managers/cancelInvitation`,{id},httpOptions);
   }
-  
 }
