@@ -58,9 +58,9 @@
         </div>
       </div>
   
-      <div *ngIf="userStatus.status === 'manager' && userStatus.team_id === null">
+      <div *ngIf="userStatus.status === 'manager' && userStatus.team_id != null">
         <div class="col-md-4">
-            <div class="btn btn-success" (click)="sendRequest({event: $event, tournamentInfo: list})">Join</div>
+            <div class="btn btn-success">Join</div>
         </div> 
       </div>
     </div>

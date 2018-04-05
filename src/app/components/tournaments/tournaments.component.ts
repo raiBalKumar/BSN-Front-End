@@ -28,14 +28,5 @@ export class TournamentsComponent implements OnInit {
   onDelete(id: number) {
     this.tournamentService.delete(id);
   }
-  
-  // send join tournament request
-  // sendRequest(e: object) {
-    // e.event.target.textContent
-    // e.tournament
-    // console.log(e["event"].target.textContent)
-    // console.log(this.userStatus)
-    // e["event"].target.textContent = "Request sent"
-  // }
 }
 

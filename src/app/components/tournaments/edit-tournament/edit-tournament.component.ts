@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { TournamentService } from '../../../services/tournament.service';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-edit-tournament',
@@ -37,7 +38,7 @@ export class EditTournamentComponent implements OnInit {
         winner_prize: [this.tournament.winner_prize],
         runnerup_prize: [this.tournament.runnerup_prize],
         entry_fee: [this.tournament.entry_fee],
-        date: [null/*this.tournament.date*/],
+        date: [moment(this.tournament.date).format('YYYY-MM-DD')],
         location: [this.tournament.location]
       });
     })

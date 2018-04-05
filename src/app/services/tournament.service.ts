@@ -10,7 +10,9 @@ import { UserService } from './user.service';
 
 @Injectable()
 export class TournamentService {
+  // get all tournaments
   tournament$: BehaviorSubject<object[]>;
+  // get single tournament
   getSingleTournament: BehaviorSubject<object>;
 
   constructor(private http: HttpClient, 
@@ -24,6 +26,7 @@ export class TournamentService {
                 this.listAllTournaments();
               }
   
+  // get single tournament post
   get(id: Params) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = {headers:headers};
