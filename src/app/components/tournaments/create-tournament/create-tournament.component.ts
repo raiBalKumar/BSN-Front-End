@@ -23,14 +23,14 @@ export class CreateTournamentComponent implements OnInit {
   ngOnInit() {
     this.createTournamentForm = this._formBuilder.group({
       tournament_name: [null, [Validators.required, Validators.maxLength(40)]], 
-      category: [null, Validators.required], // knockout / league
+      category: [null, Validators.required],
       number_of_teams: [null, Validators.required],
-      game_size: [null, Validators.required], // 6, 7, 9, 11
+      game_size: [null, Validators.required],
       winner_prize: [null, Validators.required],
       runnerup_prize: [null, Validators.required],
-      entry_fee: [null, Validators.required], // $
+      entry_fee: [null, Validators.required],
       date: [null, Validators.required],
-      location: [null, Validators.required] // Hong kong, kowloon, new territories
+      location: [null, Validators.required]
     });
   }
 
