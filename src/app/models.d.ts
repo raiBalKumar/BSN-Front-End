@@ -19,7 +19,34 @@ declare module Models {
         position: string,
         status: string,
         image?: string,
+        team_id?: number,
         teamname?: string,
         // teamLogo?: string
+    }
+
+    interface TeamInformation{
+        teamname: string;
+        numberOfPlayers: number;
+        logo?: string;
+        manager_firstname: string;
+        manager_lastname: string;
+    }
+
+    interface TeamSquad{
+        position: string;
+        firstname: string;
+        lastname: string;
+        image?: string;
+    }
+
+    interface TeamFixtures{
+        tournament_name: string;
+        opponent_teamname: string;
+        opponent_logo?: string;
+        opponent_position: string;
+        date: Date;
+        park_name: string;
+        district: string;
+        street: string;
     }
 }

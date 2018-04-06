@@ -1,0 +1,32 @@
+:host /deep/ .cal-month-view .cal-day-badge{
+    background-color: transparent;
+    color: transparent;
+}
+
+:host /deep/ .cal-cell.cal-weekend,
+:host /deep/ .cal-cell.cal-weekend,
+:host /deep/ .cal-month-view .cal-day-cell.cal-weekend .cal-day-number{
+    color: red;
+}
+
+:host /deep/ .cal-month-view .cal-day-cell{
+    min-height: 100px;
+}
+
+:host /deep/ .cal-month-view .cal-cell-top{
+    min-height: 40px;
+}
+
+:host /deep/ .cal-month-view .cal-event{
+    width: 20px;
+    height: 20px;
+}
+
+.modal-header{
+    justify-content: center;
+    color: rgb(255, 0, 55);
+}
+
+.date{
+    font-size: 20px;
+}

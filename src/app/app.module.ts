@@ -23,7 +23,11 @@ import { UserService } from './services/user.service';
 import { DashboardService } from './services/dashboard.service';
 import { RequestsComponent } from './components/requests/requests.component';
 import { PlayerMarketComponent } from './components/player-market/player-market.component';
-
+import { TeamService } from './services/team.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { SquadComponent } from './components/squad/squad.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +40,9 @@ import { PlayerMarketComponent } from './components/player-market/player-market.
     ClubsComponent,
     TournamentsComponent,
     RequestsComponent,
-    PlayerMarketComponent
-    
+    PlayerMarketComponent,
+    CalendarComponent,
+    SquadComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,8 @@ import { PlayerMarketComponent } from './components/player-market/player-market.
     FormsModule,
     ReactiveFormsModule,
     FlashMessagesModule,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot()
   ],
   providers: [
     FacebookAuthService,
@@ -55,7 +62,8 @@ import { PlayerMarketComponent } from './components/player-market/player-market.
     FlashMessagesService,
     AuthGuard,
     UserService,
-    DashboardService
+    DashboardService,
+    TeamService
   ],
   bootstrap: [AppComponent]
 })
