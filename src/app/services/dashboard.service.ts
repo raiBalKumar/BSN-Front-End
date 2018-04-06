@@ -13,7 +13,6 @@ export class DashboardService {
   // players in market variable
   private subject = new BehaviorSubject<any>([]);
   players$ = this.subject.asObservable();
-  httpOptions:any;
   
   constructor(private http: HttpClient, private authService : AuthService) {
    
@@ -21,32 +20,32 @@ export class DashboardService {
      
   // check requests for manager 
   checkManagerRequest(): Observable<any> { 
-    this.httpOptions = {
+    const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': 'Bearer ' + this.authService.token 
       })
     };
-    return this.http.get(`${environment.apiServer}/api/managers/getRequests`,this.httpOptions);
+    return this.http.get(`${environment.apiServer}/api/managers/getRequests`,httpOptions);
   }
 
   // check requests for player
   checkPlayerRequest(): Observable<any> { 
-    this.httpOptions = {
+    const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': 'Bearer ' + this.authService.token 
       })
     };
-    return this.http.get(`${environment.apiServer}/api/players/getRequests`,this.httpOptions);
+    return this.http.get(`${environment.apiServer}/api/players/getRequests`,httpOptions);
   }
 
   // check requests for organizer
   checkOrganizerRequest(): Observable<any> { 
-    this.httpOptions = {
+    const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': 'Bearer ' + this.authService.token 
       })
     };
-    return this.http.get(`${environment.apiServer}/api/organizers/getRequests`,this.httpOptions);
+    return this.http.get(`${environment.apiServer}/api/organizers/getRequests`,httpOptions);
   }
   
   // todo.... not yet functional

@@ -15,10 +15,12 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FacebookAuthService } from './services/facebook-auth.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
+import { TournamentService } from './services/tournament.service';
 import { FlashMessagesService, FlashMessagesModule } from 'angular2-flash-messages';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ClubsComponent } from './components/clubs/clubs.component';
 import { TournamentsComponent } from './components/tournaments/tournaments.component';
+import { CreateTournamentComponent } from './components/tournaments/create-tournament/create-tournament.component';
 import { UserService } from './services/user.service';
 import { DashboardService } from './services/dashboard.service';
 import { RequestsComponent } from './components/requests/requests.component';
@@ -28,6 +30,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { SquadComponent } from './components/squad/squad.component';
+import { CreateTeamFormComponent } from './components/create-team-form/create-team-form.component';
+import { EditTournamentComponent } from './components/tournaments/edit-tournament/edit-tournament.component';
+
 
 @NgModule({
   declarations: [
@@ -39,10 +44,13 @@ import { SquadComponent } from './components/squad/squad.component';
     ProfileComponent,
     ClubsComponent,
     TournamentsComponent,
+    CreateTournamentComponent,
     RequestsComponent,
     PlayerMarketComponent,
     CalendarComponent,
-    SquadComponent
+    SquadComponent,
+    CreateTeamFormComponent,
+    EditTournamentComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +69,7 @@ import { SquadComponent } from './components/squad/squad.component';
     OAuthService,
     FlashMessagesService,
     AuthGuard,
+    TournamentService,
     UserService,
     DashboardService,
     TeamService
