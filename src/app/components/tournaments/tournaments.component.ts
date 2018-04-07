@@ -19,10 +19,12 @@ export class TournamentsComponent implements OnInit {
   }
 
   onEdit(tournament) {
-    // this.tournamentService.singleTournamentPost = tournament;
     this.tournamentService.singleTournamentPost.next(tournament);
-
     this.router.navigate(["/tournament/edit", tournament.tournament_id]);
+  }
+
+  onDelete(id) {
+    this.tournamentService.delete(id);
   }
 }
 

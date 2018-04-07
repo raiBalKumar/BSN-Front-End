@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { TournamentService } from '../../../services/tournament.service';
-import { Router } from '@angular/router';
-import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-create-tournament',
@@ -13,9 +11,7 @@ export class CreateTournamentComponent implements OnInit {
   createTournamentForm: FormGroup;
 
   constructor(private _formBuilder: FormBuilder,
-              private tournamentService: TournamentService,
-              private router: Router,
-              private flashMessage: FlashMessagesService) { }
+              private tournamentService: TournamentService) { }
 
   ngOnInit() {
     this.createTournamentForm = this._formBuilder.group({
@@ -33,10 +29,5 @@ export class CreateTournamentComponent implements OnInit {
 
   createTournament() {
     this.tournamentService.createTournament(this.createTournamentForm.value);
-    this.flashMessage.show("Successfully created tournament!", {
-      cssClass: 'alert-success',
-      timeout: 3000
-    });
-    this.router.navigate(["/tournaments"]);
   }
 }

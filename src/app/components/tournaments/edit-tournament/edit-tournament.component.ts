@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { TournamentService } from '../../../services/tournament.service';
-import { Router } from '@angular/router';
-import { FlashMessagesService } from 'angular2-flash-messages';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -15,9 +13,7 @@ export class EditTournamentComponent implements OnInit {
   editData: any;
   
   constructor(private _formBuilder: FormBuilder,
-              private tournamentService: TournamentService,
-              private router: Router,
-              private flashMessage: FlashMessagesService) { }
+              private tournamentService: TournamentService) { }
 
   ngOnInit() {
     this.tournamentService.singleTournamentPost.subscribe((data) => {
@@ -38,11 +34,6 @@ export class EditTournamentComponent implements OnInit {
   }
 
   onUpdate() {
-    this.tournamentService.update(this.editData.tournament_id, this.editTournamentForm.value);
-    this.flashMessage.show("Successfully created tournament!", {
-        cssClass: 'alert-success',
-        timeout: 3000
-      });
-    this.router.navigate(["/tournaments"]);
+    this.tournamentService.update(this.editData.tournament_id, this.editTournamentForm.value);    
   }
 }

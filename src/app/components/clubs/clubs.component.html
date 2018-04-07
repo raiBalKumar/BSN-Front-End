@@ -1,3 +1,58 @@
-<p>
-  {{user.firstname}}
-</p>
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-sm-9">
+      <div *ngIf="teamInfo$ | async as teamInfo">
+        <div class="row club">
+
+          <div class="col-lg-5 resize">
+            <div class="logo-wrapper">
+              <img src="{{teamInfo.logo}}" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <h1>{{teamInfo.teamname}}</h1>
+            <hr>
+            <p>Club Manager: {{teamInfo.manager_firstname}} {{teamInfo.manager_lastname}}</p>
+            <p>Team Size: {{teamInfo.numberOfPlayers}} Players</p>
+            <p class="description">**In BSN, every team players could view your team squad & fixtures.</p>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-12">
+
+          <ngb-tabset>
+            <ngb-tab title="Squad">
+              <ng-template ngbTabContent>
+                <app-squad></app-squad>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Fixtures">
+              <ng-template ngbTabContent>
+                <app-calendar></app-calendar>
+              </ng-template>
+            </ngb-tab>
+          </ngb-tabset>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div *ngIf="upComingMatch$ | async as upComingMatch" class="sidebar">
+        <h4 class="sidebar-title">Upcoming Match:</h4>
+        <div class="sidebar-content">
+          <p>Date: {{upComingMatch.date | date:'fullDate'}}</p>
+          <p>Time: {{upComingMatch.date | date:'hh:mm a'}}</p>
+          <p style="color:rgb(253, 67, 67)">Next Opponent: {{upComingMatch.opponent_teamname}} ({{upComingMatch.opponent_position}})</p>
+          <div class="logo-wrapper">
+            <img src="{{upComingMatch.opponent_logo}}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
