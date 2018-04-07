@@ -10,12 +10,12 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class DashboardService {
   //User info
-  private playerSubject = new BehaviorSubject<any>({});
-  user$ = this.playerSubject.asObservable();
+  private userSubject = new BehaviorSubject<any>([]);
+  user$:Observable<any> = this.userSubject.asObservable();
   
   // players in market variable
   private subject = new BehaviorSubject<any>([]);
-  players$ = this.subject.asObservable();
+  players$:Observable<any> = this.subject.asObservable();
   
   constructor(private http: HttpClient, private authService : AuthService) {
    
@@ -58,7 +58,8 @@ export class DashboardService {
         })
       };
       return this.http.get(`${environment.apiServer}/api/users/dashboard`, httpOptions).subscribe(user=>{
-        this.playerSubject.next(user);
+        console.log("service ..getUserInfo..",user)
+        this.userSubject.next(user);
       })
                            
   }
@@ -111,6 +112,21 @@ export class DashboardService {
     return this.http.post(`${environment.apiServer}/api/managers/createTeam`,team, httpOptions).subscribe(()=>{
       this.getUserInfo();
     });
+  }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.authService.token 
+    })
+  }; 
+
+  // accept request to join the club
+  acceptClub(manager_id:number, team_id:number){
+    return this.http.post(`${environment.apiServer}/api/players/acceptClub`,{manager_id,team_id},this.httpOptions)
+        .subscribe(()=>{
+          console.log("update userinfo");
+          this.getUserInfo();
+        });
   }
   
 }

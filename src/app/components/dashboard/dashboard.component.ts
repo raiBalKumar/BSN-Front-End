@@ -20,11 +20,11 @@ export class DashboardComponent implements OnInit {
               private modalService: NgbModal,
             ) { 
               console.log("clubs");
+              this.dashboardService.getUserInfo();
 
             }
 
   ngOnInit() {
-    this.dashboardService.getUserInfo();
 
     this.dashboardService.user$.subscribe(user => {
       this.user = user;

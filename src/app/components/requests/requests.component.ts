@@ -13,15 +13,17 @@ export class RequestsComponent implements OnInit {
   user:any;
 
   constructor(private dashboardService: DashboardService,
-  ) { console.log("constructor") }
+  ) { console.log("constructor");
+ }
 
   ngOnInit() {
+    this.user = this.dashboardService.user$;
     this.dashboardService.user$.subscribe(user => {
       this.user = user;
       console.log("user from requests",this.user);
 
   
-    console.log("requestsssssss");
+    console.log("requestsssssss",this.user);
     if (this.user.status === "manager") {
       console.log("i am manager");
       this.dashboardService.checkManagerRequest().subscribe(result => {
@@ -29,6 +31,7 @@ export class RequestsComponent implements OnInit {
         console.log("requests...is here", this.requests)
       })
     } else if (this.user.status === "player") {
+      console.log("check player request");
       this.dashboardService.checkPlayerRequest().subscribe(result => {
         this.requests = result;
         console.log("request arrived,", this.requests)
@@ -39,6 +42,15 @@ export class RequestsComponent implements OnInit {
       })
     }
   })
+
+  }
+  // accept request to join the club
+  acceptClub(manager_id:number, team_id:number){
+    console.log(manager_id,"manager____id",team_id);
+    this.dashboardService.acceptClub(manager_id, team_id);
+  }
+  // reject request to join the club
+  rejectClub(manager_id:number){
 
   }
 

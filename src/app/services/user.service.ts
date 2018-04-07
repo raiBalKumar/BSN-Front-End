@@ -7,8 +7,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
-  private subject = new BehaviorSubject<any>([]);
-  user$ = this.subject.asObservable();
+  
   
   constructor(private http: HttpClient, private authService: AuthService) { }
 

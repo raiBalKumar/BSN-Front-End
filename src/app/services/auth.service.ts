@@ -25,7 +25,7 @@ export class AuthService {
 
 
   facebookLogin(access_token){
-    return this.http.post(`${environment.apiServer}/api/auth/facebook`,{access_token:access_token})
+    return this.http.post(`${environment.apiServer}/api/auth/login/facebook`,{access_token:access_token})
       .subscribe((res: any)=>{
         this.token = res.token;
         localStorage.setItem('myToken',this.token);
