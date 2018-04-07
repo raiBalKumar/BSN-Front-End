@@ -1,0 +1,40 @@
+<br>
+<div class="d-flex flex-row align-items-center">
+  <div class="date">Date: {{viewDate | date:'mediumDate'}}</div>
+  <div class="ml-auto">
+    <div class="btn-group">
+      <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate)">
+        Previous
+      </div>
+      <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate)">
+        Today
+      </div>
+      <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate)">
+        Next
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div *ngIf="events$ | async; let events">
+  <mwl-calendar-month-view [viewDate]="viewDate" [events]="events" (eventClicked)="eventClicked($event.event)" (eventClicked)="open(content)">
+  </mwl-calendar-month-view>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">{{fixture.date | date:'fullDate'}}</h4>
+  </div>
+  <div class="modal-body">
+    <p>Time: {{fixture.date | date:'hh:mm a'}}</p>
+    <p>Opponent Team: {{fixture.opponent_teamname}}</p>
+    <img src="{{fixture.opponent_logo}}" alt="" class="img-fluid">
+    <br>
+    <br>
+    <p>Venue: {{fixture.park_name}}, {{fixture.street}}, {{fixture.district}}</p>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>

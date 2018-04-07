@@ -25,6 +25,11 @@ import { UserService } from './services/user.service';
 import { DashboardService } from './services/dashboard.service';
 import { RequestsComponent } from './components/requests/requests.component';
 import { PlayerMarketComponent } from './components/player-market/player-market.component';
+import { TeamService } from './services/team.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { SquadComponent } from './components/squad/squad.component';
 import { CreateTeamFormComponent } from './components/create-team-form/create-team-form.component';
 import { EditTournamentComponent } from './components/tournaments/edit-tournament/edit-tournament.component';
 
@@ -42,6 +47,8 @@ import { EditTournamentComponent } from './components/tournaments/edit-tournamen
     CreateTournamentComponent,
     RequestsComponent,
     PlayerMarketComponent,
+    CalendarComponent,
+    SquadComponent,
     CreateTeamFormComponent,
     EditTournamentComponent
   ],
@@ -53,6 +60,8 @@ import { EditTournamentComponent } from './components/tournaments/edit-tournamen
     FormsModule,
     ReactiveFormsModule,
     FlashMessagesModule,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot()
   ],
   providers: [
     FacebookAuthService,
@@ -62,7 +71,8 @@ import { EditTournamentComponent } from './components/tournaments/edit-tournamen
     AuthGuard,
     TournamentService,
     UserService,
-    DashboardService
+    DashboardService,
+    TeamService
   ],
   bootstrap: [AppComponent]
 })

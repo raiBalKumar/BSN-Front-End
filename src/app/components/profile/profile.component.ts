@@ -18,10 +18,11 @@ export class ProfileComponent implements OnInit {
     "New Territories"
   ];
 
-  private user: Models.Profile;
+  private user$: Observable<Models.Profile>;
   private image: string;
   private editing: boolean = false; // To control where editForm should be shown
   private history: {};
+  private tmp;
 
   editForm = new FormGroup({
     firstname: new FormControl(null, [Validators.required, Validators.minLength(2)]),
@@ -32,13 +33,19 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.image = 'assets/img/zizou.png';
+    this.userService.reloadProfile();
 
-    // Get the profile in the first beginning
-    this.userService.getProfile().subscribe(
-      val => this.retreiveData(val),
-      err => { throw err }
-    );
+    this.image = 'assets/img/zizou.png';
+    this.user$ = this.userService.getProfile();
+
+    // set default value to the form
+    this.user$.subscribe((res) => {
+      this.editForm.patchValue({
+        firstname: res.firstname,
+        lastname: res.lastname,
+        location: res.location
+      })
+    })
   }
 
   onEdit() {
@@ -60,25 +67,15 @@ export class ProfileComponent implements OnInit {
 
     const result = await this.swalSetUp();
 
-    // Avoid this.user$ = this.userService.getProfile() 
-    // When using *ngIf=”user$ | async as user", ngIf will check if user$ is valid eveytime, which means the page will be flash refresh
     if (result.value) {
-      this.userService.editProfile(this.editForm.value)
-        .flatMap(() => this.userService.getProfile())
-        .subscribe(
-          val => {
-            this.retreiveData(val);
-            this.editForm.markAsPristine();
-            this.editing = false;
-          },
-          err => { throw err }
-        );
+      this.userService.editProfile(this.editForm.value);
+      this.editing = false;
 
       swal({
-          type: 'success',
-          confirmButtonText: 'Thank you',
-          width: 300,
-        })
+        type: 'success',
+        confirmButtonText: 'Thank you',
+        width: 300,
+      })
     } else if (result.dismiss === swal.DismissReason.cancel) {
       swal({
         type: 'error',
@@ -86,16 +83,6 @@ export class ProfileComponent implements OnInit {
         width: 300,
       })
     }
-  }
-
-  // retreive data from observable & update default value of editForm
-  retreiveData(val) {
-    this.user = val;
-    this.editForm.patchValue({
-      firstname: this.user.firstname,
-      lastname: this.user.lastname,
-      location: this.user.location
-    })
   }
 
   // Using swal lib -> https://github.com/sweetalert2/sweetalert2

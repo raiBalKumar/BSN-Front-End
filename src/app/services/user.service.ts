@@ -3,23 +3,43 @@ import { AuthService } from './auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class UserService {
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  private profile$:BehaviorSubject<Models.Profile>;
 
-  getProfile() {
+  constructor(private http: HttpClient, private authService: AuthService) {
+    this.profile$ = new BehaviorSubject(<Models.Profile>{});
+  }
+
+  reloadProfile() {
     // For Authentication
-    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
-    let options = { headers: headers };
-    return this.http.get(`${environment.apiServer}/api/users`, options) as Observable<Models.Profile>;
+    let options = this.createHeaders();
+    this.http.get<Models.Profile>(`${environment.apiServer}/api/users`, options).subscribe((res) => {
+      this.profile$.next(res);
+    })
+  }
+
+  clearProfile(){
+    this.profile$.next(<Models.Profile>{});
+  }
+
+  getProfile(){
+    return this.profile$.asObservable();
   }
 
   editProfile(modifier: {}) {
     // For Authentication
-    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
-    let options = { headers: headers };
-    return this.http.patch(`${environment.apiServer}/api/users`, modifier, options);
+    let options = this.createHeaders();
+    this.http.patch(`${environment.apiServer}/api/users`, modifier, options).subscribe((res) => {
+      this.reloadProfile();
+    })
+
   }
 
+  createHeaders(){
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+    return { headers: headers };
+  }
 }
