@@ -2,6 +2,7 @@ import { Component, OnInit, AnimationPlayer } from '@angular/core';
 import { TournamentService } from '../../services/tournament.service';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-tournaments',
@@ -10,20 +11,21 @@ import { Router } from '@angular/router';
 })
 export class TournamentsComponent implements OnInit {
   listAllTournaments: Observable<object[]>;
+  userStatus: object;
 
   constructor(private tournamentService: TournamentService,
-              private router: Router) { }
-
-  ngOnInit() {    
-      this.listAllTournaments = this.tournamentService.tournament$;    
+              private router: Router,
+              private authService: AuthService) 
+              {
+                this.userStatus = this.authService.status;
+              }
+              
+  ngOnInit() { 
+    this.listAllTournaments = this.tournamentService.tournament$;
   }
 
-  onEdit(tournament) {
-    this.tournamentService.singleTournamentPost.next(tournament);
-    this.router.navigate(["/tournament/edit", tournament.tournament_id]);
-  }
-
-  onDelete(id) {
+  // delete tournament
+  onDelete(id: number) {
     this.tournamentService.delete(id);
   }
 }

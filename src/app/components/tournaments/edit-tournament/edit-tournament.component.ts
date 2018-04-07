@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder,Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { TournamentService } from '../../../services/tournament.service';
 import { Observable } from 'rxjs/Observable';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-edit-tournament',
@@ -10,30 +12,44 @@ import { Observable } from 'rxjs/Observable';
 })
 export class EditTournamentComponent implements OnInit {
   editTournamentForm: FormGroup;
-  editData: any;
+  tournament: any;
+  id: Params;
+
+  //set value for form table options
+  private categories = ["Knockout", "League"];
+  private game_sizes = [6, 7, 9, 11];
+  private locations = ["Hong Kong", "Kowloon", "New Territories"];
   
   constructor(private _formBuilder: FormBuilder,
-              private tournamentService: TournamentService) { }
+              private tournamentService: TournamentService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
-    this.tournamentService.singleTournamentPost.subscribe((data) => {
-      this.editData = data;
-    })
-
-    this.editTournamentForm = this._formBuilder.group({
-      tournament_name: [this.editData.tournament_name],
-      category: [this.editData.category],
-      number_of_teams: [this.editData.number_of_teams],
-      game_size: [this.editData.game_size],
-      winner_prize: [this.editData.winner_prize],
-      runnerup_prize: [this.editData.runnerup_prize],
-      entry_fee: [this.editData.entry_fee],
-      date: [this.editData.date],
-      location: [this.editData.location]
+    this.route.params.subscribe((params: Params) => {
+      this.id = params['id'];
+      this.tournamentService.get(this.id);
     });
+
+    this.tournamentService.getSingleTournament.subscribe(data => {
+      this.tournament = data;
+
+      // inject tournament data into form
+      this.editTournamentForm = this._formBuilder.group({
+        tournament_name: [this.tournament.tournament_name, [Validators.required, Validators.maxLength(40)]],
+        category: [this.tournament.category, Validators.required],
+        number_of_teams: [this.tournament.number_of_teams, Validators.required],
+        game_size: [this.tournament.game_size, Validators.required],
+        winner_prize: [this.tournament.winner_prize, Validators.required],
+        runnerup_prize: [this.tournament.runnerup_prize, Validators.required],
+        entry_fee: [this.tournament.entry_fee, Validators.required],
+        date: [moment(this.tournament.date).format('YYYY-MM-DD'), Validators.required],
+        location: [this.tournament.location, Validators.required]
+      });
+    })
   }
 
   onUpdate() {
-    this.tournamentService.update(this.editData.tournament_id, this.editTournamentForm.value);    
+    this.tournamentService.update(this.tournament.tournament_id, this.editTournamentForm.value);    
   }
 }
