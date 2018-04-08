@@ -11,13 +11,17 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class AuthService {
   token: string = null;
+  status:string;
+  
  
   constructor(private router: Router,
               private http: HttpClient,
               private facebookAuthService: FacebookAuthService) 
               {
-                this.token = localStorage.getItem('myToken');
-               
+                if(localStorage.getItem('myToken')){
+                  this.token = localStorage.getItem('myToken');
+                  this.status = JSON.parse(localStorage.getItem('status'));
+                }
               }
 
 
@@ -40,10 +44,13 @@ export class AuthService {
     return this.http.post(`${environment.apiServer}/api/auth/register`,user);           
   }
 
-  storeUserData(token){
+  storeUserData(token ,status){
     localStorage.setItem('myToken', token);
+    localStorage.setItem('status', JSON.stringify(status));
     this.token = token;
+    this.status = status;
   }
+
 
   isAuthenticated(){
     return this.token != null;
@@ -51,7 +58,9 @@ export class AuthService {
 
   logOut(){
     this.token = null;
+    this.status = null;
     this.facebookAuthService.logOut();
     localStorage.removeItem('myToken');
+    localStorage.removeItem('status');
   }
 }
