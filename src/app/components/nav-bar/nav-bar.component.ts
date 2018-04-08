@@ -13,7 +13,6 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-
   constructor(private authService: AuthService,
               private router: Router,
               private flashMessage: FlashMessagesService,

@@ -3,34 +3,48 @@ import { HttpClient, HttpHeaders} from "@angular/common/http";
 import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { Router } from '@angular/router';
+import { Router, Params } from '@angular/router';
+import { UserService } from './user.service';
 
 @Injectable()
 export class TournamentService {
+  // get all tournaments
   tournament$: BehaviorSubject<object[]>;
-  // use this variable to pass tournament information for edit component
-  singleTournamentPost: BehaviorSubject<object>;
+  // get single tournament
+  getSingleTournament: BehaviorSubject<object>;
 
   constructor(private http: HttpClient, 
               private authService: AuthService,
               private router: Router,
-              private flashMessage: FlashMessagesService) 
+              private flashMessage: FlashMessagesService,
+              private userService: UserService) 
               {
                 this.tournament$ = new BehaviorSubject([]);
-                this.singleTournamentPost = new BehaviorSubject({});
+                this.getSingleTournament = new BehaviorSubject({});
                 this.listAllTournaments();
               }
+  
+  // get single tournament post
+  get(id: Params) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+    let options = {headers:headers};
+     return this.http.get(`${environment.apiServer}/api/organizers/tournament/${id}`,options)
+      .subscribe((res: object[]) => {
+        this.getSingleTournament.next(res[0]);
+      })
+  }
 
   private listAllTournaments(){
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = {headers:headers};
-      this.http.get(`${environment.apiServer}/api/organizers/tournament`,options).subscribe((res: any) => {
+      this.http.get(`${environment.apiServer}/api/organizers/tournament`,options).subscribe((res: object[]) => {
         this.tournament$.next(res);
       })
   }
 
-  createTournament(tournamentFormValue) {
+  createTournament(tournamentFormValue: object) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = {headers:headers};
     this.http.post(`${environment.apiServer}/api/organizers/tournament`, {tournamentFormValue}, options)
@@ -41,7 +55,7 @@ export class TournamentService {
       })
   }
 
-  update(id, updateFormData) {
+  update(id: number, updateFormData: object) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = {headers:headers};
     this.http.put(`${environment.apiServer}/api/organizers/tournament/${id}`, {updateFormData}, options)
@@ -52,7 +66,7 @@ export class TournamentService {
     })
   }
 
-  delete(id) {
+  delete(id: number) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = {headers:headers};
     this.http.delete(`${environment.apiServer}/api/organizers/tournament/${id}`, (options))
@@ -63,8 +77,8 @@ export class TournamentService {
       })
   }
 
-  redirectPage(res, successfulMessage, errorMessage) {
-    if (res.success === true) {
+  redirectPage(res: object, successfulMessage: string, errorMessage: string) {
+    if (res["success"] === true) {
       this.flashMessage.show(successfulMessage, {
         cssClass: 'alert-success',
         timeout: 3000
