@@ -11,7 +11,7 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class AuthService {
   token: string = null;
-  status:string;
+  status:any;
   
  
   constructor(private router: Router,
@@ -20,7 +20,9 @@ export class AuthService {
               {
                 if(localStorage.getItem('myToken')){
                   this.token = localStorage.getItem('myToken');
-                  this.status = JSON.parse(localStorage.getItem('status'));
+                }
+                if(JSON.parse(localStorage.getItem('status'))){
+                  this.status =  this.status = JSON.parse(localStorage.getItem('status'));
                 }
               }
 
@@ -47,6 +49,7 @@ export class AuthService {
   storeUserData(token ,status){
     localStorage.setItem('myToken', token);
     localStorage.setItem('status', JSON.stringify(status));
+    console.log(status,"status");
     this.token = token;
     this.status = status;
   }

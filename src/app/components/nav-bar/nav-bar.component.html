@@ -23,7 +23,7 @@
                 <li *ngIf="authService.isAuthenticated()" class="nav-item btn-sm btn" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['/tournaments']" (click)="navbarCollapsed = true">Tournaments</a>
                 </li>&nbsp;
-                <li *ngIf="authService.isAuthenticated() && authService.status === 'organizer'" class="nav-item btn-sm btn" [routerLinkActive]="['active']">
+                <li *ngIf="authService.isAuthenticated() && authService.status.status === 'organizer'" class="nav-item btn-sm btn" [routerLinkActive]="['active']">
                     <a class="nav-link" [routerLink]="['/tournament/create']" (click)="navbarCollapsed = true">Create Tournament</a>
                 </li>&nbsp;
             </ul>
