@@ -9,48 +9,39 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./requests.component.css']
 })
 export class RequestsComponent implements OnInit {
-  requests: any;
-  user:any;
+  requests$: Observable<any>;
+  user: any;
 
   constructor(private dashboardService: DashboardService,
-  ) { console.log("constructor");
- }
+  ) {
+    console.log("constructor");
+  }
 
   ngOnInit() {
-    this.user = this.dashboardService.user$;
     this.dashboardService.user$.subscribe(user => {
       this.user = user;
-      console.log("user from requests",this.user);
+      console.log("check request");
 
-  
-    console.log("requestsssssss",this.user);
-    if (this.user.status === "manager") {
-      console.log("i am manager");
-      this.dashboardService.checkManagerRequest().subscribe(result => {
-        this.requests = result;
-        console.log("requests...is here", this.requests)
-      })
-    } else if (this.user.status === "player") {
-      console.log("check player request");
-      this.dashboardService.checkPlayerRequest().subscribe(result => {
-        this.requests = result;
-        console.log("request arrived,", this.requests)
-      })
-    } else if (this.user.status === "organizer") {
-      this.dashboardService.checkOrganizerRequest().subscribe(result => {
-        this.requests = result;
-      })
-    }
-  })
+      if (this.user.status) {
+        if (this.user.status === "manager") {
+          this.requests$ = this.dashboardService.checkManagerRequest();
+          
+        } else if (this.user.status === "player") {
+          this.requests$ = this.dashboardService.checkPlayerRequest();
+        } else if (this.user.status === "organizer") {
+          this.requests$ = this.dashboardService.checkOrganizerRequest();
+        }
+      }
+    })
 
   }
   // accept request to join the club
-  acceptClub(manager_id:number, team_id:number){
-    console.log(manager_id,"manager____id",team_id);
+  acceptClub(manager_id: number, team_id: number) {
+    console.log('accept club');
     this.dashboardService.acceptClub(manager_id, team_id);
   }
   // reject request to join the club
-  rejectClub(manager_id:number){
+  rejectClub(manager_id: number) {
 
   }
 

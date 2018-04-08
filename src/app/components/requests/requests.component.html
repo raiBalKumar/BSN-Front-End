@@ -1,8 +1,8 @@
-<div *ngIf="user.status === 'manager'">
-  <p>{{user.status}} from requests</p>
-  <div class="box" *ngIf="requests">
-    <div class="card" *ngFor="let request of requests">
-      
+<div *ngIf="user">
+  <div *ngIf="user.status === 'manager'">
+    <div class="box" *ngIf="requests">
+      <div class="card" *ngFor="let request of requests">
+
         <div class="card-header bg-secondary fa">
           <p>
             <strong>{{request.firstname}} {{request.lastname}}</strong>
@@ -21,18 +21,17 @@
             </div>
           </div>
         </div>
-      
+
+      </div>
+
     </div>
-
   </div>
-</div>
 
-<div *ngIf="user.status === 'player'">
-  <p>this is player requests</p>
-  <div class="box" *ngIf="requests">
-   
-    <div class="card" *ngFor="let request of requests">
-      
+  <div *ngIf="user.status === 'player'">
+    <div class="box" *ngIf="requests$ | async as requests">
+
+      <div class="card" *ngFor="let request of requests">
+
         <div class="card-header bg-secondary fa">
           <p>
             <strong>Invitation from {{request.firstname}}</strong>
@@ -50,11 +49,12 @@
               <button class="btn btn-danger btn-sm" (click)="rejectClub(request.manager_id)">Reject</button>
             </div>
           </div>
-        
+
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div *ngIf="status === 'organizer'">
+  <div *ngIf="user.status === 'organizer'">
+  </div>
 </div>
