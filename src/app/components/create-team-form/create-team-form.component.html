@@ -1,3 +1,29 @@
-<p>
-  create-team-form works!
-</p>
+<form [formGroup]="clubForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body  py-3 px-5">
+    <div class="form-group">
+      <label>Club name</label>
+      <input type='text' name="clubName" class="form-control" formControlName="clubName" [ngClass]="{'is-invalid':clubForm.controls['clubName'].dirty && clubForm.controls['clubName'].errors }"
+      />
+      <div *ngIf="clubForm.controls['clubName'].dirty && clubForm.controls['clubName'].hasError('required')" class="invalid-feedback">
+        The title is required
+      </div>
+      <div *ngIf="clubForm.controls['clubName'].dirty && clubForm.controls['clubName'].hasError('minlength')" class="invalid-feedback">
+        Minimum 3 characters required
+      </div>
+    </div>
+    <div class="form-group">
+        <label>Number of players</label>
+        <input type="number" name="numberOfPlayers" class="form-control" formControlName="numberOfPlayers" [ngClass]="{'is-invalid':clubForm.controls['numberOfPlayers'].dirty && clubForm.controls['numberOfPlayers'].errors }"
+        />
+        <div *ngIf="clubForm.controls['numberOfPlayers'].dirty && clubForm.controls['numberOfPlayers'].hasError('required')" class="invalid-feedback">
+          The title is required
+        </div>
+        <!-- <div *ngIf="clubForm.controls['clubName'].dirty && clubForm.controls['numberOfPlayers'].hasError('minlength')" class="invalid-feedback">
+          Minimum 3 characters required
+        </div> -->
+    </div>
+    <div class="py-3">
+      <input type='submit' value="Submit" class="btn btn-danger btn-block text-white " [disabled]="!clubForm.valid" />
+    </div>
+  </div>
+</form>

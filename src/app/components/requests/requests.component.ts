@@ -9,29 +9,39 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./requests.component.css']
 })
 export class RequestsComponent implements OnInit {
-  requests: any;
-  @Input() status: any;
+  requests$: Observable<any>;
+  user: any;
 
   constructor(private dashboardService: DashboardService,
-  ) { console.log("constructor") }
+  ) {
+    console.log("constructor");
+  }
 
   ngOnInit() {
-    console.log("requestsssssss");
-    if (this.status === "manager") {
-      this.dashboardService.checkManagerRequest().subscribe(result => {
-        this.requests = result;
-        console.log("requests...is here", this.requests)
-      })
-    } else if (this.status === "player") {
-      this.dashboardService.checkPlayerRequest().subscribe(result => {
-        this.requests = result;
-        console.log("request arrived,", this.requests)
-      })
-    } else if (this.status === "organizer") {
-      this.dashboardService.checkOrganizerRequest().subscribe(result => {
-        this.requests = result;
-      })
-    }
+    this.dashboardService.user$.subscribe(user => {
+      this.user = user;
+      console.log("check request");
+
+      if (this.user.status) {
+        if (this.user.status === "manager") {
+          this.requests$ = this.dashboardService.checkManagerRequest();
+          
+        } else if (this.user.status === "player") {
+          this.requests$ = this.dashboardService.checkPlayerRequest();
+        } else if (this.user.status === "organizer") {
+          this.requests$ = this.dashboardService.checkOrganizerRequest();
+        }
+      }
+    })
+
+  }
+  // accept request to join the club
+  acceptClub(manager_id: number, team_id: number) {
+    console.log('accept club');
+    this.dashboardService.acceptClub(manager_id, team_id);
+  }
+  // reject request to join the club
+  rejectClub(manager_id: number) {
 
   }
 
