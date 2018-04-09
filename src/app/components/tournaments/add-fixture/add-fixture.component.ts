@@ -14,10 +14,10 @@ export class AddFixtureComponent implements OnInit {
               private tournamentService: TournamentService) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.id = params['id'];
-      this.tournamentService.getTeamInfo(this.id);
-    })
+    // this.route.params.subscribe((params: Params) => {
+    //   this.id = params['id'];
+    //   this.tournamentService.getTeamInfo(this.id);
+    // })
 
   }
 

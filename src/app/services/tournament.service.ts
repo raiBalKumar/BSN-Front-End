@@ -90,12 +90,12 @@ export class TournamentService {
   }
 
   // get team info for adding fixture
-  getTeamInfo(id: Params) {
-    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
-    let options = {headers:headers};
-    this.http.get(`${environment.apiServer}/api/organizers/tournament/${id}/getteaminfo`, (options))
-      .subscribe(data => console.log(data))
-  }
+  // getTeamInfo(id: Params) {
+  //   let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+  //   let options = {headers:headers};
+  //   this.http.get(`${environment.apiServer}/api/organizers/tournament/${id}/getteaminfo`, (options))
+  //     .subscribe(data => console.log(data))
+  // }
 
 
   // redirect to and update all tournaments page

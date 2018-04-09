@@ -9,27 +9,31 @@
     </div>
   </div>
 
-  <div class="row mt-1">
-      <div class="col-md-2 text-center">Home team</div>
-      <div class="col-md-1 text-center"></div>
-      <div class="col-md-2 text-center">Away team</div>
-      <div class="col-md-2">Date</div>
-      <div class="col-md-4">Venue</div>
-  </div>
-
-  <div *ngFor="let fixture of fixtures | async">
-    <div class="row mt-1">
-      <div class="col-md-2 text-center">{{fixture.home_teamname}}</div>
-      <div class="col-md-1 text-center">VS</div>
-      <div class="col-md-2 text-center">{{fixture.away_teamname}}</div>
-      <div class="col-md-2">{{fixture.date | date: 'd'}} / {{fixture.date | date: 'MM'}} / {{fixture.date | date: 'y'}}</div>
-      <div class="col-md-4">
-        <p>Park Name: {{fixture.park_name}}</p> <br>
-        <p>Location: {{fixture.street}}, {{fixture.district}}</p>
-      </div>
-      <div class="col-md-1>">
-        <button class="btn btn-info">Edit</button>
-      </div>
-    </div>
-  </div>
+  <table>
+    <thead>
+      <tr class="text-center">
+        <th scope="col">Home team</th>
+        <th scope="col"></th>
+        <th scope="col">Away team</th>
+        <th scope="col">Date</th>
+        <th scope="col">Venue</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table" class="table" *ngFor="let fixture of fixtures | async">
+        <td>{{fixture.home_teamname}}</td>
+        <td>VS</td>
+        <td>{{fixture.away_teamname}}</td>
+        <td>{{fixture.date | date: 'd'}} / {{fixture.date | date: 'MM'}} / {{fixture.date | date: 'y'}}</td>
+        <td>
+          <p>Park Name: {{fixture.park_name}}</p> <br>
+          <p>Location: {{fixture.street}}, {{fixture.district}}</p>
+        </td>
+        <td>
+          <button class="btn btn-info">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
