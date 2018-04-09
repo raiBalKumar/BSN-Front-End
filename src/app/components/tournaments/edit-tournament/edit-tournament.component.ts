@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { TournamentService } from '../../../services/tournament.service';
 import { Observable } from 'rxjs/Observable';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
@@ -22,8 +22,7 @@ export class EditTournamentComponent implements OnInit {
   
   constructor(private _formBuilder: FormBuilder,
               private tournamentService: TournamentService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {

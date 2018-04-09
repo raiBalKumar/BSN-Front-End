@@ -6,23 +6,21 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router, Params } from '@angular/router';
-import { UserService } from './user.service';
 
 @Injectable()
 export class TournamentService {
-  // get all tournaments
-  tournament$: BehaviorSubject<object[]>;
-  // get single tournament
-  getSingleTournament: BehaviorSubject<object>;
+  tournament$: BehaviorSubject<object[]>; // get all tournaments
+  getSingleTournament: BehaviorSubject<object>; // get single tournament
+  fixture: BehaviorSubject<Models.tournamentFixture[]>; // get fixture for single tournament
 
   constructor(private http: HttpClient, 
               private authService: AuthService,
               private router: Router,
-              private flashMessage: FlashMessagesService,
-              private userService: UserService) 
+              private flashMessage: FlashMessagesService) 
               {
                 this.tournament$ = new BehaviorSubject([]);
                 this.getSingleTournament = new BehaviorSubject({});
+                this.fixture =  new BehaviorSubject([]);
                 this.listAllTournaments();
               }
   
@@ -36,6 +34,7 @@ export class TournamentService {
       })
   }
 
+  //list all tournament
   private listAllTournaments(){
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = {headers:headers};
@@ -44,6 +43,7 @@ export class TournamentService {
       })
   }
 
+  // create tournament
   createTournament(tournamentFormValue: object) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = {headers:headers};
@@ -55,6 +55,7 @@ export class TournamentService {
       })
   }
 
+  // update tournament
   update(id: number, updateFormData: object) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = {headers:headers};
@@ -66,6 +67,7 @@ export class TournamentService {
     })
   }
 
+  // delete tournament
   delete(id: number) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = {headers:headers};
@@ -77,6 +79,26 @@ export class TournamentService {
       })
   }
 
+  // get fixture for single tournament
+  getFixture(id: Params) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+    let options = {headers:headers};
+    this.http.get(`${environment.apiServer}/api/organizers/tournament/${id}/fixture`, (options))
+      .subscribe((res: Models.tournamentFixture[]) => {
+        return this.fixture.next(res);
+      })
+  }
+
+  // get team info for adding fixture
+  getTeamInfo(id: Params) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+    let options = {headers:headers};
+    this.http.get(`${environment.apiServer}/api/organizers/tournament/${id}/getteaminfo`, (options))
+      .subscribe(data => console.log(data))
+  }
+
+
+  // redirect to and update all tournaments page
   redirectPage(res: object, successfulMessage: string, errorMessage: string) {
     if (res["success"] === true) {
       this.flashMessage.show(successfulMessage, {

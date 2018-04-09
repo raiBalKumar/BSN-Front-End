@@ -49,4 +49,16 @@ declare module Models {
         district: string;
         street: string;
     }
+
+    interface tournamentFixture {
+        tournament_name: string;
+        home_teamname: string;
+        home_logo?: string;
+        away_teamname: string;
+        away_logo?: string;
+        date: Date;
+        park_name: string;
+        district: string;
+        street: string;
+    }
 }

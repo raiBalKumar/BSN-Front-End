@@ -32,6 +32,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { SquadComponent } from './components/squad/squad.component';
 import { CreateTeamFormComponent } from './components/create-team-form/create-team-form.component';
 import { EditTournamentComponent } from './components/tournaments/edit-tournament/edit-tournament.component';
+import { ListFixtureComponent } from './components/tournaments/list-fixture/list-fixture.component';
+import { AddFixtureComponent } from './components/tournaments/add-fixture/add-fixture.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { EditTournamentComponent } from './components/tournaments/edit-tournamen
     CalendarComponent,
     SquadComponent,
     CreateTeamFormComponent,
-    EditTournamentComponent
+    EditTournamentComponent,
+    ListFixtureComponent,
+    AddFixtureComponent
   ],
   imports: [
     BrowserModule,
