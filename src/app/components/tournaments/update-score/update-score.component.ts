@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./update-score.component.css']
 })
 export class UpdateScoreComponent implements OnInit {
-  private fixtures$: Observable<Models.TournamentFixtures[]>;
+  private fixtures$: Observable<Models.TournamentFixture[]>;
 
   scoreForm = new FormGroup({
     home_score: new FormControl(null, Validators.required),

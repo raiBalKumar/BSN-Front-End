@@ -32,6 +32,7 @@
         <div class="btn btn-danger" (click)="onDelete(list.tournament_id)">Delete</div>
         <a class="btn btn-info" [routerLink]="['/tournament/score', list.tournament_id]">Update Score</a>
         <a class="btn btn-info" [routerLink]="['/tournament/ranking', list.tournament_id]">Ranking</a>
+        <a class="btn btn-warning" [routerLink]="['/tournament', list.tournament_id, 'fixture']">Add Fixture</a>
       </div>
     </div>
   </div>

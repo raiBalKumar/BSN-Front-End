@@ -3,4 +3,11 @@
 *{
     font-family: 'Open Sans', sans-serif;
     letter-spacing: 0.5px;
+    
+}
+body {
+    background: linear-gradient(15deg, rgb(231, 235, 241), rgb(231, 235, 241), rgb(231, 235, 241));
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }

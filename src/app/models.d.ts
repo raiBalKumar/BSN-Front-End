@@ -50,7 +50,7 @@ declare module Models {
         street: string;
     }
 
-    interface TournamentFixtures {
+    interface TournamentFixture {
         tournament_id: number;
         tournament_name: string;
         fixture_id: number;

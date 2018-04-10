@@ -16,7 +16,7 @@ export class TournamentService {
   // get single tournament
   getSingleTournament: BehaviorSubject<object>;
   // get all fixtures by tournamentId
-  fixtures$: BehaviorSubject<Models.TournamentFixtures[]>;
+  fixtures$: BehaviorSubject<Models.TournamentFixture[]>;
   // get ranking by tournamentId
   ranking$: Subject<Models.Ranking[]>
 
@@ -25,7 +25,8 @@ export class TournamentService {
     private authService: AuthService,
     private router: Router,
     private flashMessage: FlashMessagesService,
-    private userService: UserService) {
+    private userService: UserService) 
+{
     this.tournament$ = new BehaviorSubject([]);
     this.getSingleTournament = new BehaviorSubject({});
     this.listAllTournaments();
@@ -43,7 +44,8 @@ export class TournamentService {
       })
   }
 
-  private listAllTournaments() {
+  //list all tournament
+  private listAllTournaments(){
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = { headers: headers };
     this.http.get(`${environment.apiServer}/api/organizers/tournament`, options).subscribe((res: object[]) => {
@@ -51,6 +53,7 @@ export class TournamentService {
     })
   }
 
+  // create tournament
   createTournament(tournamentFormValue: object) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = { headers: headers };
@@ -62,6 +65,7 @@ export class TournamentService {
       })
   }
 
+  // update tournament
   update(id: number, updateFormData: object) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = { headers: headers };
@@ -73,6 +77,7 @@ export class TournamentService {
       })
   }
 
+  // delete tournament
   delete(id: number) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = { headers: headers };
@@ -84,6 +89,26 @@ export class TournamentService {
       })
   }
 
+  // get fixture for single tournament
+  getFixture(id: Params) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+    let options = {headers:headers};
+    this.http.get(`${environment.apiServer}/api/organizers/tournament/${id}/fixture`, (options))
+      .subscribe((res: Models.TournamentFixture[]) => {
+        return this.fixtures$.next(res);
+      })
+  }
+
+  // get team info for adding fixture
+  // getTeamInfo(id: Params) {
+  //   let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+  //   let options = {headers:headers};
+  //   this.http.get(`${environment.apiServer}/api/organizers/tournament/${id}/getteaminfo`, (options))
+  //     .subscribe(data => console.log(data))
+  // }
+
+
+  // redirect to and update all tournaments page
   redirectPage(res: object, successfulMessage: string, errorMessage: string) {
     if (res["success"] === true) {
       this.flashMessage.show(successfulMessage, {
@@ -103,7 +128,7 @@ export class TournamentService {
   reloadTournamentFixtures(tournamentId: number) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = { headers: headers };
-    this.http.get<Models.TournamentFixtures[]>(`${environment.apiServer}/api/organizers/tournament/${tournamentId}/fixture`, options)
+    this.http.get<Models.TournamentFixture[]>(`${environment.apiServer}/api/organizers/tournament/${tournamentId}/fixture`, options)
       .subscribe((res) => {
         this.fixtures$.next(res);
       });
@@ -113,7 +138,7 @@ export class TournamentService {
     return this.fixtures$.asObservable();
   }
 
-  updateScore(fixture: Models.TournamentFixtures, score: {}) {
+  updateScore(fixture: Models.TournamentFixture, score: {}) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = { headers: headers };
     let data = { fixture: fixture, score: score };

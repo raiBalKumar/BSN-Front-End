@@ -35,7 +35,8 @@ import { EditTournamentComponent } from './components/tournaments/edit-tournamen
 import { UpdateScoreComponent } from './components/tournaments/update-score/update-score.component';
 import { RankingComponent } from './components/tournaments/ranking/ranking.component';
 import { ScoreFormComponent } from './components/tournaments/score-form/score-form.component';
-
+import { AddFixtureComponent } from './components/tournaments/add-fixture/add-fixture.component';
+import { ListFixtureComponent } from './components/tournaments/list-fixture/list-fixture.component';
 
 
 @NgModule({
@@ -57,7 +58,9 @@ import { ScoreFormComponent } from './components/tournaments/score-form/score-fo
     EditTournamentComponent,
     UpdateScoreComponent,
     RankingComponent,
-    ScoreFormComponent
+    ScoreFormComponent,
+    ListFixtureComponent,
+    AddFixtureComponent
   ],
   imports: [
     BrowserModule,
