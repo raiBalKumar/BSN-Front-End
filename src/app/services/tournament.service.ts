@@ -100,13 +100,23 @@ export class TournamentService {
   }
 
   // get team info for adding fixture
-  // getTeamInfo(id: Params) {
-  //   let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
-  //   let options = {headers:headers};
-  //   this.http.get(`${environment.apiServer}/api/organizers/tournament/${id}/getteaminfo`, (options))
-  //     .subscribe(data => console.log(data))
-  // }
+  getTeamInfoForAddingFixture(id: Params) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+    let options = {headers:headers};
+    return this.http.get<Models.TeamInfoForTournamentFixture>(`${environment.apiServer}/api/organizers/tournament/${id}/getteaminfo`, (options));
+  }
 
+  // add tournament fixture
+  createFixture(id: Params, fixtureValue: Models.CreateTournamentFixture) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+    let options = {headers:headers};
+    this.http.post(`${environment.apiServer}/api/organizers/tournament/${id}/createfixture`, { fixtureValue }, (options))
+      .subscribe((res: object) => {
+        let successfulMessage = "Successfully created fixture!";
+        let errorMessage = "Your fixture have't been created! Please try again!";
+        this.redirectPage(res, successfulMessage, errorMessage);
+      })
+  }
 
   // redirect to and update all tournaments page
   redirectPage(res: object, successfulMessage: string, errorMessage: string) {

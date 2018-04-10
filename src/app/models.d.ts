@@ -79,4 +79,16 @@ declare module Models {
         draw: number;
         lose: number;
     }
+
+    interface TeamInfoForTournamentFixture {
+        venues: string;
+        teams: string;
+    }
+
+    interface CreateTournamentFixture {
+        home_team: number;
+        away_team: number;
+        venue: string;
+        date: Date;
+    }
 }
