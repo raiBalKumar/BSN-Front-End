@@ -1,0 +1,19 @@
+<form [formGroup]="scoreForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Home Score: </label>
+    <input type='text' name="home_score" class="form-control width-50" formControlName="home_score" />
+    <div *ngIf="scoreForm.controls['home_score'].dirty && scoreForm.controls['home_score'].hasError('required')">
+      This field is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Away Score: </label>
+    <input type='text' name="away_score" class="form-control width-50" formControlName="away_score" />
+    <div *ngIf="scoreForm.controls['away_score'].dirty && scoreForm.controls['away_score'].hasError('required')">
+      This field is required
+    </div>
+  </div>
+
+  <input type='submit' value="Submit" class="btn btn-warning btn-block text-white" [disabled]="!scoreForm.valid" />
+</form>

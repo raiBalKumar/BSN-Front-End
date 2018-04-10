@@ -37,6 +37,7 @@ export class ProfileComponent implements OnInit {
 
     this.image = 'assets/img/zizou.png';
     this.user$ = this.userService.getProfile();
+    this.userService.getProfile().subscribe(res => console.log(res));
 
     // set default value to the form
     this.user$.subscribe((res) => {
