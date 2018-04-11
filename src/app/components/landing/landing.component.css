@@ -1,0 +1,20 @@
+.cover{
+    height: 100%;
+    width: 100vw;
+}
+
+h1{
+    color: red;
+}
+
+.btn-start{
+    height: 40px;
+    margin: 10px;
+    color: #2E71E9;
+    background-color: transparent;
+    background-image: none;
+    border-color: #2E71E9;
+    border-radius: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+}

@@ -46,3 +46,20 @@ flash-messages {
     font-size: 14px;
 }
 /* footer end */
+
+.offsetNavBar{
+    margin-top: 86px;
+}
+
+#wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#content {
+    height: calc(100% - 86px);
+    margin-top: 86px;
+}

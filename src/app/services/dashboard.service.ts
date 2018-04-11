@@ -18,9 +18,7 @@ export class DashboardService {
   private subject = new BehaviorSubject<any>([]);
   players$:Observable<any> = this.subject.asObservable();
   
-  constructor(private http: HttpClient, private authService : AuthService) {
-   
-  }
+  constructor(private http: HttpClient, private authService : AuthService) {}
      
   // check requests for manager 
   checkManagerRequest(): Observable<any> { 
