@@ -54,7 +54,33 @@
       </div>
     </div>
   </div>
+</div>
 
-  <div *ngIf="user.status === 'organizer'">
+
+<div *ngIf="userStatus.status === 'organizer'">
+  <div class="box" *ngIf="requests$ | async as requests">
+
+    <div class="card" *ngFor="let request of requests">
+
+      <div class="card-header bg-secondary fa">
+        <p>
+          <strong>Application from {{request.teamname}}</strong>
+        </p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <small>{{request.teamname}} applied {{request.tournament_name}}</small>
+        </p>
+        <div class="row text-center">
+          <div class="col-6">
+            <button class="btn btn-info btn-sm">Accept</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-danger btn-sm">Reject</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>

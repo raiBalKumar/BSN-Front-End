@@ -11,7 +11,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class TournamentsComponent implements OnInit {
   listAllTournaments: Observable<object[]>;
-  userStatus: object;
+  listAllTournamentsForManager: Observable<Models.TournamentForManager[]>;
+  userStatus: any;
 
   constructor(private tournamentService: TournamentService,
               private router: Router,
@@ -21,12 +22,27 @@ export class TournamentsComponent implements OnInit {
               }
               
   ngOnInit() { 
-    this.listAllTournaments = this.tournamentService.tournament$;
+    // if user is manager
+    if (this.userStatus.status === "manager") {
+      this.tournamentService.listAllTournamentsForManager(this.userStatus.team_id)
+      this.listAllTournamentsForManager = this.tournamentService.tournamentForManager;
+    } 
+    // if user is organizer / player
+    else {
+      this.listAllTournaments = this.tournamentService.tournament$;
+    }
   }
 
   // delete tournament
   onDelete(id: number) {
     this.tournamentService.delete(id);
+  }
+
+  joinTournament(tournamentID) {
+    this.tournamentService.requestToJoinTournament(tournamentID, this.userStatus.team_id)
+      .subscribe(res => {
+      this.tournamentService.listAllTournamentsForManager(this.userStatus.team_id);        
+      });
   }
 }
 
