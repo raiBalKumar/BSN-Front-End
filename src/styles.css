@@ -3,6 +3,7 @@
 *{
     font-family: 'Open Sans', sans-serif;
     letter-spacing: 0.5px;
+    box-sizing: border-box;
     
 }
 body {

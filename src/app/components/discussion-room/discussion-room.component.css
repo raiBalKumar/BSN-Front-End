@@ -1,0 +1,26 @@
+#messages { 
+    background: #fff;
+    padding: 3px; 
+    width: 100%;
+    height: 400px;
+    box-shadow: 1px 1px 3px #000;
+    border-radius: 5px;
+    list-style-type: none; 
+ }
+
+ #msgInput{ 
+     border: 0; 
+     width: 75%; 
+     box-shadow: inset 1px 1px 5px #000;
+
+    }
+ #send { 
+    border: none; 
+    width: 20%;
+    box-shadow: 1px 1px 5px #000;
+}
+
+#enterChat {
+    box-shadow: 1px 1px 5px #000;
+
+}

@@ -1,3 +1,4 @@
+import { WebsocketService } from './services/websocket.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -32,6 +33,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { SquadComponent } from './components/squad/squad.component';
 import { CreateTeamFormComponent } from './components/create-team-form/create-team-form.component';
 import { EditTournamentComponent } from './components/tournaments/edit-tournament/edit-tournament.component';
+import { ChatService } from './services/chat.service';
+import { DiscussionRoomComponent } from './components/discussion-room/discussion-room.component';
 
 
 @NgModule({
@@ -50,7 +53,8 @@ import { EditTournamentComponent } from './components/tournaments/edit-tournamen
     CalendarComponent,
     SquadComponent,
     CreateTeamFormComponent,
-    EditTournamentComponent
+    EditTournamentComponent,
+    DiscussionRoomComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,9 @@ import { EditTournamentComponent } from './components/tournaments/edit-tournamen
     TournamentService,
     UserService,
     DashboardService,
-    TeamService
+    TeamService,
+    WebsocketService,
+    ChatService
   ],
   bootstrap: [AppComponent]
 })

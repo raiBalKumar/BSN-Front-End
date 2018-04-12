@@ -1,3 +1,4 @@
+import { ChatService } from './../../services/chat.service';
 import { Observable } from 'rxjs/Observable';
 import { DashboardService } from './../../services/dashboard.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -13,11 +14,18 @@ export class RequestsComponent implements OnInit {
   user: any;
 
   constructor(private dashboardService: DashboardService,
+    private chat: ChatService,
   ) {
     console.log("constructor");
   }
 
   ngOnInit() {
+    this.chat.messages.subscribe((res) => {
+      if(res['type'] === 'event'){
+        this.refresh();
+      }
+     });
+
     this.dashboardService.user$.subscribe(user => {
       this.user = user;
       console.log("check request");
@@ -25,7 +33,7 @@ export class RequestsComponent implements OnInit {
       if (this.user.status) {
         if (this.user.status === "manager") {
           this.requests$ = this.dashboardService.checkManagerRequest();
-          
+
         } else if (this.user.status === "player") {
           this.requests$ = this.dashboardService.checkPlayerRequest();
         } else if (this.user.status === "organizer") {
@@ -38,11 +46,35 @@ export class RequestsComponent implements OnInit {
   // accept request to join the club
   acceptClub(manager_id: number, team_id: number) {
     console.log('accept club');
-    this.dashboardService.acceptClub(manager_id, team_id);
+    this.dashboardService.acceptClub(manager_id, team_id)
+      .subscribe((res) => {
+        console.log("update userinfo");
+        this.dashboardService.getUserInfo();
+        this.chat.sendEvent('Club');
+        this.chat.messages.subscribe((res) => {
+          if(res['type'] === 'event'){
+            this.refresh();
+          }   
+        })
+      })
   }
   // reject request to join the club
   rejectClub(manager_id: number) {
+    this.dashboardService.rejectClub(manager_id)
+      .subscribe((res) => {
+        this.dashboardService.getUserInfo();
+        this.chat.sendEvent('Club');
+        this.chat.messages.subscribe((res) => {
+          if(res['type'] === 'event'){
+            console.log("res on request comp", res)
+            this.refresh();
+          }      
+         })
+      })
+  }
 
+  refresh(){
+    this.dashboardService.getUserInfo();
   }
 
 

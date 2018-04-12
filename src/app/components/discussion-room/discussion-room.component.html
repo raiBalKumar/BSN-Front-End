@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-4 mb-3">
+    <a id="enterChat" class="btn btn-primary text-white" (click)="enterChat($event)">Enter dressing room</a>
+    
+  </div>
+  <div class="col-md-8">
+    <div *ngIf="showMessage">
+      <ul id="messages">
+          <li >{{(messages$ | async)?.data}}</li>
+      </ul>
+      <input id="msgInput" #msg class="form-control d-inline" autocomplete="off" />&nbsp;
+      <button id="send"  class="btn btn-primary d-inline" (click)="send(msg)">Send</button>
+    </div>
+  </div>
+</div>
