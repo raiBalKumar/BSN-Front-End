@@ -10,8 +10,14 @@ import { TournamentsComponent } from './components/tournaments/tournaments.compo
 import { ProfileComponent } from './components/profile/profile.component';
 import { CreateTournamentComponent } from './components/tournaments/create-tournament/create-tournament.component';
 import { EditTournamentComponent } from './components/tournaments/edit-tournament/edit-tournament.component';
+import { UpdateScoreComponent } from './components/tournaments/update-score/update-score.component';
+import { RankingComponent } from './components/tournaments/ranking/ranking.component';
+import { ListFixtureComponent } from './components/tournaments/list-fixture/list-fixture.component';
+import { AddFixtureComponent } from './components/tournaments/add-fixture/add-fixture.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 const routes: Routes = [
+    {path: '', component: LandingComponent},
     {path: 'login', component: LoginComponent},
     {path: 'auth/facebook/callback',component: FacebookComponent,},
     {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
@@ -21,6 +27,10 @@ const routes: Routes = [
     // need to set authentication to restrict only organizer can create tournament
     {path: 'tournament/create', component: CreateTournamentComponent, canActivate: [AuthGuard]},
     {path: 'tournament/edit/:id', component: EditTournamentComponent, canActivate: [AuthGuard]},
+    {path: 'tournament/score/:id', component: UpdateScoreComponent, canActivate: [AuthGuard]},
+    {path: 'tournament/ranking/:id', component: RankingComponent, canActivate: [AuthGuard]},
+    {path: 'tournament/:id/fixture', component: ListFixtureComponent, canActivate: [AuthGuard]},
+    {path: 'tournament/:id/addfixture', component: AddFixtureComponent, canActivate: [AuthGuard]}
     // end
 ]
 

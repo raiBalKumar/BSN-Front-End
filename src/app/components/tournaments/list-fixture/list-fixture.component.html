@@ -1,0 +1,39 @@
+<p>
+  list-fixture works!
+</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary" [routerLink]="['/tournament', id, 'addfixture']">Add Fixture</a>        
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr class="text-center">
+        <th scope="col">Home team</th>
+        <th scope="col"></th>
+        <th scope="col">Away team</th>
+        <th scope="col">Date</th>
+        <th scope="col">Venue</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table" class="table" *ngFor="let fixture of fixtures | async">
+        <td>{{fixture.home_teamname}}</td>
+        <td>VS</td>
+        <td>{{fixture.away_teamname}}</td>
+        <td>{{fixture.date | date: 'd'}} / {{fixture.date | date: 'MM'}} / {{fixture.date | date: 'y'}}</td>
+        <td>
+          <p>Park Name: {{fixture.park_name}}</p> <br>
+          <p>Location: {{fixture.street}}, {{fixture.district}}</p>
+        </td>
+        <td>
+          <button class="btn btn-info">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

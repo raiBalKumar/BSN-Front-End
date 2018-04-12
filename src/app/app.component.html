@@ -1,14 +1,24 @@
-<app-nav-bar></app-nav-bar>
+<div id="wrapper">
+    <app-nav-bar class="fixed-top"></app-nav-bar>
+    <div class="mb-3 offsetNavBar" id="flash">
+        <flash-messages class="text-center"></flash-messages>
+    </div>
+    <div id="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
 
-<div class="my-3" id="flash">
+<!-- <app-nav-bar class="fixed-top"></app-nav-bar>
+
+<div class="mb-3 offsetNavBar" id="flash">
     <flash-messages class="text-center"></flash-messages>
 </div>
 
 <div id="out-let">
     <router-outlet></router-outlet>
-</div>
+</div> -->
 
-<div class="footing">
+<!-- <div class="footing">
     <div class="socialLinks">
         <ul class="socialOptions justify-content-center text-white mb-0 pb-0">
             <li class="socialList text-muted">
@@ -36,5 +46,4 @@
             </li>
         </ul>
     </div>
-</div>
-
+</div> -->

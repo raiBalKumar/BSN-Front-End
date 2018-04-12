@@ -7,6 +7,9 @@
 
           <div class="col-lg-5 resize">
             <div class="logo-wrapper">
+              <div class="logo-background">
+                Upload Team Logo
+              </div>
               <img src="{{teamInfo.logo}}" alt="">
             </div>
           </div>
@@ -42,9 +45,9 @@
     </div>
 
     <div class="col-sm-3">
-      <div *ngIf="upComingMatch$ | async as upComingMatch" class="sidebar">
+      <div class="sidebar">
         <h4 class="sidebar-title">Upcoming Match:</h4>
-        <div class="sidebar-content">
+        <div class="sidebar-content" *ngIf="upComingMatch$ | async as upComingMatch; else noMatch">
           <p>Date: {{upComingMatch.date | date:'fullDate'}}</p>
           <p>Time: {{upComingMatch.date | date:'hh:mm a'}}</p>
           <p style="color:rgb(253, 67, 67)">Next Opponent: {{upComingMatch.opponent_teamname}} ({{upComingMatch.opponent_position}})</p>
@@ -52,6 +55,9 @@
             <img src="{{upComingMatch.opponent_logo}}" alt="">
           </div>
         </div>
+        <ng-template #noMatch>
+          <h4>N/A</h4>
+        </ng-template>
       </div>
     </div>
   </div>

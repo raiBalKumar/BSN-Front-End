@@ -1,43 +1,55 @@
-<div style="padding-left: 0; padding-right: 0;">
+<div *ngIf="authService.isAuthenticated(); then loginNavbar else logoutNavbar"></div>
 
-    <header class="navbar navbar-dark nav-bg navbar-fixed-top navbar-expand-lg pb-3">
-        <a class="navbar-brand" [routerLink]="['/']" (click)="navbarCollapsed = true">BSN</a>
+<ng-template #loginNavbar>
+    <nav class="navbar navbar-expand-md navbar-light bg-white ">
+        <a class="navbar-brand" [routerLink]="['/']">
+            <img src="/assets/img/BSN.jpg" height="60" class="d-inline-block align-top" alt="">
+        </a>
 
         <button class="navbar-toggler navbar-toggler-right" type="button" (click)="navbarCollapsed = !navbarCollapsed" [attr.aria-expanded]="!navbarCollapsed"
             aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse flex-column" [ngbCollapse]="navbarCollapsed" id="navbarContent">
-            <h2 class="w-75 text-center text-white bsn">Building Sports Network</h2><br>
-            <div class="w-100">
-                <ul class="navbar-nav mr-auto">
-                    <li *ngIf="authService.isAuthenticated()" class="nav-item btn-sm btn" [routerLinkActive]="['active']">
-                        <a class="nav-link" [routerLink]="['/dashboard']" (click)="navbarCollapsed = true">Dashboard</a>
-                    </li>&nbsp;
-                    <li *ngIf="authService.isAuthenticated()" class="nav-item btn-sm btn" [routerLinkActive]="['active']">
-                        <a class="nav-link" [routerLink]="['/profile']" (click)="navbarCollapsed = true">Profile</a>
-                    </li>&nbsp;
-                    <li *ngIf="authService.isAuthenticated()" class="nav-item btn-sm btn" [routerLinkActive]="['active']">
-                        <a class="nav-link" [routerLink]="['/clubs']" (click)="navbarCollapsed = true">Clubs</a>
-                    </li>&nbsp;
-                    <li *ngIf="authService.isAuthenticated()" class="nav-item btn-sm btn" [routerLinkActive]="['active']">
-                        <a class="nav-link" [routerLink]="['/tournaments']" (click)="navbarCollapsed = true">Tournaments</a>
-                    </li>&nbsp;
-                    <li *ngIf="authService.isAuthenticated() && authService.status.status === 'organizer'" class="nav-item btn-sm btn" [routerLinkActive]="['active']">
-                        <a class="nav-link" [routerLink]="['/tournament/create']" (click)="navbarCollapsed = true">Create Tournament</a>
-                    </li>&nbsp;
-                    <ul class="navbar-nav ml-auto">
-                        <li *ngIf="authService.isAuthenticated()" class="nav-item  btn btn-sm btn-warning colorme ">
-                            <a href="" class="nav-link" (click)="logout()">Logout</a>
-                        </li>&nbsp;
-                        <li *ngIf="!authService.isAuthenticated()" class="nav-item  btn btn-sm btn-warning colorme">
-                            <a href="" class="nav-link" [routerLink]="['/login']" (click)="navbarCollapsed = true">Login</a>
-                        </li>&nbsp;
-                    </ul>
-                </ul>
-                
-            </div>
+        <div class="navbar-collapse" [ngbCollapse]="navbarCollapsed" id="navbarContent">
+            <ul class="navbar-nav ml-auto">
+                <li [routerLinkActive]="['active']" class="nav-item">
+                    <button class="btn btn-nav my-1" [routerLink]="['/dashboard']" (click)="navbarCollapsed = true">Dashboard</button>
+                </li>
+                <li *ngIf="(authService.status.status === 'player' || authService.status.status === 'manager')" [routerLinkActive]="['active']"
+                    class="nav-item">
+                    <button class="btn btn-nav my-1" [routerLink]="['/profile']" (click)="navbarCollapsed = true">Profile</button>
+                </li>
+                <li *ngIf="(authService.status.status === 'player' || authService.status.status === 'manager')" [routerLinkActive]="['active']"
+                    class="nav-item">
+                    <button class="btn btn-nav my-1" [routerLink]="['/clubs']" (click)="navbarCollapsed = true">Clubs</button>
+                </li>
+                <li [routerLinkActive]="['active']" class="nav-item">
+                    <button class="btn btn-nav my-1" [routerLink]="['/tournaments']" (click)="navbarCollapsed = true">Tournaments</button>
+                </li>
+                <li *ngIf="authService.status.status === 'organizer'" [routerLinkActive]="['active']" class="nav-item">
+                    <button class="btn btn-nav my-1" [routerLink]="['/tournament/create']" (click)="navbarCollapsed = true">Create Tournament</button>
+                </li>
+                <li>
+                    <button class="btn btn-nav my-1" (click)="logout()">
+                        <i class="fas fa-user"></i>
+                        Logout
+                    </button>
+                </li>
+            </ul>
         </div>
-    </header>
-</div>
+    </nav>
+</ng-template>
+
+<ng-template #logoutNavbar>
+    <nav class="navbar navbar-light bg-white">
+        <a class="navbar-brand" [routerLink]="['/']">
+            <img src="/assets/img/BSN.jpg" height="60" class="d-inline-block align-top" alt="">
+        </a>
+
+        <button class="btn btn-nav my-1" [routerLink]="['/login']">
+            <i class="fas fa-user"></i>
+            Login
+        </button>
+    </nav>
+</ng-template>

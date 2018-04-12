@@ -21,7 +21,7 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
-    "@ng-bootstrap/ng-bootstrap": "^1.0.2",
+    "@ng-bootstrap/ng-bootstrap": "^2.0.0-alpha.0",
     "@types/moment": "^2.13.0",
     "@types/socket.io-client": "^1.4.32",
     "angular-calendar": "^0.23.7",

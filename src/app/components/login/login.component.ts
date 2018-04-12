@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FacebookAuthService } from '../../services/facebook-auth.service';
-import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons, NgbModalRef, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
-
-
 
 
 @Component({
@@ -28,12 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   open(content) {
-    this.ref = this.modalService.open(content);
-    this.ref.result.then((result) => {
-       
-    }, (reason) => {
-      
-    });
+    this.ref = this.modalService.open(content, {centered: true});
   }
 
   onSubmitRegister(value:{}){

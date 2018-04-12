@@ -1,50 +1,50 @@
-<div class="text-center form-signin loginFrame my-5">
-    <form (submit)="onLoginSubmit()">
-  
-      <!-- social login start  -->
-  
-      <div class="btn-group py-3">
-        <a class='btn facebook-btn disabled text-white'>
-          <i class="fa fa-facebook"></i>
-        </a>
-        <a class='btn facebook-btn text-white' (click)="onFacebookLogin($event)">
-          <i class="fa">Sign in with Facebook</i>
-        </a>
+<div class="d-flex cover">
+  <div class="frame mx-auto my-auto">
+    <div class="container my-3">
+
+      <div class="row d-flex">
+        <div class="col-12">
+          <p class="title text-center">Login with your account</p>
+          <form (submit)="onLoginSubmit()">
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" name="email" class="account-info" [(ngModel)]="email" placeholder="Email" required autofocus>
+            <br>
+            <br>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="password" class="account-info" [(ngModel)]="password" placeholder="Password" required>
+            <br>
+            <br>
+            <input class="sign-in" type="submit" value="SIGN IN">
+          </form>
+          <div class="facebook-box d-flex" (click)="onFacebookLogin($event)">
+            <p class="mx-auto my-auto">LOG IN WITH FACEBOOK</p>
+          </div>
+        </div>
       </div>
-      <br />
-      <br />
-  
-      <!-- end of social login -->
-      <h1 class="h5 mb-2 font-weight-normal text-white fa">Log in with email</h1>
-  
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" name="email" class="form-control fa" [(ngModel)]="email" placeholder="Email address" required autofocus>
-      <br>
-      <br>
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" name="password" class="form-control fa" [(ngModel)]="password" placeholder="Password"  required>
-  
-      <input class="fa btn btn-lg btn-block btn-logIn mt-4 " type="submit" value="Sign in">
-      <br>
-      <br>
-    </form>
-  
-    <!-- Button trigger modal -->
-    <ng-template #content let-c="close" let-d="dismiss">
-      <div class="modal-header bg-color text-white">
-        <h4 class="modal-title ">Register</h4>
-        <button type="button" class="close text-white" aria-label="Close" (click)="d('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
+
+      <div class="row d-flex or">
+        <div class="circle mx-auto d-flex">
+          <p class="center">OR</p>
+        </div>
       </div>
-  
-      <app-register (submit_register)="onSubmitRegister($event)" ></app-register>
-    </ng-template>
-  
-    <button class="btn btn-lg btn-block btn-register fa" (click)="open(content)">Sign up</button>
-    <br>
-    <br>
-    <hr>
-    
-  
+
+      <div class="row">
+        <div class="col-12 d-flex">
+          <button class="sign-up mx-auto" (click)="open(content)">Create New Account</button>
+        </div>
+
+      </div>
+    </div>
   </div>
+
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header bg-color d-flex align-items-center">
+      <h4 class="modal-title">Create New Account</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <app-register (submit_register)="onSubmitRegister($event)"></app-register>
+  </ng-template>
+</div>

@@ -1,0 +1,18 @@
+<p>
+  update-score works!
+</p>
+
+<div class="container-fluid">
+  <div class="row" *ngFor="let fixture of fixtures$ | async">
+    <div class="col-12">
+      <p>Home Team: {{fixture.home_teamname}}</p>
+      <p>Away Team: {{fixture.away_teamname}}</p>
+      <p>Date: {{fixture.date | date:'fullDate'}}</p>
+      <app-score-form [fixture]=fixture></app-score-form>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+  </div>
+</div>
