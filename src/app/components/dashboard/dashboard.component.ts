@@ -1,6 +1,6 @@
 import { AuthService } from './../../services/auth.service';
 import { DashboardService } from './../../services/dashboard.service';
-import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Observable } from 'rxjs/Observable';
@@ -21,21 +21,16 @@ export class DashboardComponent implements OnInit {
             ) { 
               console.log("clubs");
               this.dashboardService.getUserInfo();
-
             }
 
   ngOnInit() {
-
     this.user$ = this.dashboardService.user$; 
   }
+
   open(content) {
     this.ref = this.modalService.open(content);
-    this.ref.result.then((result) => {
-       
-    }, (reason) => {
-      
-    });
   }
+
   onCreateClub(value:{}){
     this.dashboardService.createTeam(value);
     this.ref.close();

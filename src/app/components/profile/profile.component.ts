@@ -1,17 +1,18 @@
 import { async } from '@angular/core/testing';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { UserService } from '../../services/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
+import { Subscription } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   private locations = [
     "Hong Kong Islands",
     "Kowloon",
@@ -21,8 +22,8 @@ export class ProfileComponent implements OnInit {
   private user$: Observable<Models.Profile>;
   private image: string;
   private editing: boolean = false; // To control where editForm should be shown
-  private history: {};
-  private tmp;
+  private history: {}; // To keep a copy of unedited information
+  private formSubscription: Subscription;
 
   editForm = new FormGroup({
     firstname: new FormControl(null, [Validators.required, Validators.minLength(2)]),
@@ -37,16 +38,20 @@ export class ProfileComponent implements OnInit {
 
     this.image = 'assets/img/zizou.png';
     this.user$ = this.userService.getProfile();
-    this.userService.getProfile().subscribe(res => console.log(res));
 
     // set default value to the form
-    this.user$.subscribe((res) => {
+    this.formSubscription = this.user$.subscribe((res) => {
       this.editForm.patchValue({
         firstname: res.firstname,
         lastname: res.lastname,
         location: res.location
       })
     })
+  }
+
+  ngOnDestroy(){
+    // prevent many subscription
+    this.formSubscription.unsubscribe();
   }
 
   onEdit() {

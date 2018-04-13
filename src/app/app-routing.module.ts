@@ -14,8 +14,10 @@ import { UpdateScoreComponent } from './components/tournaments/update-score/upda
 import { RankingComponent } from './components/tournaments/ranking/ranking.component';
 import { ListFixtureComponent } from './components/tournaments/list-fixture/list-fixture.component';
 import { AddFixtureComponent } from './components/tournaments/add-fixture/add-fixture.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 const routes: Routes = [
+    {path: '', component: LandingComponent},
     {path: 'login', component: LoginComponent},
     {path: 'auth/facebook/callback',component: FacebookComponent,},
     {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
