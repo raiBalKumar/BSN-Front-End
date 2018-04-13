@@ -1,9 +1,12 @@
 table{
     width: 100%;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.829);
+    border-radius: 4px;
 }
 
 .stathead{
-    background: rgb(2, 159, 231);
+    background: rgba(46, 111, 233, 0.699);
+    text-transform: uppercase;
 }
 
 .stathead td{
@@ -11,16 +14,12 @@ table{
     font-size: 18px;
 }
 
-th{
-    color: rgb(112, 111, 111);
-}
-
 thead{
     border-bottom: 1px solid #c2c2c2;
 }
 
 .even{
-    background: #eeededc4;
+    background: rgba(0, 0, 0, 0.075);
 }
 
 .modal-bg{

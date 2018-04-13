@@ -6,7 +6,9 @@
             <img src="/assets/img/BSN.jpg" height="60" class="d-inline-block align-top" alt="">
         </a>
 
-        <button class="navbar-toggler navbar-toggler-right" type="button" (click)="navbarCollapsed = !navbarCollapsed" [attr.aria-expanded]="!navbarCollapsed"
+        <button class="mr-auto btn-nav">{{authService.status.status}} Portal</button>
+
+        <button class="ml-auto navbar-toggler navbar-toggler-right" type="button" (click)="navbarCollapsed = !navbarCollapsed" [attr.aria-expanded]="!navbarCollapsed"
             aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,11 +32,8 @@
                 <li *ngIf="authService.status.status === 'organizer'" [routerLinkActive]="['active']" class="nav-item">
                     <button class="btn btn-nav my-1" [routerLink]="['/tournament/create']" (click)="navbarCollapsed = true">Create Tournament</button>
                 </li>
-                <li>
-                    <button class="btn btn-nav my-1" (click)="logout()">
-                        <i class="fas fa-user"></i>
-                        Logout
-                    </button>
+                <li class="nav-item">
+                    <button class="btn btn-nav my-1" (click)="logout()">Logout</button>
                 </li>
             </ul>
         </div>
@@ -47,7 +46,7 @@
             <img src="/assets/img/BSN.jpg" height="60" class="d-inline-block align-top" alt="">
         </a>
 
-        <button class="btn btn-nav my-1" [routerLink]="['/login']">
+        <button class="btn btn-login my-1" [routerLink]="['/login']">
             <i class="fas fa-user"></i>
             Login
         </button>

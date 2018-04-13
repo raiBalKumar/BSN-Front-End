@@ -23,15 +23,15 @@
 
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">{{fixture.date | date:'fullDate'}}</h4>
+    <h4 class="modal-title">{{fixture.date | date:'fullDate'}} - {{fixture.date | date:'hh:mm a'}}</h4>
   </div>
   <div class="modal-body">
-    <p>Time: {{fixture.date | date:'hh:mm a'}}</p>
-    <p>Opponent Team: {{fixture.opponent_teamname}}</p>
+    <p>TOURNAMENT NAME: {{fixture.tournament_name}}</p>
+    <p>OPPONENT: {{fixture.opponent_teamname}}</p>
     <img src="{{fixture.opponent_logo}}" alt="" class="img-fluid">
     <br>
     <br>
-    <p>Venue: {{fixture.park_name}}, {{fixture.street}}, {{fixture.district}}</p>
+    <p>VENUE: {{fixture.park_name}}, {{fixture.street}}, {{fixture.district}}</p>
   </div>
 
   <div class="modal-footer">
