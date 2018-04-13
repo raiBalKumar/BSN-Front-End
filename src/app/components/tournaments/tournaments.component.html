@@ -92,13 +92,13 @@
 
       <!-- check which button to be shown -->
       <div *ngIf="userStatus.status === 'manager' && userStatus.team_id != null">
-        <div class="col-md-4" *ngIf="list.request_team_id != null">
+        <div class="col-md-4" *ngIf="list.request_team_id === userStatus.team_id">
           <div class="btn btn-danger">Requesting</div>
         </div>
-        <div class="col-md-4" *ngIf="list.t_team_id != null">
+        <div class="col-md-4" *ngIf="list.t_team_id === userStatus.team_id">
           <div class="btn btn-primary">In progress</div>
         </div>
-        <div class="col-md-4" *ngIf="list.request_team_id === null && list.t_team_id === null">
+        <div class="col-md-4" *ngIf="list.request_team_id !== userStatus.team_id && list.t_team_id !== userStatus.team_id">
           <div class="btn btn-success" (click)="joinTournament(list.id)">Join</div>
         </div> 
       </div>
