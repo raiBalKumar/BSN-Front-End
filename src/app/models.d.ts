@@ -84,4 +84,32 @@ declare module Models {
         user: string;
         time: Date;
     }
+
+    interface TeamInfoForTournamentFixture {
+        venues: string;
+        teams: string;
+    }
+
+    interface CreateTournamentFixture {
+        home_team: number;
+        away_team: number;
+        venue: string;
+        date: Date;
+    }
+
+    interface TournamentForManager {
+        id: number;
+        category: string;
+        number_of_teams: string;
+        game_size: number;
+        organizer_id: number;
+        winner_prize: string;
+        runnerup_prize: string;
+        entry_fee: number;
+        tournament_name: string;
+        date: Date;
+        location: string;
+        t_team_id: number;
+        request_team_id: number;
+    }
 }

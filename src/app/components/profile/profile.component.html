@@ -1,5 +1,80 @@
 <div class="container">
   <div *ngIf="user$ | async as user">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="width-75">
+          <div class="pic-wrapper">
+            <img src="{{user.image}}" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div *ngIf="editing; then editingBlock else editedBlock"></div>
+
+        <ng-template #editedBlock>
+          <h3 class="d-flex align-items-center">
+            {{user.firstname}} {{user.lastname}}
+            <button class="btn btn-edit ml-auto my-auto" (click)='onEdit()'>Edit</button>
+          </h3>
+          <hr>
+          <div class="row">
+            <div class="col-6">
+              <p>POSITION: {{user.position}}</p>
+              <p>HEIGHT: 1.7m</p>
+              <p>WEIGHT: 60kg</p>
+              <p>CURRENT TEAM: {{user.teamname}}</p>
+            </div>
+
+            <div class="col-6">
+              <p>AGE: 24</p>
+              <p>POB: Hong Kong</p>
+              <p>LOCATION: {{user.location}}</p>
+            </div>
+          </div>
+
+        </ng-template>
+
+        <ng-template #editingBlock>
+          <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+            <h3 class="d-flex">
+              <label>First Name: </label>
+              <div class="form-group name">
+                <input type='text' placeholder="First Name" name="firstname" class="form-control" formControlName="firstname" />
+              </div>
+              <button class="btn btn-edit ml-auto my-auto" (click)='back()'>Back</button>
+            </h3>
+            <hr>
+
+
+
+            <div class="form-group">
+              <label>Last Name: </label>
+              <input type='text' name="lastname" class="form-control width-50" formControlName="lastname" />
+            </div>
+
+            <div class="form-group">
+              <label>Location: </label>
+              <select formControlName="location" class="form-control width-50">
+                <option *ngFor="let location of locations" [ngValue]="location">
+                  {{ location }}
+                </option>
+              </select>
+            </div>
+
+            <input type='submit' value="Submit" class="btn btn-warning btn-block text-white" [disabled]="!editForm.valid" />
+          </form>
+        </ng-template>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="container">
+  <div *ngIf="user$ | async as user">
     <div class="row my-5">
 
       <div class="col-md-4">
@@ -23,7 +98,7 @@
               <hr>
               <p>Team: {{user.teamname}}</p>
               <p>Location: {{user.location}}</p>
-              
+
             </ng-template>
 
             <ng-template #editingBlock>
@@ -67,4 +142,4 @@
 
     </div>
   </div>
-</div>
+</div> -->

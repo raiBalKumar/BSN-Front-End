@@ -14,12 +14,15 @@
 }
 
 :host /deep/ .cal-month-view .cal-cell-top{
-    min-height: 40px;
+    max-height: 0px;
+    min-height: 0px;
 }
 
 :host /deep/ .cal-month-view .cal-event{
-    width: 20px;
-    height: 20px;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    background-color: rgba(253, 249, 0, 0.438) !important;
 }
 
 .modal-header{

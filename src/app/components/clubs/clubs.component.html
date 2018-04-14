@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-sm-9">
+    <div class="col-lg-9 col-md-8">
       <div *ngIf="teamInfo$ | async as teamInfo">
         <div class="row club">
 
@@ -28,12 +28,12 @@
         <div class="col-lg-12">
 
           <ngb-tabset>
-            <ngb-tab title="Squad">
+            <ngb-tab title="SQUAD">
               <ng-template ngbTabContent>
                 <app-squad></app-squad>
               </ng-template>
             </ngb-tab>
-            <ngb-tab title="Fixtures">
+            <ngb-tab title="FIXTURES">
               <ng-template ngbTabContent>
                 <app-calendar></app-calendar>
               </ng-template>
@@ -44,16 +44,23 @@
       </div>
     </div>
 
-    <div class="col-sm-3">
+    <div class="col-lg-3 col-md-4">
       <div class="sidebar">
-        <h4 class="sidebar-title">Upcoming Match:</h4>
+        <h4 class="sidebar-title">Next Opponent</h4>
         <div class="sidebar-content" *ngIf="upComingMatch$ | async as upComingMatch; else noMatch">
-          <p>Date: {{upComingMatch.date | date:'fullDate'}}</p>
-          <p>Time: {{upComingMatch.date | date:'hh:mm a'}}</p>
-          <p style="color:rgb(253, 67, 67)">Next Opponent: {{upComingMatch.opponent_teamname}} ({{upComingMatch.opponent_position}})</p>
           <div class="logo-wrapper">
             <img src="{{upComingMatch.opponent_logo}}" alt="">
           </div>
+          <div class="opponent">
+            <p>{{upComingMatch.opponent_teamname}} - {{upComingMatch.opponent_position}}</p>
+          </div>
+          
+          <br>
+          <p class="details">Match Information:</p>
+          <p>Date: {{upComingMatch.date | date:'fullDate'}}</p>
+          <p>Time: {{upComingMatch.date | date:'hh:mm a'}}</p>
+          <p>Tournament Name: {{upComingMatch.tournament_name}}</p>
+          <p>Venue: {{upComingMatch.park_name}}, {{upComingMatch.street}},  {{upComingMatch.district}}</p>
         </div>
         <ng-template #noMatch>
           <h4>N/A</h4>

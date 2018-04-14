@@ -12,13 +12,17 @@ import { AuthService } from '../../services/auth.service';
 export class RequestsComponent implements OnInit {
   requests$: Observable<any>;
   user: any;
+  userStatus: any;
 
   constructor(private dashboardService: DashboardService,
-    private chat: ChatService,
+              private chat: ChatService,
+              private authService: AuthService
   ) {
     console.log("constructor");
-  }
+    this.userStatus = this.authService.status;
 
+  }
+          
   ngOnInit() {
     this.chat.messages.subscribe((res) => {
       if(res['type'] === 'event'){
@@ -36,13 +40,17 @@ export class RequestsComponent implements OnInit {
 
         } else if (this.user.status === "player") {
           this.requests$ = this.dashboardService.checkPlayerRequest();
-        } else if (this.user.status === "organizer") {
-          this.requests$ = this.dashboardService.checkOrganizerRequest();
-        }
+        } // else if (this.user.status === "organizer") {
+        //   this.requests$ = this.dashboardService.checkOrganizerRequest();
+        // }
       }
     })
 
+    if (this.userStatus.status === "organizer") {
+      this.requests$ = this.dashboardService.checkOrganizerRequest();
+    }
   }
+  
   // accept request to join the club
   acceptClub(manager_id: number, team_id: number) {
     console.log('accept club');

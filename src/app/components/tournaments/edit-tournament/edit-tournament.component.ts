@@ -16,7 +16,7 @@ export class EditTournamentComponent implements OnInit {
   id: Params;
 
   //set value for form table options
-  private categories = ["Knockout", "League"];
+  private categories = ["League"];
   private game_sizes = [6, 7, 9, 11];
   private locations = ["Hong Kong", "Kowloon", "New Territories"];
   

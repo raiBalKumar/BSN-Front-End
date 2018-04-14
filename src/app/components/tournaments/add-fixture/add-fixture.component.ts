@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { FormControl, FormGroup, FormBuilder,Validators } from '@angular/forms';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TournamentService } from '../../../services/tournament.service';
 
 @Component({
@@ -8,17 +9,39 @@ import { TournamentService } from '../../../services/tournament.service';
   styleUrls: ['./add-fixture.component.css']
 })
 export class AddFixtureComponent implements OnInit {
+  addFixtureForm: FormGroup;
   id: Params;
-
-  constructor(private route: ActivatedRoute,
+  teams: string;
+  venues: string;
+;
+  constructor(private _formBuilder: FormBuilder,
+              private router: Router,
+              private route: ActivatedRoute,
               private tournamentService: TournamentService) { }
 
   ngOnInit() {
-    // this.route.params.subscribe((params: Params) => {
-    //   this.id = params['id'];
-    //   this.tournamentService.getTeamInfo(this.id);
-    // })
+    this.route.params.subscribe((params: Params) => {
+      this.id = params['id'];
+      this.tournamentService.getTeamInfoForAddingFixture(this.id)
+        .subscribe((data: Models.TeamInfoForTournamentFixture) => {
+          this.teams = data.teams;
+          this.venues = data.venues;
+        })
+      })
 
+    this.addFixtureForm = this._formBuilder.group({
+      home_team: [null, Validators.required],
+      away_team: [null, Validators.required],
+      venue: [null, Validators.required],
+      date: [null, Validators.required]
+    })
   }
 
+  createFixture() {
+    if (this.addFixtureForm.valid) {
+      this.tournamentService.createFixture(this.id, this.addFixtureForm.value);
+    } else {
+      this.router.navigate(['/tournaments'])
+    }
+  }
 }
