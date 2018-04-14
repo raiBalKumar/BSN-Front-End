@@ -1,15 +1,47 @@
 <div class="row">
   <div class="col-md-4 mb-3">
     <a id="enterChat" class="btn btn-primary text-white" (click)="enterChat($event)">Enter dressing room</a>
-    
+
   </div>
   <div class="col-md-8">
     <div *ngIf="showMessage">
-      <ul id="messages">
-          <li >{{(messages$ | async)?.data}}</li>
-      </ul>
-      <input id="msgInput" #msg class="form-control d-inline" autocomplete="off" />&nbsp;
-      <button id="send"  class="btn btn-primary d-inline" (click)="send(msg)">Send</button>
+      <div id="messages">
+        <div *ngFor="let message of (messages$ | async)">
+          <div class="row my-3">
+            <div class="col-9 col-sm-8 col-md-7 col-lg-6" [ngClass]="{'mr-auto':message.user !== user.firstname,'ml-auto':message.user === user.firstname}">
+              <div class="card">
+                <div class="card-header">
+                  <div class="text-muted">
+                      <small>
+                        <span *ngIf="message.user === user.firstname">You</span>
+                        <span *ngIf="message.user !== user.firstname">{{message.user}}</span> 
+                      </small> 
+                  </div>
+                </div>
+                <div class="card-body" id="time-holder">
+                    <p class="card-text"><small>{{message.msg}}</small></p>
+                    <small id="time" class="text-muted">{{message.time | date:'shortTime'}}</small>
+                </div>
+              </div>
+            </div>
+          </div>   
+        </div>
+      </div>
+      <!-- <input (keydown.enter)="send(msg)" id="msgInput" #msg class="form-control emojiInput" autocomplete="off"/>&nbsp; -->
+      <div class="message my-3">
+          <emoji-input id="msgInput"
+            style="font-size: 32px"
+            [autofocus]="true" 
+            [inputClass]="'form-control'" 
+            [(model)]="text" 
+            [closeAfterSelection]="false"
+            (click)="openPopup(false)" 
+            (keydown.enter)="send()" 
+            (setPopupAction)="setPopupAction($event)">
+          </emoji-input>
+          <img id="emoji" src="/assets/img/emoji.png" alt="emoji" width="32" height="32" (click)="openPopup()">
+          <button id="send" class="btn btn-primary" (click)="send()">Send</button> 
+      </div>
     </div>
   </div>
 </div>

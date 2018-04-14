@@ -7,7 +7,7 @@
 }
 #leaveClub {
     position: absolute;
-    top: 150px;
+    top: 100px;
     right: 10px;
     box-shadow: 1px 2px 2px #000;
     border-radius: 20px;
@@ -21,8 +21,3 @@
     overflow: hidden;
 }
 
-@media screen and (max-width: 992px) {
-    #leaveClub {
-        top: 90px;
-    }
-  }

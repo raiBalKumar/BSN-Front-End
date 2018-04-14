@@ -25,31 +25,15 @@ export class DashboardComponent implements OnInit {
             }
 
   ngOnInit() {
-<<<<<<< HEAD
     this.user$ = this.dashboardService.user$;   
-||||||| merged common ancestors
-
-    this.user$ = this.dashboardService.user$; 
-=======
-    this.user$ = this.dashboardService.user$; 
->>>>>>> 7243470419ac0514e98bfc2d703e3b1da7345362
   }
 
   open(content) {
     this.ref = this.modalService.open(content);
-<<<<<<< HEAD
     this.ref.result.then((result) => {    
     }, (reason) => {
       
     });
-||||||| merged common ancestors
-    this.ref.result.then((result) => {
-       
-    }, (reason) => {
-      
-    });
-=======
->>>>>>> 7243470419ac0514e98bfc2d703e3b1da7345362
   }
 
   onCreateClub(value:{}){

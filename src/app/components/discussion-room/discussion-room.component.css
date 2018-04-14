@@ -1,26 +1,59 @@
 #messages { 
-    background: #fff;
-    padding: 3px; 
+    background: rgb(231, 235, 241);
+    padding: 10px; 
     width: 100%;
     height: 400px;
     box-shadow: 1px 1px 3px #000;
     border-radius: 5px;
     list-style-type: none; 
+    overflow-x: hidden;
+    overflow-y: scroll;
+ }
+ #emoji {
+     cursor: pointer;
+     position: absolute;
+     top: 2px;
+     right: 68px;
+     font-size: 15px;
+}
+
+ .message {
+     position: relative;
  }
 
+
  #msgInput{ 
-     border: 0; 
-     width: 75%; 
-     box-shadow: inset 1px 1px 5px #000;
+     box-shadow: 1px 1px 2px #000;
+     border-radius: 5px;
 
     }
  #send { 
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
     border: none; 
-    width: 20%;
     box-shadow: 1px 1px 2px #000;
 }
 
 #enterChat {
     box-shadow: 1px 1px 5px #000;
 
+}
+.card-header {
+    /* height: 40px !important; */
+    line-height: 15px !important;
+}
+.card {
+    box-shadow: 1px 1px 2px #000;
+    border: 0;
+    border-radius: 20px;
+}
+#time-holder {
+    position: relative;
+}
+#time {
+    position: absolute;
+    right: 10px;
+    bottom: 2px;
 }

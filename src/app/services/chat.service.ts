@@ -12,6 +12,7 @@ export class ChatService {
     this.messages = <Subject<any>>wsService
       .connect()
       .map((response: any): any => {
+        console.log("from chat service,",response)
         return response;
       })
    }
@@ -21,12 +22,13 @@ export class ChatService {
   sendEvent(msg) {
     this.messages.next(msg);
   }
-  joinRoom(roomNum) {
-    let room = "join.room";
-    this.messages.next({roomNum,room: room})
+  joinRoom(roomNum,name) {
+    let room = "room.join";
+    this.messages.next({roomNum,room: room,name})
   }
   sendMsg(msg,room,name){
-    this.messages.next({msg,room,name});
+    let time = Date.now();
+    this.messages.next({msg,room,name,time});
   }
 
 }

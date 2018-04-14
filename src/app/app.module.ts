@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { OAuthService } from 'angular2-oauth2/oauth-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EmojiPickerModule } from 'ng-emoji-picker';
+
 
 import { AppComponent } from './app.component';
 import { routingComponents } from './app-routing.module';
@@ -77,7 +79,8 @@ import { LandingComponent } from './components/landing/landing.component';
     ReactiveFormsModule,
     FlashMessagesModule,
     BrowserAnimationsModule,
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    EmojiPickerModule
   ],
   providers: [
     FacebookAuthService,

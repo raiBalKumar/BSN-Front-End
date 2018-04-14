@@ -17,21 +17,29 @@ export class WebsocketService {
     this.socket = io(environment.apiServer);
 
     let observable = new Observable(observer => {
-      this.socket.on('message', (data) => {
-        console.log(data);
+      this.socket.on('initial messages', (data) => {
+        console.log("from websock, ", data)
         data = {
-          type : 'message',
-          data : data
+          type: 'initial messages',
+          data: data
         }
         observer.next(data);
-      })
+      });
+      this.socket.on('message', (data) => {
+        console.log("incoming msg,", data);
+        data = {
+          type: 'message',
+          data: data
+        }
+        observer.next(data);
+      });
       this.socket.on('event', (data) => {
         data = {
-          type : 'event',
-          data : data
+          type: 'event',
+          data: data
         }
         observer.next(data);
-      })
+      });
       // return () => {
       //   this.socket.disconnect();
       // }
@@ -39,14 +47,14 @@ export class WebsocketService {
 
     let observer = {
       next: (data: Object) => {
-        console.log(data,"data.....");
-        if(data['room'] !== undefined){
-          if(data['name'] !== undefined){
-            this.socket.emit('message',data);
-          } else{
-            this.socket.emit('room.join',JSON.stringify(data['roomNum']));
+        console.log(data, "data.....");
+        if (data['name'] !== undefined) {
+          if (data['room'] === 'room.join') {
+            this.socket.emit('room.join', data);
+          } else {
+            this.socket.emit('message', data);
           }
-        }else{
+        } else {
           this.socket.emit('event', JSON.stringify(data));
         }
       },
