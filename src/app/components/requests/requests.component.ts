@@ -52,6 +52,19 @@ export class RequestsComponent implements OnInit {
 
   }
 
+  // organizer accept team to join tournament
+  acceptTournament(tournamentId: number, teamId: number, requestId: number) {
+    this.dashboardService.acceptJoinTournament(tournamentId, teamId, requestId)
+      .subscribe(res => {
+        this.requests$ = this.dashboardService.checkOrganizerRequest();
+      })
+  }
 
-
+  // organizer reject team to join tournament
+  rejectTournament(requestId: number) {
+    this.dashboardService.rejectJoinTournament(requestId)
+      .subscribe(res => {
+        this.requests$ = this.dashboardService.checkOrganizerRequest();
+      })
+  }
 }
