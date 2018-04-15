@@ -17,6 +17,14 @@ export class WebsocketService {
     this.socket = io(environment.apiServer);
 
     let observable = new Observable(observer => {
+      this.socket.on('online', (online) => {
+        console.log('online',online)
+       const data = {
+          type: 'online',
+          data: online
+        };
+        observer.next(data);
+      });
       this.socket.on('initial messages', (data) => {
         console.log("from websock, ", data)
         data = {
@@ -40,22 +48,26 @@ export class WebsocketService {
         }
         observer.next(data);
       });
-      // return () => {
-      //   this.socket.disconnect();
-      // }
+      return () => {
+        this.socket.disconnect();
+      }
     });
 
     let observer = {
       next: (data: Object) => {
-        console.log(data, "data.....");
-        if (data['name'] !== undefined) {
-          if (data['room'] === 'room.join') {
-            this.socket.emit('room.join', data);
-          } else {
-            this.socket.emit('message', data);
-          }
+        if (data['msg'] === 'leave') {
+          this.socket.emit('leave', data);
         } else {
-          this.socket.emit('event', JSON.stringify(data));
+
+          if (data['name'] !== undefined) {
+            if (data['room'] === 'room.join') {
+              this.socket.emit('room.join', data);
+            } else {
+              this.socket.emit('message', data);
+            }
+          } else {
+            this.socket.emit('event', JSON.stringify(data));
+          }
         }
       },
     };

@@ -15,15 +15,18 @@ export class MessagesService {
 
   messages: Observable<Models.Message[]>;
   updates: Subject<any> = new Subject<any>();
+  onlineSubject = new Subject<any>();
+  usersOnline:Observable<any> = this.onlineSubject.asObservable();
 
   // action streams
   create: Subject<Models.Message> = new Subject<Models.Message>();
 
   constructor(private chat: ChatService) {
     this.chat.messages.subscribe(res => {
-      if (res['type'] !== 'event') {
-        console.log(res.data,"its not event");
+      if (res['type'] !== 'event' && res['type'] !== 'online') {
         this.addMessage(res.data);
+      } else if(res['type'] === 'online'){
+        this.onlineUser(res.data);
       }
     });
 
@@ -52,6 +55,9 @@ export class MessagesService {
 
   addMessage(message: Models.Message): void {
     this.newMessage.next(message);
+  }
+  onlineUser(users){
+    this.onlineSubject.next(users);
   }
 }
 

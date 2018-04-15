@@ -37,17 +37,31 @@
 }
 
 #enterChat {
-    box-shadow: 1px 1px 5px #000;
-
+    box-shadow: 1px 2px 2px #000;
+    border-radius: 20px;
 }
 .card-header {
     /* height: 40px !important; */
     line-height: 15px !important;
 }
+.card-body {
+    line-height: 15px !important;
+    padding: 10px !important;
+}
 .card {
     box-shadow: 1px 1px 2px #000;
     border: 0;
-    border-radius: 20px;
+    max-width: 250px;
+}
+.mr-auto .card {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.ml-auto .card {
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
 }
 #time-holder {
     position: relative;
@@ -56,4 +70,7 @@
     position: absolute;
     right: 10px;
     bottom: 2px;
+}
+.onlinePlayers {
+    box-shadow: 1px 2px 2px #000;
 }

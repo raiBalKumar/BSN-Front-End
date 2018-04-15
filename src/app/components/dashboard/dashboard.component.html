@@ -6,7 +6,7 @@
 
 
   <div *ngIf=" user$ | async as user">
-    <div *ngIf="user.team_id">
+    <div *ngIf="user.team_id && user.status !== 'organizer'">
       <app-discussion-room [user]="user"></app-discussion-room>
     </div>
     <br>

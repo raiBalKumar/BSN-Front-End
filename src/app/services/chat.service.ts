@@ -30,5 +30,8 @@ export class ChatService {
     let time = Date.now();
     this.messages.next({msg,room,name,time});
   }
-
+ leaveRoom(roomNum,name) {
+   let msg = "leave";
+   this.messages.next({msg,roomNum,name})
+ }
 }
