@@ -2,7 +2,7 @@
   <div class="col-md-4 mb-3">
     <a id="enterChat" class="btn btn-primary text-white" (click)="enterChat($event)"><i class="fab fa-facebook-messenger"></i> Enter dressing room</a>
     <div *ngIf="showMessage" class="my-3">
-    <p class="text-muted mb-0">Online users:</p>
+    <p class="text-muted mb-0">Online players:</p>
         <button *ngFor="let user of (onlineUsers$ | async)" class="m-1 btn btn-primary btn-sm onlinePlayers">
           <i class="fa fa-user"></i>{{user}}
         </button>
@@ -37,19 +37,20 @@
       </div>
       <!-- <input (keydown.enter)="send(msg)" id="msgInput" #msg class="form-control emojiInput" autocomplete="off"/>&nbsp; -->
       <div class="message my-3">
+          <img id="emoji" src="/assets/img/emoji.png" alt="emoji" width="25" height="25" (click)="openPopup()">
+
           <emoji-input id="msgInput"
-            style="margin-right: 200px"
-            style="font-size: 32px"
+            [inputClass]="'form-control'"
             [autofocus]="true" 
-            [inputClass]="'form-control'" 
             [(model)]="text" 
             [closeAfterSelection]="false"
             (click)="openPopup(false)" 
             (keydown.enter)="send()" 
             (setPopupAction)="setPopupAction($event)">
           </emoji-input>
-          <img id="emoji" src="/assets/img/emoji.png" alt="emoji" width="32" height="32" (click)="openPopup()">
-          <button id="send" class="btn btn-primary" (click)="send()">Send</button> 
+          <button id="send"  (click)="send()"><i class="fa fa-reply"></i>
+
+          </button> 
       </div>
     </div>
   </div>
