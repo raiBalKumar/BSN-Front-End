@@ -6,6 +6,7 @@ import { UserService } from '../../services/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
 import { Subscription } from 'rxjs/Rx';
+import { NewsService } from '../../services/news.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +20,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
     "New Territories"
   ];
 
+  private positions = [
+    "Goal Keeper",
+    "Center Back",
+    "Left Back",
+    "Right Back",
+    "Center Defensive Midfielder",
+    "Central Midfielder",
+    "Left Wing",
+    "Right Wing",
+    "Striker"
+  ]
+
+  private news$: Observable<{status: string, totalResults: number, articles: {}[]}>;
   private user$: Observable<Models.Profile>;
   private image: string;
   private editing: boolean = false; // To control where editForm should be shown
@@ -29,22 +43,26 @@ export class ProfileComponent implements OnInit, OnDestroy {
     firstname: new FormControl(null, [Validators.required, Validators.minLength(2)]),
     lastname: new FormControl(null),
     location: new FormControl(null),
+    position: new FormControl(null),
   })
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private newsService: NewsService) { }
 
   ngOnInit() {
     this.userService.reloadProfile();
 
     this.image = 'assets/img/zizou.png';
     this.user$ = this.userService.getProfile();
+    this.newsService.reloadNews();
+    this.news$ = this.newsService.getNews();
 
     // set default value to the form
     this.formSubscription = this.user$.subscribe((res) => {
       this.editForm.patchValue({
         firstname: res.firstname,
         lastname: res.lastname,
-        location: res.location
+        location: res.location,
+        position: res.position,
       })
     })
   }
@@ -79,7 +97,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
       swal({
         type: 'success',
-        confirmButtonText: 'Thank you',
+        confirmButtonText: 'DONE!',
         width: 300,
       })
     } else if (result.dismiss === swal.DismissReason.cancel) {

@@ -8,8 +8,8 @@ h1{
 }
 
 /* Profile Picture */
-.width-75{
-    width: 80%;
+.width-70{
+    width: 70%;
     margin: auto;
 }
 
@@ -35,6 +35,12 @@ h1{
     box-shadow: 1px 4px 6px #888888;
     border-radius: 16px;
 }
+
+.upload{
+    margin-top: 10px;
+}
+
+/* general */
 
 .btn-edit{
     color: #fff;
@@ -64,16 +70,83 @@ h3{
 hr{
     margin-top: 12px;
     margin-bottom: 12px;
+    background-color: #ccc;
 }
 
-.form-group.name{
+
+/* editing form */
+.input-group select{
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#ced4da' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+}
+
+.input-group .form-control,
+.input-group-text{
+    font-size: 12px;
+}
+
+input:focus{
+  outline: none;
+  box-shadow: none;
+  border-color: rgb(206, 212, 218);
+}
+
+.form-control:focus {
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: none;
+}
+
+/* news */
+
+.sidebar-title{
+    /* text-decoration: underline; */
+    color: #000;
+    margin-bottom: 4px;
+    font-size: 24px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.sidebar-content{
+    width: 100%;
+    color: #000;
+}
+
+.sidebar-content .title{
+    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.power{
+    color: rgba(30, 143, 255, 0.719);
+    font-size: 10px;
+    box-shadow: 0px 5px 5px -5px #000;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+}
+
+.sidebar-content .description{
+    padding-left: 15px;
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.582);
+}
+
+.sidebar-content .link{
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 4px;
     margin-bottom: 0;
 }
 
-.form-group.name .form-control{
-    font-size: 20px;
+.article{
+    border-bottom: 1px solid #888;
+    padding: 10px 0;
+    text-align: justify;
 }
 
-input{
-    padding: 0;
-}
+/* 15295e3e3e6d403ba347521541dd31c8 */

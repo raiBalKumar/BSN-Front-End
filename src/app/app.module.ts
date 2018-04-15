@@ -39,6 +39,7 @@ import { AddFixtureComponent } from './components/tournaments/add-fixture/add-fi
 import { ListFixtureComponent } from './components/tournaments/list-fixture/list-fixture.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { EditFixtureComponent } from './components/tournaments/edit-fixture/edit-fixture.component';
+import { NewsService } from './services/news.service';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { EditFixtureComponent } from './components/tournaments/edit-fixture/edit
     TournamentService,
     UserService,
     DashboardService,
-    TeamService
+    TeamService,
+    NewsService
   ],
   bootstrap: [AppComponent]
 })

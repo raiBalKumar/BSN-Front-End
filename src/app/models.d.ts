@@ -113,4 +113,10 @@ declare module Models {
         teams: string[];
         fixtures: string[];
     }
+    
+    interface News{
+        status: string; 
+        totalResults: number;
+        articles: {}[];
+    }
 }
