@@ -47,7 +47,8 @@
     </div>
 
     <div class="form-group">
-      <div *ngIf="userForm.get(['password']).value != userForm.get(['confirm_password']).value && userForm.get(['confirm_password']).value != null" class="prompt">
+      <div *ngIf="userForm.get(['password']).value != userForm.get(['confirm_password']).value && userForm.get(['confirm_password']).value != null"
+        class="prompt">
         Password doesn't match
       </div>
       <i class="fas fa-unlock-alt logo-width"></i>
@@ -55,6 +56,17 @@
         [ngClass]="{'is-invalid':userForm.controls['confirm_password'].dirty && userForm.controls['confirm_password'].errors || userForm.get(['password']).value != userForm.get(['confirm_password']).value && userForm.get(['confirm_password']).value != null}"
       />
     </div>
+
+    <div class="form-group">
+      <i class="fas fa-users logo-width"></i>
+      <select formControlName="status" class="account-info" required>
+        <option value="" disabled selected>Role</option>
+        <option value="player">Player</option>
+        <option value="manager">Manager</option>
+        <option value="organizer">Organizer</option>
+      </select>
+    </div>
+
   </div>
 
   <div class="modal-footer">

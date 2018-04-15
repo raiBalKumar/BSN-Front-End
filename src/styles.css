@@ -11,3 +11,23 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
+select:focus{
+    outline: none;
+}
+
+.sidebar{
+    position: fixed;
+    height: 100%;
+    width: calc(25% - 15px);
+    top: 0;
+    bottom: 0;
+    padding-top: 106px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: transparent;
+    z-index: 10;
+    overflow: scroll;
+    box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.534);
+    background: rgba(0, 0, 0, 0.075);
+}

@@ -25,7 +25,6 @@ export class NavBarComponent implements OnInit {
   }
 
   logout(){
-    console.log(123);
     this.authService.logOut();
     this.teamService.clearTeam(); // clear all team subject data from previous user
     this.userService.clearProfile(); // clear all profile subject data from previous user

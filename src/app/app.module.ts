@@ -38,6 +38,7 @@ import { ScoreFormComponent } from './components/tournaments/score-form/score-fo
 import { AddFixtureComponent } from './components/tournaments/add-fixture/add-fixture.component';
 import { ListFixtureComponent } from './components/tournaments/list-fixture/list-fixture.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { NewsService } from './services/news.service';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { LandingComponent } from './components/landing/landing.component';
     TournamentService,
     UserService,
     DashboardService,
-    TeamService
+    TeamService,
+    NewsService
   ],
   bootstrap: [AppComponent]
 })

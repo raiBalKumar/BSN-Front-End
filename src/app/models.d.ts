@@ -107,4 +107,10 @@ declare module Models {
         t_team_id: number;
         request_team_id: number;
     }
+
+    interface News{
+        status: string; 
+        totalResults: number;
+        articles: {}[];
+    }
 }

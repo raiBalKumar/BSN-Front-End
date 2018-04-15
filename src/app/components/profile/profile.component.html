@@ -1,11 +1,13 @@
-<div class="container">
+<div class="container-fluid">
   <div *ngIf="user$ | async as user">
     <div class="row">
       <div class="col-md-3">
-        <div class="width-75">
+        <div class="width-70 d-flex flex-column">
           <div class="pic-wrapper">
             <img src="{{user.image}}" alt="">
           </div>
+
+          <button class="btn btn-edit mx-auto upload">Upload Profile Picture</button>
         </div>
       </div>
 
@@ -37,34 +39,106 @@
 
         <ng-template #editingBlock>
           <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-            <h3 class="d-flex">
-              <label>First Name: </label>
-              <div class="form-group name">
-                <input type='text' placeholder="First Name" name="firstname" class="form-control" formControlName="firstname" />
+            <h3 class="row d-flex">
+              <div class="col-5 d-flex">
+                <div class="input-group my-auto">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">FIRST NAME:</span>
+                  </div>
+                  <input type='text' name="firstname" class="form-control" formControlName="firstname" />
+                </div>
               </div>
-              <button class="btn btn-edit ml-auto my-auto" (click)='back()'>Back</button>
+              <div class="col-5 d-flex">
+                <div class="input-group my-auto">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">LAST NAME:</span>
+                  </div>
+                  <input type='text' name="lastname" class="form-control" formControlName="lastname" />
+                </div>
+              </div>
+
+              <div class="col-2 d-flex">
+                <button class="btn btn-edit ml-auto my-auto" (click)='back()'>Back</button>
+              </div>
+
             </h3>
             <hr>
 
+            <div class="row info">
+              <div class="col-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">POSITION:</span>
+                  </div>
+                  <select formControlName="position" class="form-control">
+                    <option *ngFor="let position of positions" [ngValue]="position">
+                      {{ position }}
+                    </option>
+                  </select>
+                </div>
 
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">HEIGHT:</span>
+                  </div>
+                  <input type="text" value="1.7m" class="form-control">
+                </div>
 
-            <div class="form-group">
-              <label>Last Name: </label>
-              <input type='text' name="lastname" class="form-control width-50" formControlName="lastname" />
-            </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">WEIGHT:</span>
+                  </div>
+                  <input type="text" value="60kg" class="form-control">
+                </div>
+              </div>
 
-            <div class="form-group">
-              <label>Location: </label>
-              <select formControlName="location" class="form-control width-50">
-                <option *ngFor="let location of locations" [ngValue]="location">
-                  {{ location }}
-                </option>
-              </select>
+              <div class="col-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">AGE:</span>
+                  </div>
+                  <input type="text" value="24" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">POB:</span>
+                  </div>
+                  <input type="text" value="Hong Kong" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">LOCATION:</span>
+                  </div>
+                  <select formControlName="location" class="form-control">
+                    <option *ngFor="let location of locations" [ngValue]="location">
+                      {{ location }}
+                    </option>
+                  </select>
+                </div>
+              </div>
             </div>
 
             <input type='submit' value="Submit" class="btn btn-warning btn-block text-white" [disabled]="!editForm.valid" />
           </form>
         </ng-template>
+      </div>
+
+      <div class="col-lg-3 col-md-4">
+        <div class="sidebar">
+          <h4 class="sidebar-title">Sport News</h4>
+          <p class="text-right power">@Powered by News API</p>
+          <div class="sidebar-content">
+            <div *ngFor="let article of (news$ | async)?.articles" class="d-flex flex-column article">
+              <p class="title">{{article.title}}</p>
+              <p class="description">{{article.description}}</p>
+              <img src="{{article.urlToImage}}" class="img-fluid">
+              <p class="link ml-auto">
+                <a href="{{article.url}}" target="_blank">Source Link</a>
+              </p>
+              
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
