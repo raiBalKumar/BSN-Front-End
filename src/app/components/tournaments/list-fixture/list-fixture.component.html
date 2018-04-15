@@ -5,7 +5,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-        <a class="btn btn-primary" [routerLink]="['/tournament', id, 'addfixture']">Add Fixture</a>        
+        <a class="btn btn-default" [routerLink]="['/tournaments']">Back</a>        
+        <a class="btn btn-success" [routerLink]="['/tournament', tournamentId, 'addfixture']">Add Fixture</a>        
     </div>
   </div>
 
@@ -16,6 +17,7 @@
         <th scope="col"></th>
         <th scope="col">Away team</th>
         <th scope="col">Date</th>
+        <th scope="col">Time</th>
         <th scope="col">Venue</th>
         <th scope="col"></th>
       </tr>
@@ -25,13 +27,14 @@
         <td>{{fixture.home_teamname}}</td>
         <td>VS</td>
         <td>{{fixture.away_teamname}}</td>
-        <td>{{fixture.date | date: 'd'}} / {{fixture.date | date: 'MM'}} / {{fixture.date | date: 'y'}}</td>
+        <td>{{fixture.date | date: 'dd'}} / {{fixture.date | date: 'MM'}} / {{fixture.date | date: 'y'}}</td>
+        <td>{{fixture.date | date: 'shortTime'}}</td>
         <td>
           <p>Park Name: {{fixture.park_name}}</p> <br>
           <p>Location: {{fixture.street}}, {{fixture.district}}</p>
         </td>
         <td>
-          <button class="btn btn-info">Edit</button>
+          <button class="btn btn-info" [routerLink]="['/tournament', tournamentId, 'fixture', fixture.fixture_id, 'edit']">Edit</button>
         </td>
       </tr>
     </tbody>

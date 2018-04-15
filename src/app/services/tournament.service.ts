@@ -119,6 +119,13 @@ export class TournamentService {
     return this.http.get<Models.TeamInfoForTournamentFixture>(`${environment.apiServer}/api/organizers/tournament/${id}/getteaminfo`, (options));
   }
 
+  // get fixture for edit
+  editFixtureInfo(tournamentId: Params, fixtureId: Params) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+    let options = {headers:headers};
+    return this.http.get<Models.TournamentFixtureForEdit>(`${environment.apiServer}/api/organizers/tournament/${tournamentId}/fixture/${fixtureId}`, (options));
+  }
+
   // add tournament fixture
   createFixture(id: Params, fixtureValue: Models.CreateTournamentFixture) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
@@ -129,6 +136,13 @@ export class TournamentService {
         let errorMessage = "Your fixture have't been created! Please try again!";
         this.redirectPage(res, successfulMessage, errorMessage);
       })
+  }
+
+  // update tournament fixture
+  updateFixture(fixtureId: Params, tournamentId: Params, fixtureValue: Models.CreateTournamentFixture) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+    let options = {headers:headers};
+    return this.http.put<Models.CreateTournamentFixture>(`${environment.apiServer}/api/organizers/tournament/${tournamentId}/fixture/${fixtureId}`, { fixtureValue }, (options));
   }
 
   // redirect to and update all tournaments page

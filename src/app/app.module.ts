@@ -38,6 +38,7 @@ import { ScoreFormComponent } from './components/tournaments/score-form/score-fo
 import { AddFixtureComponent } from './components/tournaments/add-fixture/add-fixture.component';
 import { ListFixtureComponent } from './components/tournaments/list-fixture/list-fixture.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { EditFixtureComponent } from './components/tournaments/edit-fixture/edit-fixture.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { LandingComponent } from './components/landing/landing.component';
     ScoreFormComponent,
     ListFixtureComponent,
     AddFixtureComponent,
-    LandingComponent
+    LandingComponent,
+    EditFixtureComponent
   ],
   imports: [
     BrowserModule,
