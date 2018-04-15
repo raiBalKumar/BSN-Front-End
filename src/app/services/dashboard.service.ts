@@ -108,5 +108,14 @@ export class DashboardService {
                 this.getUserInfo();
               })
   }
-  
+
+  acceptJoinTournament(tournamentId: number, teamId: number, requestId: number) {
+    let httpOptions = this.createHeaders();
+    return this.http.post(`${environment.apiServer}/api/organizers/acceptJoinTournament/${tournamentId}`, {teamId, requestId},httpOptions);
+  }
+
+  rejectJoinTournament(requestId: number) {
+    let httpOptions = this.createHeaders();
+    return this.http.delete(`${environment.apiServer}/api/organizers/rejectJoinTournament/${requestId}`,httpOptions);
+  }  
 }

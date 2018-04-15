@@ -48,31 +48,18 @@
     border-radius: 16px;
 }
 
-.sidebar{
-    position: fixed;
-    height: 100%;
-    top: 0;
-    bottom: 0;
-    padding-top: 106px;
-    padding-left: 15px;
-    padding-right: 15px;
-    background: transparent;
-    z-index: 10;
-    overflow: scroll;
-    box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.534);
-    background: rgba(0, 0, 0, 0.075);
-}
+/* sidebar */
 
 .sidebar-title{
-    text-decoration: underline;
     color: #000;
     margin-bottom: 15px;
-    font-size: 20px;
+    font-size: 24px;
     text-align: center;
     text-transform: uppercase;
 }
 
 .sidebar-content{
+    width: 100%;
     font-size: 16px;
     color: #000;
 }

@@ -112,4 +112,16 @@ declare module Models {
         t_team_id: number;
         request_team_id: number;
     }
+
+    interface TournamentFixtureForEdit {
+        venues: string[];
+        teams: string[];
+        fixtures: string[];
+    }
+    
+    interface News{
+        status: string; 
+        totalResults: number;
+        articles: {}[];
+    }
 }
