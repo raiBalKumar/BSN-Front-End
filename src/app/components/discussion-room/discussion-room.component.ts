@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { ChatService } from './../../services/chat.service';
 import { Component, OnInit, Input, ElementRef, OnDestroy } from '@angular/core';
@@ -13,12 +14,13 @@ import { MessagesService } from './message.service';
 })
 export class DiscussionRoomComponent implements OnInit, OnDestroy {
   @Input() user: any;
-  showMessage: boolean = false;
+  showMessage: boolean = true;
   showEmoji: boolean = false;
   text: string = '';
   public openPopup: Function;
 
-  messages$: Observable<Models.Message[]>;
+  messages$: Models.Message[];
+  messagesS: Subscription;
   onlineUsers$: Observable<any>;
   
 
@@ -28,15 +30,15 @@ export class DiscussionRoomComponent implements OnInit, OnDestroy {
               ) { }
 
   ngOnInit() {
-       this.messages$ = this.messages.messages;
+       this.subscribeAgain();
        this.onlineUsers$ = this.messages.usersOnline;
+       this.chat.joinRoom(this.user.team_id, this.user.firstname);
 
-       this.messages$.subscribe(res => {
-         console.log("room....,",res);
-        setTimeout(() => {
-          this.scrollToBottom();
-        });
-       })    
+       
+      //  this.messages$.subscribe(res => {
+      //    console.log("room....,",res);
+       
+      //  })    
   }
 
 
@@ -61,11 +63,13 @@ export class DiscussionRoomComponent implements OnInit, OnDestroy {
       event.target.classList.add("btn-danger");
       event.target.classList.remove("btn-primary");
       this.chat.joinRoom(this.user.team_id, this.user.firstname);
+      this.subscribeAgain();
     } else {
       event.target.innerHTML = '<i class="fab fa-facebook-messenger"></i> Enter dressing room';
       event.target.classList.add("btn-primary");
       event.target.classList.remove("btn-danger");
       this.chat.leaveRoom(this.user.team_id, this.user.firstname);
+      this.messagesS.unsubscribe();
     }
   }
 
@@ -76,6 +80,15 @@ export class DiscussionRoomComponent implements OnInit, OnDestroy {
     }
     this.chat.sendMsg(this.text,this.user.team_id, this.user.firstname);
     this.text = "";
+  }
+  subscribeAgain(){
+    this.messagesS = this.messages.messages.subscribe(res=>{
+      this.messages$ = res;
+      setTimeout(() => {
+        this.scrollToBottom();
+      });
+ })
+
   }
 
   ngOnDestroy(){

@@ -70,7 +70,10 @@ export class PlayerMarketComponent implements OnInit {
          console.log(test);
        });
     }
+  }
 
+  playerInfo(id:number){
+    console.log(id)
   }
 
   refresh(){
@@ -78,8 +81,5 @@ export class PlayerMarketComponent implements OnInit {
       this.dashboardService.runNext(players);
     })
   }
-
-  
-
 
 }

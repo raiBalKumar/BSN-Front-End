@@ -26,3 +26,6 @@
     border: none;
     line-height: 1em;
 }
+.img-click {
+    cursor: pointer;
+}
