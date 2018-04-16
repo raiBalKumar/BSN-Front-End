@@ -1,3 +1,4 @@
+import { WebsocketService } from './services/websocket.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -5,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { OAuthService } from 'angular2-oauth2/oauth-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EmojiPickerModule } from 'ng-emoji-picker';
+
 
 import { AppComponent } from './app.component';
 import { routingComponents } from './app-routing.module';
@@ -32,6 +35,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { SquadComponent } from './components/squad/squad.component';
 import { CreateTeamFormComponent } from './components/create-team-form/create-team-form.component';
 import { EditTournamentComponent } from './components/tournaments/edit-tournament/edit-tournament.component';
+import { ChatService } from './services/chat.service';
+import { DiscussionRoomComponent } from './components/discussion-room/discussion-room.component';
 import { UpdateScoreComponent } from './components/tournaments/update-score/update-score.component';
 import { RankingComponent } from './components/tournaments/ranking/ranking.component';
 import { ScoreFormComponent } from './components/tournaments/score-form/score-form.component';
@@ -60,6 +65,7 @@ import { UserInformationComponent } from './components/user-information/user-inf
     SquadComponent,
     CreateTeamFormComponent,
     EditTournamentComponent,
+    DiscussionRoomComponent,
     UpdateScoreComponent,
     RankingComponent,
     ScoreFormComponent,
@@ -78,7 +84,8 @@ import { UserInformationComponent } from './components/user-information/user-inf
     ReactiveFormsModule,
     FlashMessagesModule,
     BrowserAnimationsModule,
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    EmojiPickerModule
   ],
   providers: [
     FacebookAuthService,
@@ -90,6 +97,8 @@ import { UserInformationComponent } from './components/user-information/user-inf
     UserService,
     DashboardService,
     TeamService,
+    WebsocketService,
+    ChatService,
     NewsService
   ],
   bootstrap: [AppComponent]

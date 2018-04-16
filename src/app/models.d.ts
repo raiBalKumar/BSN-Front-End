@@ -79,6 +79,11 @@ declare module Models {
         draw: number;
         lose: number;
     }
+    interface Message {
+        msg: string;
+        user: string;
+        time: Date;
+    }
 
     interface TeamInfoForTournamentFixture {
         venues: string;

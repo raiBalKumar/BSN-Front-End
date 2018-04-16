@@ -1,9 +1,14 @@
 <div class="container dash">
   <h2>Dashboard</h2>
+  
   <hr>
   <app-requests></app-requests>
 
+
   <div *ngIf=" user$ | async as user">
+    <div *ngIf="user.team_id && user.status !== 'organizer'">
+      <app-discussion-room [user]="user"></app-discussion-room>
+    </div>
     <br>
     <br>
     <!-- manager -->
@@ -32,8 +37,25 @@
     </div>
 
     <!-- player -->
-    <div id="leaveClub" *ngIf="user.status === 'player' && user.team_id !== null">
-      <button class="btn btn-danger" (click)="leaveClub()">Leave - {{user.teamname}}</button>
+    <div *ngIf="user.status === 'player' && user.team_id !== null">
+      <button id="leaveClub" class="btn btn-danger btn-sm" (click)="leaveClub()"><small>Leave - {{user.teamname}}</small></button>
     </div>
   </div>
+
+
+  <!-- <div class="row my-5">
+    <div class="col-md-6 text-center">
+      <p>Goals of the week</p>
+      <iframe width="300" class="overflow " height="300" src="https://www.youtube.com/embed/nKOkfM2Rqc4" frameborder="0" allow="autoplay; encrypted-media"
+        allowfullscreen></iframe>
+    </div>
+    
+   
+    <div class="col-md-6 text-center">
+      <p>Skills of the week</p>
+      <iframe width="300" class="oveflow" height="300" src="https://www.youtube.com/embed/nKOkfM2Rqc4" frameborder="0" allow="autoplay; encrypted-media"
+        allowfullscreen></iframe>
+    </div>
+  </div> -->
+
 </div>

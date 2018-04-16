@@ -22,7 +22,7 @@ export class AuthService {
                   this.token = localStorage.getItem('myToken');
                 }
                 if(JSON.parse(localStorage.getItem('status'))){
-                  this.status =  this.status = JSON.parse(localStorage.getItem('status'));
+                  this.status = JSON.parse(localStorage.getItem('status'));
                 }
               }
 
