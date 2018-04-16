@@ -16,6 +16,7 @@ import { ListFixtureComponent } from './components/tournaments/list-fixture/list
 import { AddFixtureComponent } from './components/tournaments/add-fixture/add-fixture.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { EditFixtureComponent } from './components/tournaments/edit-fixture/edit-fixture.component';
+import { UserInformationComponent } from './components/user-information/user-information.component';
 
 
 const routes: Routes = [
@@ -33,8 +34,9 @@ const routes: Routes = [
     {path: 'tournament/ranking/:id', component: RankingComponent, canActivate: [AuthGuard]},
     {path: 'tournament/:id/fixture', component: ListFixtureComponent, canActivate: [AuthGuard]},
     {path: 'tournament/:id/addfixture', component: AddFixtureComponent, canActivate: [AuthGuard]},
-    {path: 'tournament/:tournamentId/fixture/:fixtureId/edit', component: EditFixtureComponent, canActivate: [AuthGuard]}
+    {path: 'tournament/:tournamentId/fixture/:fixtureId/edit', component: EditFixtureComponent, canActivate: [AuthGuard]},
     // end
+    {path: 'userinformation', component: UserInformationComponent, canActivate: [AuthGuard]}
 ]
 
 @NgModule({

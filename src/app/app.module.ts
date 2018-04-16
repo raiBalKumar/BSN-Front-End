@@ -40,6 +40,7 @@ import { ListFixtureComponent } from './components/tournaments/list-fixture/list
 import { LandingComponent } from './components/landing/landing.component';
 import { EditFixtureComponent } from './components/tournaments/edit-fixture/edit-fixture.component';
 import { NewsService } from './services/news.service';
+import { UserInformationComponent } from './components/user-information/user-information.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { NewsService } from './services/news.service';
     ListFixtureComponent,
     AddFixtureComponent,
     LandingComponent,
-    EditFixtureComponent
+    EditFixtureComponent,
+    UserInformationComponent
   ],
   imports: [
     BrowserModule,
