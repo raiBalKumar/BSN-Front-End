@@ -45,10 +45,9 @@ import { ListFixtureComponent } from './components/tournaments/list-fixture/list
 import { LandingComponent } from './components/landing/landing.component';
 import { EditFixtureComponent } from './components/tournaments/edit-fixture/edit-fixture.component';
 import { NewsService } from './services/news.service';
-import { MatchComponent } from './components/tournaments/match/match.component';
-import { FixturesAndRankingComponent } from './components/tournaments/fixtures-and-ranking/fixtures-and-ranking.component';
-import { FixturesComponent } from './components/tournaments/fixtures/fixtures.component';
 import { UserInformationComponent } from './components/user-information/user-information.component';
+import { FixturesAndRankingComponent } from './components/tournaments/fixtures-and-ranking/fixtures-and-ranking.component';
+
 
 
 @NgModule({
@@ -76,10 +75,8 @@ import { UserInformationComponent } from './components/user-information/user-inf
     AddFixtureComponent,
     LandingComponent,
     EditFixtureComponent,
-    MatchComponent,
-    FixturesAndRankingComponent,
-    FixturesComponent,
-    UserInformationComponent
+    UserInformationComponent,
+    FixturesAndRankingComponent
   ],
   imports: [
     BrowserModule,
