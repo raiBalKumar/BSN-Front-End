@@ -36,6 +36,7 @@ export class PlayerMarketComponent implements OnInit {
   }
   updatePlayersList() {
     this.players$ = this.dashboardService.players$;
+    this.players$.subscribe(player => console.log('player image',player));
     this.dashboardService.getPlayers().subscribe(players => {
       this.dashboardService.runNext(players);
     })

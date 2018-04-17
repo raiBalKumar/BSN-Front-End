@@ -14,6 +14,8 @@ import { NewsService } from '../../services/news.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit, OnDestroy {
+  file:File = null;
+  localImg: File = null;
   private locations = [
     "Hong Kong Islands",
     "Kowloon",
@@ -118,5 +120,26 @@ export class ProfileComponent implements OnInit, OnDestroy {
       confirmButtonText: 'Yes',
       cancelButtonText: 'Cancel'
     })
+  }
+
+  // upload image
+  onFileSelected(event){
+    if (event.target.files && event.target.files[0]) {
+      this.file = <File>event.target.files[0];
+
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.localImg = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+  }
+
+  }
+  onUploadFile(){
+    if(this.file){
+      this.userService.uploadPic(this.file);
+    }else{
+      return;
+    }
   }
 }

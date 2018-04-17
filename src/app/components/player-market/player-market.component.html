@@ -8,8 +8,8 @@
 
     <div class="box" *ngFor="let player of (players$ | async)?.invitedPlayers">
       <div class="card player-card p-2">
-        <img class="card-img-top img-fluid img-click" (click)="playerInfo(player.user_id)" src="{{player.img}}" width='220px' height='220px' alt="Player picture">
-        <div class="card-block">
+        <img class="card-img-top img-fluid img-click image"  src="{{player.image}}"  alt="Player picture">
+        <div class="card-block pt-2">
           <p><strong>{{player.firstname}} {{player.lastname}}</strong></p>
           <hr>
           <p><small>Position: {{player.position}}</small></p>
@@ -21,8 +21,8 @@
 
     <div class="box" *ngFor="let player of (players$ | async)?.players">
       <div class="card player-card p-2">
-        <img class="card-img-top img-fluid img-click" (click)="playerInfo(player.user_id)" src="{{player.img}}" width='220px' height='220px' alt="Player picture">
-        <div class="card-block">
+        <img class="card-img-top img-fluid img-click image"  src="{{player.image}}"  alt="Player picture">
+        <div class="card-block pt-2">
           <p><strong>{{player.firstname}} {{player.lastname}}</strong></p>
           <hr>
           <p><small>Position: {{player.position}}</small></p>
