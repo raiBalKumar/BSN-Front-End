@@ -80,7 +80,6 @@
         <div class="form-group">
           <label>Entry fee</label>
           <div class="input-group">
-            <span class="input-group-addon mt-1 mr-1">$</span>
             <input type="number" min='0' max='50000' class="form-control" name="entry_fee" formControlName="entry_fee" [ngClass]="{'is-invalid': createTournamentForm.controls['entry_fee'].dirty && createTournamentForm.controls['entry_fee'].errors}">
             <div *ngIf="createTournamentForm.controls['entry_fee'].dirty && createTournamentForm.controls['entry_fee'].hasError('required')" class="invalid-feedback">
                 The entry fee field is required

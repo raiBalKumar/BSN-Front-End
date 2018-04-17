@@ -1,31 +1,35 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>TEAM</th>
-      <th>GP</th>
-      <th>W</th>
-      <th>D</th>
-      <th>L</th>
-      <th>F</th>
-      <th>A</th>
-      <th>GD</th>
-      <th>P</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let team of ranking$ | async">
-      <td>{{team.teamname}}</td>
-      <td>{{team.games}}</td>
-      <td>{{team.win}}</td>
-      <td>{{team.draw}}</td>
-      <td>{{team.lose}}</td>
-      <td>{{team.goals_scored}}</td>
-      <td>{{team.goals_conceded}}</td>
-      <td>{{team.goal_difference}}</td>
-      <td>{{team.points}}</td>
-    </tr>
-  </tbody>
-  <tbody>
+<div class="scroll-box">
+  <table class="table frame">
+    <thead>
+      <tr>
+        <td colspan="9" class="stathead">Ranking</td>
+      </tr>
 
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <tr class="font-italic">
+        <th>TEAM</th>
+        <th>GP</th>
+        <th>W</th>
+        <th>D</th>
+        <th>L</th>
+        <th>F</th>
+        <th>A</th>
+        <th>GD</th>
+        <th>P</th>
+      </tr>
+
+      <tr *ngFor="let team of ranking$ | async; let i = index" class="{{i%2 == 0 ? 'even' : 'odd'}}">
+        <td>{{team.teamname}}</td>
+        <td>{{team.games}}</td>
+        <td>{{team.win}}</td>
+        <td>{{team.draw}}</td>
+        <td>{{team.lose}}</td>
+        <td>{{team.goals_scored}}</td>
+        <td>{{team.goals_conceded}}</td>
+        <td>{{team.goal_difference}}</td>
+        <td>{{team.points}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

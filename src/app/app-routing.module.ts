@@ -16,6 +16,7 @@ import { ListFixtureComponent } from './components/tournaments/list-fixture/list
 import { AddFixtureComponent } from './components/tournaments/add-fixture/add-fixture.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { EditFixtureComponent } from './components/tournaments/edit-fixture/edit-fixture.component';
+import { FixturesAndRankingComponent } from './components/tournaments/fixtures-and-ranking/fixtures-and-ranking.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,7 @@ const routes: Routes = [
     {path: 'tournament/create', component: CreateTournamentComponent, canActivate: [AuthGuard]},
     {path: 'tournament/edit/:id', component: EditTournamentComponent, canActivate: [AuthGuard]},
     {path: 'tournament/score/:id', component: UpdateScoreComponent, canActivate: [AuthGuard]},
-    {path: 'tournament/ranking/:id', component: RankingComponent, canActivate: [AuthGuard]},
+    {path: 'tournament/fixtures-ranking/:id', component: FixturesAndRankingComponent, canActivate: [AuthGuard]},
     {path: 'tournament/:id/fixture', component: ListFixtureComponent, canActivate: [AuthGuard]},
     {path: 'tournament/:id/addfixture', component: AddFixtureComponent, canActivate: [AuthGuard]},
     {path: 'tournament/:tournamentId/fixture/:fixtureId/edit', component: EditFixtureComponent, canActivate: [AuthGuard]}
