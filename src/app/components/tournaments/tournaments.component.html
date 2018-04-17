@@ -102,6 +102,28 @@
           <div class="btn btn-success" (click)="joinTournament(list.id)">Join</div>
         </div> 
       </div>
+
+      
+      <!-- <div *ngIf="userStatus.status === 'manager' && userStatus.team_id != null">
+        <div *ngFor="let requestTeamId of list.request_team_id">
+          <div *ngIf="requestTeamId === userStatus.team_id">
+              <div class="btn btn-danger">Requesting</div>
+          </div>
+
+          <div *ngFor="let teamId of list.t_team_id">
+            <div *ngIf="teamId === userStatus.team_id">
+                <div class="btn btn-primary">In Progress</div>
+            </div>
+
+            <div *ngIf="requestTeamId !== userStatus.team_id && teamId !== userStatus.team_id">
+              <div *ngIf="teamId !== list.t_team_id[i - 1]">
+                <div class="btn btn-success">Join</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
     </div>
   </div>
 </div>

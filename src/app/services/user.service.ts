@@ -4,14 +4,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
   private profile$:BehaviorSubject<Models.Profile>;
 
-  constructor(private http: HttpClient, private authService: AuthService) {
-    this.profile$ = new BehaviorSubject(<Models.Profile>{});
-  }
+  constructor(private http: HttpClient,
+              private authService: AuthService,
+              private router: Router)
+              {
+                this.profile$ = new BehaviorSubject(<Models.Profile>{});
+              }
 
   reloadProfile() {
     // For Authentication
@@ -41,5 +45,15 @@ export class UserService {
   createHeaders(){
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     return { headers: headers };
+  }
+
+  editUserInfo(userId: number, userInfo: Models.userInfoForFacebookLogin) {
+    let options = this.createHeaders();
+    this.http.put(`${environment.apiServer}/api/users/${userId}`, {userInfo}, options).subscribe((res) => {
+      this.authService.status.status = res;
+      // console.log(res);
+      // console.log(this.authService.status.status);
+      this.router.navigate(['/dashboard']);
+    })
   }
 }

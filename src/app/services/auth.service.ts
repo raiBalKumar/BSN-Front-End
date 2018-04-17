@@ -12,7 +12,7 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   token: string = null;
   status:any;
-  
+  userId: number;  
  
   constructor(private router: Router,
               private http: HttpClient,
@@ -30,8 +30,9 @@ export class AuthService {
  async facebookLogin(access_token){
     let result = await this.http.post(`${environment.apiServer}/api/auth/login/facebook`,{access_token:access_token}).toPromise();
     this.token = result['token'];
+    this.userId = result['user_id'];
     localStorage.setItem('myToken',this.token);
-    
+
     // check user status
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.token });
     let options = {headers:headers};
@@ -39,7 +40,7 @@ export class AuthService {
       if (res.status === null) {
         this.router.navigate(['/profile']);
       } else {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/profile']);
       }
     })
 

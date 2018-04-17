@@ -124,4 +124,11 @@ declare module Models {
         totalResults: number;
         articles: {}[];
     }
+
+    interface userInfoForFacebookLogin {
+        firstname: string;
+        lastname: string;
+        location: string;
+        status: string;
+    }
 }
