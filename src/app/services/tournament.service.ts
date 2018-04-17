@@ -17,7 +17,7 @@ export class TournamentService {
   getSingleTournament: BehaviorSubject<object>;
   // get all fixtures by tournamentId
   fixtures$: BehaviorSubject<Models.TournamentFixture[]>;
-  // get ranking by tournamentId
+  // get single match by tournamentId
   ranking$: Subject<Models.Ranking[]>
   // get all tournaments for manager
   tournamentForManager: BehaviorSubject<Models.TournamentForManager[]>;
@@ -173,6 +173,12 @@ export class TournamentService {
 
   getTournamentFixtures() {
     return this.fixtures$.asObservable();
+  }
+
+  getMatch(id: Params) {
+    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
+    let options = {headers:headers};
+    return this.http.get<Models.TournamentFixture[]>(`${environment.apiServer}/api/organizers/tournament/${id}/fixture`, (options))
   }
 
   updateScore(fixture: Models.TournamentFixture, score: {}) {

@@ -1,3 +1,4 @@
+import { FlashMessagesService } from 'angular2-flash-messages';
 import { async } from '@angular/core/testing';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -7,13 +8,19 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
 import { Subscription } from 'rxjs/Rx';
 import { NewsService } from '../../services/news.service';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
+  providers: [NgbProgressbarConfig]
 })
 export class ProfileComponent implements OnInit, OnDestroy {
+  percentDone: number;
+  file: File = null;
+  localImg: File = null;
   private locations = [
     "Hong Kong Islands",
     "Kowloon",
@@ -32,7 +39,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     "Striker"
   ]
 
-  private news$: Observable<{status: string, totalResults: number, articles: {}[]}>;
+  private news$: Observable<{ status: string, totalResults: number, articles: {}[] }>;
   private user$: Observable<Models.Profile>;
   private image: string;
   private editing: boolean = false; // To control where editForm should be shown
@@ -46,7 +53,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
     position: new FormControl(null),
   })
 
-  constructor(private userService: UserService, private newsService: NewsService) { }
+  constructor(private userService: UserService,
+    private newsService: NewsService,
+    private flashMessage: FlashMessagesService,
+    private config: NgbProgressbarConfig) {
+     
+    config.striped = true;
+    config.animated = true;
+    config.type = 'success';
+     }
 
   ngOnInit() {
     this.userService.reloadProfile();
@@ -67,7 +82,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     // prevent many subscription
     this.formSubscription.unsubscribe();
   }
@@ -118,5 +133,53 @@ export class ProfileComponent implements OnInit, OnDestroy {
       confirmButtonText: 'Yes',
       cancelButtonText: 'Cancel'
     })
+  }
+
+  // upload image
+  onFileSelected(event) {
+    if (event.target.files && event.target.files[0]) {
+      this.file = <File>event.target.files[0];
+
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.localImg = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+  }
+  onUploadFile() {
+    if (this.file) {
+      this.userService.getPresignedUrl(this.file)
+        .then((data) => {
+          this.userService.uploadToS3(data, this.file)
+            .subscribe((event) => {
+              if (event['type'] === HttpEventType.UploadProgress) {
+               this.percentDone = Math.round(100 * event['loaded'] / event['total']);
+                console.log(`File is ${this.percentDone}% uploaded.`);
+              } else if (event instanceof HttpResponse) {
+                console.log('File is completely uploaded!');
+                this.userService.updateProfilePic(data)
+                  .then((res) => {
+                    this.userService.reloadProfile();
+                    if (res['success']) {
+                      this.percentDone = null;
+                      this.flashMessage.show(res['msg'], {
+                        cssClass: 'alert-success',
+                        timeout: 3000
+                      })
+                    } else {
+                      this.flashMessage.show(res['msg'], {
+                        cssClass: 'alert-danger',
+                        timeout: 3000
+                      });
+                    }
+                  });
+              }
+            })
+        })
+    } else {
+      return;
+    }
   }
 }

@@ -41,6 +41,10 @@ li.nav-item.active .btn-nav{
     text-transform: uppercase;
 }
 
+.hide{
+  display: none;  
+}
+
 @media (max-width: 991px){
     .btn-nav,
     .btn-login{

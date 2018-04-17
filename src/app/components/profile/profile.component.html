@@ -3,11 +3,18 @@
     <div class="row">
       <div class="col-md-3">
         <div class="width-70 d-flex flex-column">
+          <p><ngb-progressbar *ngIf="percentDone" [value]="percentDone"></ngb-progressbar></p>
           <div class="pic-wrapper">
-            <img src="{{user.image}}" alt="">
+            <img [src]="localImg" *ngIf="localImg" class="imgPlaceholder">
+            <img src="{{user.image}}" alt="" class="realImg">
           </div>
-
-          <button class="btn btn-edit mx-auto upload">Upload Profile Picture</button>
+          <div id="upload_button" class="text-center mt-2">
+              <label>
+                <input type="file"  (change)="onFileSelected($event)" accept="image/*">
+                <span class="pointer"><i class="fas fa-folder-open"></i><small> Select</small></span>
+              </label>
+          </div>
+          <button class="btn btn-edit mx-auto upload" (click)="onUploadFile()">Upload Profile Picture</button>
         </div>
       </div>
 

@@ -28,6 +28,10 @@
                 </li>
                 <li [routerLinkActive]="['active']" class="nav-item">
                     <button class="btn btn-nav my-1" [routerLink]="['/tournaments']" (click)="navbarCollapsed = true">Tournaments</button>
+                    <button class="hide" [routerLink]="['/tournament/edit']"></button>
+                    <button class="hide" [routerLink]="['/tournament']"></button>
+                    <button class="hide" [routerLink]="['/tournament/score']"></button>
+                    <button class="hide" [routerLink]="['/tournament/fixtures-ranking']"></button>
                 </li>
                 <li *ngIf="authService.status.status === 'organizer'" [routerLinkActive]="['active']" class="nav-item">
                     <button class="btn btn-nav my-1" [routerLink]="['/tournament/create']" (click)="navbarCollapsed = true">Create Tournament</button>

@@ -1,0 +1,82 @@
+.logo-wrapper{
+    position: relative;
+    width: 100%;
+    padding-bottom: 68.75%;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 4px 4px 10px #888888;
+}
+
+.logo-wrapper img,
+.logo-wrapper .default-text{
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 81.81%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-bottom: 1px solid #fff;
+}
+
+.logo-wrapper .default-text{
+    background-color:rgba(170, 187, 204, 0.384);
+}
+
+.logo-wrapper .teamname{
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 18.19%;
+    bottom: 0;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    display: flex;
+}
+
+.home{
+    background: rgba(255, 0, 0, 0.87);
+    color: #fff;
+}
+
+.away{
+    background: rgba(13, 141, 1, 0.678);
+    color: #fff;
+}
+
+.btn-info{
+    font-size: 12px;
+    color: #fff;
+    height: 40px;
+    background-color: rgb(46, 149, 233);
+    background-image: none;
+    border-color: rgb(46, 149, 233);
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.row{
+    margin-bottom: 1rem;
+}
+
+.upcoming p{
+    margin-bottom: 0;
+}
+
+.upcoming h5{
+    text-decoration: underline;
+    color: blue;
+}
+
+.empty{
+    height: 100%;
+}
+
+.empty p{
+    font-size: 32px;
+    color: red;
+}
