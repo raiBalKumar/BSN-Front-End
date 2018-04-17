@@ -1,3 +1,4 @@
+import { ChatService } from './chat.service';
 import { environment } from './../../environments/environment';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs/Observable';
@@ -18,7 +19,11 @@ export class DashboardService {
   private subject = new BehaviorSubject<any>([]);
   players$:Observable<any> = this.subject.asObservable();
   
-  constructor(private http: HttpClient, private authService : AuthService) {}
+  constructor(private http: HttpClient, 
+              private authService : AuthService,
+             ) {
+   
+  }
      
   // check requests for manager 
   checkManagerRequest(): Observable<any> { 
@@ -46,7 +51,6 @@ export class DashboardService {
       })
                            
   }
-
 
   // show players in the market
   getPlayers(): Observable<any>{
@@ -80,11 +84,14 @@ export class DashboardService {
   // accept request to join the club
   acceptClub(manager_id:number, team_id:number){
     let httpOptions = this.createHeaders();
-    return this.http.post(`${environment.apiServer}/api/players/acceptClub`,{manager_id,team_id},httpOptions)
-        .subscribe((res)=>{
-          console.log("update userinfo");
-          this.getUserInfo();
-        });
+    return this.http.post(`${environment.apiServer}/api/players/acceptClub`,{manager_id,team_id},httpOptions);
+       
+  }
+
+  rejectClub(manager_id:number) {
+    let httpOptions = this.createHeaders();
+    return this.http.post(`${environment.apiServer}/api/players/rejectClub`,{manager_id},httpOptions);
+            
   }
 
   createHeaders(){

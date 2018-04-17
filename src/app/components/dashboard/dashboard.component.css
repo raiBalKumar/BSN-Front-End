@@ -7,8 +7,17 @@
 }
 #leaveClub {
     position: absolute;
-    top: 90px;
+    top: 100px;
     right: 10px;
-    box-shadow: 1px 2px 1px #000;
-
+    box-shadow: 1px 2px 2px #000;
+    border-radius: 20px;
 }
+#leaveClub:active {
+    box-shadow: 1px 1px #000;
+    transform: translateY(1px);
+}
+
+.overflow {
+    overflow: hidden;
+}
+
