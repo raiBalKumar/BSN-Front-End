@@ -27,9 +27,9 @@ const routes: Routes = [
     {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
     {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
     {path: 'clubs', component: ClubsComponent, canActivate:[AuthGuard]},
-    {path: 'tournaments', component: TournamentsComponent, canActivate:[AuthGuard]},
+    {path: 'tournaments/all', component: TournamentsComponent, canActivate:[AuthGuard]},
     // need to set authentication to restrict only organizer can create tournament
-    {path: 'tournament/create', component: CreateTournamentComponent, canActivate: [AuthGuard]},
+    {path: 'tournaments/create', component: CreateTournamentComponent, canActivate: [AuthGuard]},
     {path: 'tournament/edit/:id', component: EditTournamentComponent, canActivate: [AuthGuard]},
     {path: 'tournament/score/:id', component: UpdateScoreComponent, canActivate: [AuthGuard]},
     {path: 'tournament/fixtures-ranking/:id', component: FixturesAndRankingComponent, canActivate: [AuthGuard]},

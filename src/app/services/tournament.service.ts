@@ -159,7 +159,7 @@ export class TournamentService {
       });
     }
     this.listAllTournaments();
-    this.router.navigate(["/tournaments"]);
+    this.router.navigate(["/tournaments/all"]);
   }
 
   reloadTournamentFixtures(tournamentId: number) {
