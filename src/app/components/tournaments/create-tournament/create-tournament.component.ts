@@ -39,7 +39,7 @@ export class CreateTournamentComponent implements OnInit {
       this.tournamentService.createTournament(this.createTournamentForm.value);
     }
     else {
-      this.router.navigate(['/tournaments'])
+      this.router.navigate(['/tournaments/all'])
     }
   }
 }

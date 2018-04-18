@@ -110,8 +110,11 @@
         </div>
       </div>
 
-      <a href="" class="btn btn-default" [routerLink]="['/tournaments']" [routerLinkActive]="['active']">Back</a>         
-      <input (click)="onUpdate()" type="" value="Update" class="btn btn-success" [disabled]='editTournamentForm.invalid'>
+      <div class="d-flex">
+          <button type="button" class="btn btn-success mr-auto" [routerLink]="['/tournaments/all']" [routerLinkActive]="['active']">Back</button>         
+          <input (click)="onUpdate()" value="Update" class="btn btn-primary ml-auto" [disabled]='editTournamentForm.invalid'>
+      </div>
+      
     </form>
   </div>
   

@@ -1,0 +1,12 @@
+.thead{
+    font-style: italic;
+    color: rgb(255, 71, 71);
+}
+
+.table th, .table td{
+    vertical-align: middle;
+}
+
+.row{
+    margin-bottom: 20px;
+}

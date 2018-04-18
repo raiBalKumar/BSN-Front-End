@@ -33,7 +33,7 @@
       <div class="col-lg-4 d-flex flex-column">
         <a class="btn btn-edit" [routerLink]="['/tournament/edit', list.tournament_id]" routerLinkActive="active-link">Edit Tournament</a>
         <div class="btn btn-delete mt-1" (click)="onDelete(list.tournament_id)">Delete Tournament</div>
-        <a class="btn btn-add mt-1" [routerLink]="['/tournament', list.tournament_id, 'fixture']">Add Fixture</a>
+        <a class="btn btn-add mt-1" [routerLink]="['/tournament', list.tournament_id, 'fixture']">Edit/Add Fixtures</a>
         <a class="btn btn-add mt-1" [routerLink]="['/tournament/score', list.tournament_id]">Update Score</a>
         <a class="btn btn-ranking mt-1" [routerLink]="['/tournament/fixtures-ranking', list.tournament_id]">Ranking</a>
       </div>

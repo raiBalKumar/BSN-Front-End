@@ -64,6 +64,8 @@ declare module Models {
         park_name: string;
         district: string;
         street: string;
+        home_score: number;
+        away_score: number;
     }
 
     interface Ranking{
