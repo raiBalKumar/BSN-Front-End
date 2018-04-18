@@ -1,10 +1,6 @@
-.btn {
-    border-radius: 12px;
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5); 
-}
-
 button:focus{
     outline: none;
+    box-shadow: none;
 }
 
 .btn:active {
@@ -13,11 +9,12 @@ button:focus{
 }
 
 li.nav-item.active .btn-nav{
-    background-color: #2E71E9;
+    background-color: rgb(31, 170, 66);
     color: #fff;
 }
 
 .navbar{
+    height: 56px;
     box-shadow: 1px 2px 4px rgba(133, 133, 133, 0.493); 
 }
 
@@ -25,20 +22,24 @@ li.nav-item.active .btn-nav{
     margin-right: 10px;
 }
 
-.bg-white{
-    background-color: #fff;
+.bg{
+    background-color: rgba(78, 78, 78, 0.897)
 }
  
 .btn-nav,
 .btn-login{
-    height: 40px;
+    height: 32px;
     font-size: 12px;
-    color: #2E71E9;
+    color: #fff;
     background-color: transparent;
-    background-image: none;
-    border-color: #2E71E9;
     border-radius: 4px;
+    border: none;
     text-transform: uppercase;
+}
+
+.btn-portal{
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
 }
 
 .hide{

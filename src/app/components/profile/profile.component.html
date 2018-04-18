@@ -1,18 +1,163 @@
-<div class="container-fluid">
+<div class="container width-70">
+  <div *ngIf="user$ | async as user">
+    <div class="blur"></div>
+    <div class="row profile">
+      <div class="col-lg-4">
+        <div class="d-flex flex-column">
+          <div>
+            <ngb-progressbar *ngIf="percentDone" [value]="percentDone"></ngb-progressbar>
+          </div>
+          <div class="pic-wrapper mx-auto">
+            <img [src]="localImg" *ngIf="localImg" class="imgPlaceholder">
+            <img src="{{user.image}}" alt="" class="realImg">
+            <div id="upload_button" class="text-center d-flex">
+              <label class="mx-auto my-auto">
+                <input type="file" (change)="onFileSelected($event)" accept="image/*">
+                <span class="pointer">
+                  <i class="fas fa-folder-open"></i>
+                  <small> Select</small>
+                </span>
+              </label>
+            </div>
+          </div>
+          
+          <button class="btn btn-edit mx-auto upload" (click)="onUploadFile()">Upload Picture</button>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div *ngIf="editing; then editingBlock else editedBlock"></div>
+
+        <ng-template #editedBlock>
+          <h3 class="d-flex align-items-center">
+            {{user.firstname}} {{user.lastname}}
+            <button class="btn btn-edit ml-auto my-auto" (click)='onEdit()'>Edit</button>
+          </h3>
+          <hr>
+          <div class="row">
+            <div class="col-6">
+              <p>POSITION: {{user.position}}</p>
+              <p>HEIGHT: 1.7m</p>
+              <p>WEIGHT: 60kg</p>
+              <p>CURRENT TEAM: {{user.teamname}}</p>
+            </div>
+
+            <div class="col-6">
+              <p>AGE: 24</p>
+              <p>POB: Hong Kong</p>
+              <p>LOCATION: {{user.location}}</p>
+            </div>
+          </div>
+
+        </ng-template>
+
+        <ng-template #editingBlock>
+          <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+            <h3 class="row d-flex">
+              <div class="col-5 d-flex">
+                <div class="input-group my-auto">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">FIRST NAME:</span>
+                  </div>
+                  <input type='text' name="firstname" class="form-control" formControlName="firstname" />
+                </div>
+              </div>
+              <div class="col-5 d-flex">
+                <div class="input-group my-auto">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">LAST NAME:</span>
+                  </div>
+                  <input type='text' name="lastname" class="form-control" formControlName="lastname" />
+                </div>
+              </div>
+
+              <div class="col-2 d-flex">
+                <button class="btn btn-edit ml-auto my-auto" (click)='back()'>Back</button>
+              </div>
+
+            </h3>
+            <hr>
+
+            <div class="row info">
+              <div class="col-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">POSITION:</span>
+                  </div>
+                  <select formControlName="position" class="form-control">
+                    <option *ngFor="let position of positions" [ngValue]="position">
+                      {{ position }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">HEIGHT:</span>
+                  </div>
+                  <input type="text" value="1.7m" class="form-control">
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">WEIGHT:</span>
+                  </div>
+                  <input type="text" value="60kg" class="form-control">
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">AGE:</span>
+                  </div>
+                  <input type="text" value="24" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">POB:</span>
+                  </div>
+                  <input type="text" value="Hong Kong" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">LOCATION:</span>
+                  </div>
+                  <select formControlName="location" class="form-control">
+                    <option *ngFor="let location of locations" [ngValue]="location">
+                      {{ location }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <input type='submit' value="Submit" class="btn btn-warning btn-block text-white" [disabled]="!editForm.valid" />
+          </form>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="container-fluid">
   <div *ngIf="user$ | async as user">
     <div class="row">
       <div class="col-md-3">
         <div class="width-70 d-flex flex-column">
-          <p><ngb-progressbar *ngIf="percentDone" [value]="percentDone"></ngb-progressbar></p>
+          <p>
+            <ngb-progressbar *ngIf="percentDone" [value]="percentDone"></ngb-progressbar>
+          </p>
           <div class="pic-wrapper">
             <img [src]="localImg" *ngIf="localImg" class="imgPlaceholder">
             <img src="{{user.image}}" alt="" class="realImg">
           </div>
           <div id="upload_button" class="text-center mt-2">
-              <label>
-                <input type="file"  (change)="onFileSelected($event)" accept="image/*">
-                <span class="pointer"><i class="fas fa-folder-open"></i><small> Select</small></span>
-              </label>
+            <label>
+              <input type="file" (change)="onFileSelected($event)" accept="image/*">
+              <span class="pointer">
+                <i class="fas fa-folder-open"></i>
+                <small> Select</small>
+              </span>
+            </label>
           </div>
           <button class="btn btn-edit mx-auto upload" (click)="onUploadFile()">Upload Profile Picture</button>
         </div>
@@ -142,82 +287,9 @@
               <p class="link ml-auto">
                 <a href="{{article.url}}" target="_blank">Source Link</a>
               </p>
-              
+
             </div>
           </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-
-<!-- <div class="container">
-  <div *ngIf="user$ | async as user">
-    <div class="row my-5">
-
-      <div class="col-md-4">
-        <h1>{{user.status}} Portal</h1>
-        <div *ngIf="user.image; else defaultImage">
-          <img src="{{user.image}}" alt="" class="img-fluid">
-        </div>
-        <ng-template #defaultImage>
-          <img src="{{image}}" alt="" class="img-fluid">
-        </ng-template>
-      </div>
-
-      <div class="col-md-8">
-        <div class="row">
-          <div class="col-md-6">
-            <div *ngIf="editing; then editingBlock else editedBlock"></div>
-
-            <ng-template #editedBlock>
-              <button (click)='onEdit()'>Edit</button>
-              <h2>{{user.firstname}} {{user.lastname}}</h2>
-              <hr>
-              <p>Team: {{user.teamname}}</p>
-              <p>Location: {{user.location}}</p>
-
-            </ng-template>
-
-            <ng-template #editingBlock>
-              <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-                <button (click)='back()'>Back</button>
-                <hr>
-
-                <div class="form-group">
-                  <label>First Name: </label>
-                  <input type='text' name="firstname" class="form-control width-50" formControlName="firstname" />
-                  <div *ngIf="editForm.controls['firstname'].dirty && editForm.controls['firstname'].hasError('required')" class="prompt">
-                    This field is required
-                  </div>
-                  <div *ngIf="editForm.controls['firstname'].dirty && editForm.controls['firstname'].hasError('minlength')" class="prompt">
-                    Minimum 2 characters
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label>Last Name: </label>
-                  <input type='text' name="lastname" class="form-control width-50" formControlName="lastname" />
-                </div>
-
-                <div class="form-group">
-                  <label>Location: </label>
-                  <select formControlName="location" class="form-control width-50">
-                    <option *ngFor="let location of locations" [ngValue]="location">
-                      {{ location }}
-                    </option>
-                  </select>
-                </div>
-
-                <input type='submit' value="Submit" class="btn btn-warning btn-block text-white" [disabled]="!editForm.valid" />
-              </form>
-            </ng-template>
-          </div>
-
-          <div class="col-md-6"></div>
         </div>
       </div>
 

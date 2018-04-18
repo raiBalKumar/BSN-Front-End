@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { TeamService } from '../../services/team.service';
 import { UserService } from '../../services/user.service';
+import { NavbarService } from '../../services/navbar.service';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class NavBarComponent implements OnInit {
               private router: Router,
               private flashMessage: FlashMessagesService,
               private userService: UserService,
-              private teamService: TeamService) { }
+              private teamService: TeamService,
+              public nav: NavbarService) { }
 
   ngOnInit() {
   }

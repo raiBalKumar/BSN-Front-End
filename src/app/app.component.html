@@ -1,9 +1,9 @@
 <div id="wrapper">
     <app-nav-bar class="fixed-top"></app-nav-bar>
-    <div class="mb-3 offsetNavBar" id="flash">
+    <div class="{{nav.visible ? 'mb-3 offsetNavBar' : ''}}" id="flash">
         <flash-messages class="text-center"></flash-messages>
     </div>
-    <div id="content">
+    <div id="{{nav.visible ? 'content' : ''}}">
         <router-outlet></router-outlet>
     </div>
 </div>
