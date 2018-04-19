@@ -73,6 +73,7 @@ export class UserService {
     return { headers: headers };
   }
 
+  // edit user information for facebook login
   editUserInfo(userId: number, userInfo: Models.userInfoForFacebookLogin) {
     let options = this.createHeaders();
     this.http.put(`${environment.apiServer}/api/users/${userId}`, {userInfo}, options).subscribe((res) => {

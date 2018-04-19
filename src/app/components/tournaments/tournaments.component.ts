@@ -35,9 +35,7 @@ export class TournamentsComponent implements OnInit {
 
   // delete tournament
   onDelete(id: number) {
-    console.log(id)
     this.tournamentService.delete(id);
-    console.log(id);
   }
 
   joinTournament(tournamentID) {
