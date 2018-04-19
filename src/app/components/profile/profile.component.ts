@@ -18,6 +18,7 @@ import { NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
   providers: [NgbProgressbarConfig]
 })
 export class ProfileComponent implements OnInit, OnDestroy {
+  upload: boolean;
   percentDone: number;
   file: File = null;
   localImg: File = null;
@@ -70,6 +71,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.user$ = this.userService.getProfile();
     this.newsService.reloadNews();
     this.news$ = this.newsService.getNews();
+    this.upload = false;
 
     // set default value to the form
     this.formSubscription = this.user$.subscribe((res) => {
@@ -138,6 +140,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   // upload image
   onFileSelected(event) {
     if (event.target.files && event.target.files[0]) {
+      this.upload = true;
       this.file = <File>event.target.files[0];
 
       var reader = new FileReader();
@@ -163,6 +166,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
                   .then((res) => {
                     this.userService.reloadProfile();
                     if (res['success']) {
+                      this.upload = false;
                       this.percentDone = null;
                       this.flashMessage.show(res['msg'], {
                         cssClass: 'alert-success',

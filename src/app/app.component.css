@@ -1,4 +1,3 @@
-
 flash-messages {
     position: absolute;
     left: 0;
@@ -48,7 +47,7 @@ flash-messages {
 /* footer end */
 
 .offsetNavBar{
-    margin-top: 86px;
+    margin-top: 56px;
 }
 
 #wrapper {
@@ -60,10 +59,7 @@ flash-messages {
 }
 
 #content {
-    height: calc(100% - 106px);
-    margin-top: 106px;
-}
-
-body{
-    background: rgba(238, 236, 236, 0.404)
+    height: calc(100% - 56px);
+    margin-top: 56px;
+    padding-top: 20px;
 }

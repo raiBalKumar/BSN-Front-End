@@ -49,6 +49,7 @@ import { MatchComponent } from './components/tournaments/match/match.component';
 import { FixturesAndRankingComponent } from './components/tournaments/fixtures-and-ranking/fixtures-and-ranking.component';
 import { FixturesComponent } from './components/tournaments/fixtures/fixtures.component';
 import { UserInformationComponent } from './components/user-information/user-information.component';
+import { NavbarService } from './services/navbar.service';
 
 
 
@@ -106,7 +107,8 @@ import { UserInformationComponent } from './components/user-information/user-inf
     TeamService,
     WebsocketService,
     ChatService,
-    NewsService
+    NewsService,
+    NavbarService
   ],
   bootstrap: [AppComponent]
 })

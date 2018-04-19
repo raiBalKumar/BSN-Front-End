@@ -1,10 +1,15 @@
 <div class="d-flex cover">
   <div class="mx-auto my-auto">
-    <h1 class="text-center">A New Football Journey with BSN.</h1>
+    <div class="sentence">
+      <h1 class="text-center">Start a New Football Journey</h1>
+      <h1 class="text-center">with BSN</h1>
+    </div>
+
+    <br>
     <div class="d-flex">
       <button *ngIf="!authService.isAuthenticated(); else profile" type="button" class="btn-start mx-auto" [routerLink]="['/login']">Get Started</button>
       <ng-template #profile>
-        <button type="button" class="btn-start mx-auto" [routerLink]="['/profile']">Get Started</button>
+        <button type="button" class="btn-start mx-auto" [routerLink]="['/profile']">Enter</button>
       </ng-template>
     </div>
   </div>

@@ -8,6 +8,7 @@
 }
 body {
     /* background: linear-gradient(15deg, rgb(231, 235, 241), rgb(231, 235, 241), rgb(231, 235, 241)); */
+    background-image: url("/assets/img/3.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
