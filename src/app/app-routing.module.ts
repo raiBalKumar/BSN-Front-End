@@ -18,10 +18,13 @@ import { LandingComponent } from './components/landing/landing.component';
 import { EditFixtureComponent } from './components/tournaments/edit-fixture/edit-fixture.component';
 import { FixturesAndRankingComponent } from './components/tournaments/fixtures-and-ranking/fixtures-and-ranking.component';
 import { UserInformationComponent } from './components/user-information/user-information.component';
+import { AboutComponent } from './components/about/about.component';
+
 
 
 const routes: Routes = [
     {path: '', component: LandingComponent},
+    {path: 'about', component: AboutComponent},
     {path: 'login', component: LoginComponent},
     {path: 'auth/facebook/callback',component: FacebookComponent,},
     {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
