@@ -50,6 +50,7 @@ import { FixturesAndRankingComponent } from './components/tournaments/fixtures-a
 import { FixturesComponent } from './components/tournaments/fixtures/fixtures.component';
 import { UserInformationComponent } from './components/user-information/user-information.component';
 import { NavbarService } from './services/navbar.service';
+import { NewsComponent } from './components/news/news.component';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { NavbarService } from './services/navbar.service';
     MatchComponent,
     FixturesAndRankingComponent,
     FixturesComponent,
-    UserInformationComponent
+    UserInformationComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,

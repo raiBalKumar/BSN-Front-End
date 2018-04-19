@@ -205,7 +205,7 @@ input:focus{
 }
 
 .overlay{
-    background: rgba(218, 217, 217, 0.692);
+    background: rgba(138, 137, 137, 0.692);
     position: absolute;
     top: 0;
     bottom: 0;
@@ -220,4 +220,33 @@ input:focus{
 
 .edited .form-control:disabled{
     background-color: #fff;
+}
+
+/* news */
+
+.part.row{
+    margin-bottom: 2rem;
+}
+
+.carousel-custom{
+    background: rgba(71, 71, 71, 0.726);
+    box-shadow: 6px 6px 32px rgba(43, 43, 43, 0.603), -6px -6px 32px rgba(43, 43, 43, 0.603);
+    border-radius: 12px;
+    color: white;
+    font-size: 28px;
+    text-transform: uppercase;
+}
+
+.carousel-custom .headlines{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.carousel-custom .headlines p{
+    margin: 0 auto;
+}
+
+p.credit{
+    font-size: 10px;
+    text-transform: initial;
 }
