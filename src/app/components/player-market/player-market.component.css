@@ -24,7 +24,18 @@
     box-shadow: 1px 2px 4px #000;
     border: none;
     line-height: 1em;
+    background-color: rgba(0, 0, 0, 0.6);
 }
+
+.player-card > *{
+    color: #f2f5f5;
+}
+
+.player-card .btn-info {
+    background: rgb(31, 170, 66);
+    border: none;
+}
+
 .img-click {
     cursor: pointer;
 }

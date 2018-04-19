@@ -1,3 +1,9 @@
+.dash h2 {
+    color: #f2f5f5;
+    text-shadow: 1px 1px 2px #585a60;
+    text-shadow: 3px 3px 2px #22252b;
+}
+
 .create {
     box-shadow: 1px 3px 8px #000;
 }
@@ -20,4 +26,3 @@
 .overflow {
     overflow: hidden;
 }
-
