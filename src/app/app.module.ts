@@ -51,7 +51,7 @@ import { FixturesComponent } from './components/tournaments/fixtures/fixtures.co
 import { UserInformationComponent } from './components/user-information/user-information.component';
 import { NavbarService } from './services/navbar.service';
 import { AboutComponent } from './components/about/about.component';
-
+import { NewsComponent } from './components/news/news.component';
 
 
 @NgModule({
@@ -83,7 +83,8 @@ import { AboutComponent } from './components/about/about.component';
     FixturesAndRankingComponent,
     FixturesComponent,
     UserInformationComponent,
-    AboutComponent
+    AboutComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,
