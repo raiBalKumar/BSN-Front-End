@@ -1,0 +1,14 @@
+.about-bsn {
+    margin-top: 100px;
+    color: #f2f5f5;
+    text-shadow: 1px 1px 2px #585a60;
+    text-shadow: 3px 3px 2px #22252b;
+    font-size: 500px;
+}
+
+.row .card-body {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    min-height: 250px;
+    margin-top: 50px
+}

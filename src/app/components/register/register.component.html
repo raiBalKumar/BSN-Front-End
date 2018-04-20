@@ -1,0 +1,75 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+  <div class="modal-body py-3 px-5">
+    <div class="form-group">
+      <div *ngIf="userForm.controls['email'].dirty && userForm.controls['email'].hasError('email')" class="prompt">
+        Please enter valid email
+      </div>
+      <i class="far fa-envelope logo-width"></i>
+      <input type="text" placeholder="Email" name="email" class="account-info" formControlName="email" [ngClass]="{'is-invalid':userForm.controls['email'].dirty && userForm.controls['email'].errors }"
+      />
+    </div>
+
+    <div class="form-group">
+      <div *ngIf="userForm.controls['firstname'].dirty && userForm.controls['firstname'].hasError('required')" class="prompt">
+        The field is required
+      </div>
+      <div *ngIf="userForm.controls['firstname'].dirty && userForm.controls['firstname'].hasError('minlength')" class="prompt">
+        Minimum 3 characters required
+      </div>
+      <i class="fas fa-user-plus logo-width"></i>
+      <input type='text' placeholder="First Name" name="firstname" class="account-info" formControlName="firstname" [ngClass]="{'is-invalid':userForm.controls['firstname'].dirty && userForm.controls['firstname'].errors }"
+      />
+    </div>
+
+    <div class="form-group">
+      <div *ngIf="userForm.controls['lastname'].dirty && userForm.controls['lastname'].hasError('required')" class="prompt">
+        The field is required
+      </div>
+      <div *ngIf="userForm.controls['lastname'].dirty && userForm.controls['lastname'].hasError('minlength')" class="prompt">
+        Minimum 2 characters required
+      </div>
+      <i class="fas fa-user-plus logo-width"></i>
+      <input type='text' placeholder="Last Name" name="lastname" class="account-info" formControlName="lastname" [ngClass]="{'is-invalid':userForm.controls['lastname'].dirty && userForm.controls['lastname'].errors}"
+      />
+    </div>
+
+    <div class="form-group">
+      <div *ngIf="userForm.controls['password'].dirty && userForm.controls['password'].hasError('required')" class="prompt">
+        Password required
+      </div>
+      <div *ngIf="userForm.controls['password'].dirty && userForm.controls['password'].hasError('minlength')" class="prompt">
+        Minimum 6 characters
+      </div>
+      <i class="fas fa-unlock-alt logo-width"></i>
+      <input type="password" placeholder="Password" class="account-info" name="password" formControlName="password" [ngClass]="{'is-invalid':userForm.controls['password'].dirty && userForm.controls['password'].errors }"
+      />
+    </div>
+
+    <div class="form-group">
+      <div *ngIf="userForm.get(['password']).value != userForm.get(['confirm_password']).value && userForm.get(['confirm_password']).value != null"
+        class="prompt">
+        Password doesn't match
+      </div>
+      <i class="fas fa-unlock-alt logo-width"></i>
+      <input type="password" placeholder="Confirm password" class="account-info" name="confirm_password" formControlName="confirm_password"
+        [ngClass]="{'is-invalid':userForm.controls['confirm_password'].dirty && userForm.controls['confirm_password'].errors || userForm.get(['password']).value != userForm.get(['confirm_password']).value && userForm.get(['confirm_password']).value != null}"
+      />
+    </div>
+
+    <div class="form-group">
+      <i class="fas fa-users logo-width"></i>
+      <select formControlName="status" class="account-info" required>
+        <option value="" disabled selected>Role</option>
+        <option value="player">Player</option>
+        <option value="manager">Manager</option>
+        <option value="organizer">Organizer</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <input type='submit' value="Submit" class="btn btn-warning btn-block text-white " [disabled]="!userForm.valid" />
+  </div>
+</form>

@@ -1,0 +1,45 @@
+<br>
+<div class="bg">
+  <div class="d-flex flex-row align-items-center padding-20">
+    <div class="date">Date: {{viewDate | date:'mediumDate'}}</div>
+    <div class="ml-auto">
+      <div class="btn-group">
+        <div class="btn btn-success" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate)">
+          <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="btn btn-light" mwlCalendarToday [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate)">
+          TODAY
+        </div>
+        <div class="btn btn-success" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="viewDateChange.next(viewDate)">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="events$ | async; let events">
+    <mwl-calendar-month-view [viewDate]="viewDate" [events]="events" (eventClicked)="eventClicked($event.event)" (eventClicked)="open(content)">
+    </mwl-calendar-month-view>
+  </div>
+
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="bg-white">
+      <div class="modal-header">
+        <h4 class="modal-title">{{fixture.date | date:'fullDate'}} - {{fixture.date | date:'hh:mm a'}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>TOURNAMENT NAME: {{fixture.tournament_name}}</p>
+        <p>OPPONENT: {{fixture.opponent_teamname}}</p>
+        <img src="{{fixture.opponent_logo}}" alt="" class="img-fluid">
+        <br>
+        <br>
+        <p>VENUE: {{fixture.park_name}}, {{fixture.street}}, {{fixture.district}}</p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+      </div>
+    </div>
+  </ng-template>
+</div>
+<br>

@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-4 mb-3">
+    <a id="enterChat" class="btn btn-danger text-white" (click)="enterChat($event)"><i class="fas fa-sign-out-alt"></i> Exit dressing room</a>
+    <div *ngIf="showMessage" class="my-3">
+    <p class="text-muted mb-0">Online players:</p>
+        <button *ngFor="let user of (onlineUsers$ | async)" class="m-1 btn btn-primary btn-sm onlinePlayers">
+          <i class="fa fa-user"></i>{{user}}
+        </button>
+    </div>
+
+  </div>
+  <div class="col-md-8">
+    <div *ngIf="showMessage">
+      <div id="messages">
+        
+        <div *ngFor="let message of messages$">
+          <div class="row my-3">
+            <div class="px-2" [ngClass]="{'mr-auto':message.user !== user.firstname,'ml-auto':message.user === user.firstname}">
+              <div class="card">
+                <div class="card-header">
+                  <div class="text-muted">
+                      <small>
+                        <span *ngIf="message.user === user.firstname">You</span>
+                        <span *ngIf="message.user !== user.firstname">{{message.user}}</span> 
+                        <span class="float-right"><small>&nbsp;- {{message.time | date}}</small></span>
+                      </small> 
+                  </div>
+                </div>
+                <div class="card-body" id="time-holder">
+                    <p class="card-text"><small>{{message.msg}}</small></p>
+                    <small id="time" class="text-muted"><small>{{message.time | date:'shortTime'}}</small></small>
+                </div>
+              </div>
+            </div>
+          </div>   
+        </div>
+      </div>
+      <!-- <input (keydown.enter)="send(msg)" id="msgInput" #msg class="form-control emojiInput" autocomplete="off"/>&nbsp; -->
+      <div class="message my-3">
+          <img id="emoji" src="/assets/img/emoji.png" alt="emoji" width="25" height="25" (click)="openPopup()">
+
+          <emoji-input id="msgInput"
+            [inputClass]="'form-control'"
+            [autofocus]="true" 
+            [(model)]="text" 
+            [closeAfterSelection]="false"
+            (click)="openPopup(false)" 
+            (keydown.enter)="send()" 
+            (setPopupAction)="setPopupAction($event)">
+          </emoji-input>
+          <button id="send"  (click)="send()"><i class="fa fa-reply"></i>
+
+          </button> 
+      </div>
+    </div>
+  </div>
+</div>

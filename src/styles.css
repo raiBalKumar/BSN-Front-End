@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+*{
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.5px;
+    box-sizing: border-box;
+    
+}
+body {
+    /* background: linear-gradient(15deg, rgb(231, 235, 241), rgb(231, 235, 241), rgb(231, 235, 241)); */
+    background-image: url("/assets/img/3.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: soft-light;
+    background-color: rgba(37, 37, 37, 0.699)
+}
+
+select:focus{
+    outline: none;
+}
+
+/* .sidebar{
+    position: fixed;
+    height: 100%;
+    width: calc(25% - 15px);
+    top: 0;
+    bottom: 0;
+    padding-top: 106px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: transparent;
+    z-index: 10;
+    overflow: scroll;
+    box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.534);
+    background: rgba(0, 0, 0, 0.075);
+} */
+
+.modal-content{
+    background-color: transparent !important;
+    border: none;
+}

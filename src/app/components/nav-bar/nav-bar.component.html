@@ -1,0 +1,58 @@
+<div *ngIf="authService.isAuthenticated(); then loginNavbar else logoutNavbar"></div>
+
+<ng-template #loginNavbar>
+    <nav *ngIf="nav.visible" class="navbar navbar-expand-md navbar-light bg">
+        <a class="navbar-brand" [routerLink]="['/']">
+            <img src="/assets/img/BSN.png" height="40" class="d-inline-block align-top" alt="">
+        </a>
+
+        <button class="mr-auto btn-nav btn-portal">{{authService.status.status}} Portal</button>
+
+        <button class="ml-auto navbar-toggler navbar-toggler-right" type="button" (click)="navbarCollapsed = !navbarCollapsed" [attr.aria-expanded]="!navbarCollapsed"
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse" [ngbCollapse]="navbarCollapsed" id="navbarContent">
+            <ul class="navbar-nav ml-auto">
+                <li [routerLinkActive]="['active']" class="nav-item">
+                    <button class="btn btn-nav my-1" [routerLink]="['/dashboard']" (click)="navbarCollapsed = true">Dashboard</button>
+                </li>
+                <li *ngIf="(authService.status.status === 'player' || authService.status.status === 'manager')" [routerLinkActive]="['active']"
+                    class="nav-item">
+                    <button class="btn btn-nav my-1" [routerLink]="['/profile']" (click)="navbarCollapsed = true">Profile</button>
+                </li>
+                <li *ngIf="(authService.status.status === 'player' || authService.status.status === 'manager')" [routerLinkActive]="['active']"
+                    class="nav-item">
+                    <button class="btn btn-nav my-1" [routerLink]="['/clubs']" (click)="navbarCollapsed = true">Clubs</button>
+                </li>
+                <li [routerLinkActive]="['active']" class="nav-item">
+                    <button class="btn btn-nav my-1" [routerLink]="['/tournaments/all']" (click)="navbarCollapsed = true">Tournaments</button>
+                    <button class="hide" [routerLink]="['/tournament/edit']"></button>
+                    <button class="hide" [routerLink]="['/tournament']"></button>
+                    <button class="hide" [routerLink]="['/tournament/score']"></button>
+                    <button class="hide" [routerLink]="['/tournament/fixtures-ranking']"></button>
+                </li>
+                <li *ngIf="authService.status.status === 'organizer'" [routerLinkActive]="['active']" class="nav-item">
+                    <button class="btn btn-nav my-1" [routerLink]="['/tournaments/create']" (click)="navbarCollapsed = true">Create Tournament</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-nav my-1" (click)="logout()">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</ng-template>
+
+<ng-template #logoutNavbar>
+    <nav *ngIf="nav.visible" class="navbar navbar-light bg">
+        <a class="navbar-brand" [routerLink]="['/']">
+            <img src="/assets/img/BSN.png" height="40" class="d-inline-block align-top" alt="">
+        </a>
+
+        <button class="btn btn-login my-1" [routerLink]="['/login']">
+            <i class="fas fa-user"></i>
+            Login
+        </button>
+    </nav>
+</ng-template>

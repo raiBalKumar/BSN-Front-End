@@ -1,0 +1,51 @@
+<p>
+  user-information works!
+</p>
+
+<div class="container">
+  <form [formGroup]="userInformation" (ngSubmit)="updateUserInfo()">
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label>First Name</label>
+        <input type="text" class="form-control" name="firstname" formControlName="firstname" [ngClass]="{'is-invalid': userInformation.controls['firstname'].dirty && userInformation.controls['firstname'].errors}">
+        <div *ngIf="userInformation.controls['firstname'].dirty && userInformation.controls['firstname'].hasError('required')" class="invalid-feedback">
+            The First Name field is required
+        </div>
+      </div>
+      <div class="col-md-6 form-group">
+        <label>Last Name</label>
+        <input type="text" class="form-control" name="lastname" formControlName="lastname" [ngClass]="{'is-invalid': userInformation.controls['lastname'].dirty && userInformation.controls['lastname'].errors}">
+        <div *ngIf="userInformation.controls['lastname'].dirty && userInformation.controls['lastname'].hasError('required')" class="invalid-feedback">
+            The Last Name field is required
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 form-group">
+      <label>Location</label>
+      <select formControlName="location" name="location" class="form-control" [ngClass]="{'is-invalid': userInformation.controls['location'].touched && userInformation.controls['location'].errors}">
+        <option *ngFor="let location of locations" [ngValue]="location">
+          {{ location }}
+        </option>
+      </select>
+      <div *ngIf="userInformation.controls['location'].touched && userInformation.controls['location'].hasError('required')" class="invalid-feedback">
+          The Location field is required
+      </div>
+    </div>
+    <div class="col-md-6 form-group">
+      <label>Status</label>
+      <select formControlName="status" name="status" class="form-control" [ngClass]="{'is-invalid': userInformation.controls['status'].touched && userInformation.controls['status'].errors}">
+        <option *ngFor="let status of status" [ngValue]="status">
+          {{ status }}
+        </option>
+      </select>
+      <div *ngIf="userInformation.controls['status'].touched && userInformation.controls['status'].hasError('required')" class="invalid-feedback">
+          The Status field is required
+      </div>
+    </div>
+  </div>
+
+    <input type="submit" value="Submit" class="btn btn-success" [disabled]='userInformation.invalid'>
+  </form>
+</div>

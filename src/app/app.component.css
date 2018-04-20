@@ -1,0 +1,65 @@
+flash-messages {
+    position: absolute;
+    left: 0;
+    right: 0;
+    opacity: 0.6; 
+}
+
+#out-let {
+    min-height: 87vh;
+}
+
+/* footer */
+.footing {
+    background: linear-gradient(-45deg,rgb(104, 115, 121),#3e4449,rgb(60, 73, 80));
+   
+}
+/* hover effect */
+.fa:hover {
+    opacity: 0.7;
+}
+/* Facebook */
+.fa-facebook {
+    color: #55ACEE;
+}
+/* Twitter */
+.fa-twitter {
+   color:  #55ACEE;
+}
+/* Youtube */
+.fa-youtube {
+    color: rgb(247, 7, 7);
+}
+/* Instagaram */
+.fa-instagram {
+    color: rgb(247, 7, 215);
+}
+.socialList {
+    list-style-type: none;
+    border-bottom: none;
+    padding: 0 10px;
+}
+.socialOptions {
+    border-right: none;
+    display: flex;
+    font-size: 14px;
+}
+/* footer end */
+
+.offsetNavBar{
+    margin-top: 56px;
+}
+
+#wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#content {
+    height: calc(100% - 56px);
+    margin-top: 56px;
+    padding-top: 20px;
+}

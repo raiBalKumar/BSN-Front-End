@@ -1,0 +1,84 @@
+.cover{
+  height: 100%;
+  width: 100vw;
+}
+
+.frame{
+  width: 40vw;
+  /* background-color: rgba(27, 90, 25, 0.705); */
+  background-color: rgba(49, 49, 49, 0.705);
+  box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.603), -2px -2px 16px rgba(0, 0, 0, 0.603);
+}
+
+.title{
+  font-size: 20px;
+  color: white;
+}
+
+.account-info{
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  border: none;
+  border-bottom: 1px solid rgba(0, 140, 255, 0.781);
+}
+
+input:focus, 
+button:focus{
+  outline: none;
+}
+
+.sign-in,
+.sign-up{
+  width: 100%;
+  background: rgb(0, 140, 255);
+  color: #fff;
+  border: none;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+
+.sign-up{
+  background: rgb(36, 172, 31);
+  border-radius: 25px;
+  width: 70%;
+}
+
+.facebook-box{
+  background: #3b5998;
+  width: 100%;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  cursor: pointer;
+  color: white;
+}
+
+.or{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.circle{
+  background: rgb(134, 134, 134);
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.center{
+  margin: auto;
+  color: #fff;
+}
+
+@media (max-width: 991px){
+  .frame{
+    width: 60%;
+  }
+}
+
+@media (max-width: 767px){
+  .frame{
+    width: 85%;
+  }
+}

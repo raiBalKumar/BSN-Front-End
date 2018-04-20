@@ -1,0 +1,185 @@
+<div class="container width-70">
+  <div *ngIf="user$ | async as user">
+
+    <div class="row profile part">
+      <div class="overlay"></div>
+
+      <div class="col-lg-4 d-flex flex-column">
+        <div>
+          <ngb-progressbar *ngIf="percentDone" [value]="percentDone"></ngb-progressbar>
+        </div>
+
+        <div class="pic-wrapper ml-auto">
+          <img [src]="localImg" *ngIf="localImg" class="imgPlaceholder">
+          <img src="{{user.image}}" alt="" class="realImg">
+          <div id="upload_button" class="text-center d-flex">
+            <label class="mx-auto my-auto">
+              <input type="file" (change)="onFileSelected($event)" accept="image/*">
+              <span class="pointer">
+                <i class="fas fa-folder-open"></i>
+                <small> Select</small>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="width-70 ml-auto d-flex">
+          <button *ngIf="upload" class="btn btn-edit mx-auto upload" (click)="onUploadFile()">Upload Picture</button>
+        </div>
+      </div>
+
+      <div class="col-lg-7 text-white">
+        <div *ngIf="editing; then editingBlock else editedBlock"></div>
+
+        <ng-template #editedBlock>
+          <h3 class="d-flex align-items-center">
+            {{user.firstname}} {{user.lastname}}
+            <button class="btn btn-edit ml-auto my-auto" (click)='onEdit()'>Edit</button>
+          </h3>
+          <hr>
+          <div class="row info edited">
+            <div class="col-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">POSITION:</span>
+                </div>
+                <input type="text" value="{{user.position}}" class="form-control" disabled>
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">HEIGHT:</span>
+                </div>
+                <input type="text" value="1.7m" class="form-control" disabled>
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">WEIGHT:</span>
+                </div>
+                <input type="text" value="60kg" class="form-control" disabled>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">AGE:</span>
+                </div>
+                <input type="text" value="24" class="form-control" disabled>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">POB:</span>
+                </div>
+                <input type="text" value="Hong Kong" class="form-control" disabled>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">LOCATION:</span>
+                </div>
+                <input type="text" value="{{user.location}}" class="form-control" disabled>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template #editingBlock>
+          <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+            <h3 class="row d-flex editing">
+              <div class="col-5 d-flex">
+                <div class="input-group my-auto">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">FIRST NAME:</span>
+                  </div>
+                  <input type='text' name="firstname" class="form-control" formControlName="firstname" />
+                </div>
+              </div>
+              <div class="col-5 d-flex">
+                <div class="input-group my-auto">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">LAST NAME:</span>
+                  </div>
+                  <input type='text' name="lastname" class="form-control" formControlName="lastname" />
+                </div>
+              </div>
+
+              <div class="col-2 d-flex">
+                <button class="btn btn-edit ml-auto my-auto" (click)='back()'>Back</button>
+              </div>
+
+            </h3>
+            <hr>
+
+            <div class="row info editing">
+              <div class="col-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">POSITION:</span>
+                  </div>
+                  <select formControlName="position" class="form-control">
+                    <option *ngFor="let position of positions" [ngValue]="position">
+                      {{ position }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">HEIGHT:</span>
+                  </div>
+                  <input type="text" value="1.7m" class="form-control">
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">WEIGHT:</span>
+                  </div>
+                  <input type="text" value="60kg" class="form-control">
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">AGE:</span>
+                  </div>
+                  <input type="text" value="24" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">POB:</span>
+                  </div>
+                  <input type="text" value="Hong Kong" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">LOCATION:</span>
+                  </div>
+                  <select formControlName="location" class="form-control">
+                    <option *ngFor="let location of locations" [ngValue]="location">
+                      {{ location }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <input type='submit' value="Submit" class="btn btn-submit btn-block text-white" [disabled]="!editForm.valid" />
+          </form>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="row d-flex part">
+      <div class="mx-auto carousel-custom">
+        <div class="headlines">
+          <p class="text-center">World Sport Headlines</p>
+          <p class="text-right credit pr-3">@Powered by News API</p>
+        </div>
+        <app-news class="carousel-custom"></app-news>
+      </div>
+    </div>
+
+  </div>
+</div>

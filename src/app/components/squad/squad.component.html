@@ -1,0 +1,42 @@
+<br>
+
+<div class="container">
+  <div class="row bg-white">
+    <div class="col-lg-12 padding-zero">
+      <img src="/assets/img/football-stadium.jpg" class="img-fluid filter">
+      <div class="players">
+        <div *ngFor="let player of squad$ | async;" class="item d-flex">
+          <div class="mx-auto my-auto">
+            <div class="profile-wrapper">
+              <img src="{{player.image}}" class="img-fluid" (click)="open(content)">
+              <p class="tag">{{player.firstname}}</p>
+
+              <ng-template #content let-c="close" let-d="dismiss">
+                <div class="modal-body">
+                  <div class="card d-flex">
+                    <div class="card-header">
+                      <div class="img-wrapper mx-auto">
+                        <img class="card-img-top" src="{{player.image}}" alt="">
+                      </div>
+                    </div>
+
+                    <div class="card-body">
+                      <p class="card-text">Name: {{player.firstname}} {{player.lastname}}</p>
+                      <p class="card-text">Position: {{player.position}}</p>
+                      <p class="card-text">Age: {{player.age}}</p>
+                      <p class="card-text">Height: {{player.height}}</p>
+                      <p class="card-text">Weight: {{player.weight}}</p>
+                    </div>
+                  </div>
+                </div>
+
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>

@@ -1,0 +1,251 @@
+.width-70{
+    width: 70%;
+}
+
+h1{
+    text-transform:capitalize;
+}
+
+.prompt{
+    margin-top: 15px;
+    color: red;
+}
+.pointer{
+    cursor: pointer;
+    color: #fff;
+}
+
+/* Profile Picture */
+.pic-wrapper{
+    position: relative;
+    width: 70%;
+    padding-bottom: 70%;
+    display: flex;
+    background: transparent;
+    border-color: #fff;
+    border-radius: 50%;
+}
+
+.pic-wrapper .realImg,
+.pic-wrapper .imgPlaceholder{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 1px solid #fff;
+    box-shadow: 1px 4px 6px #888888;
+    border-radius: 50%;
+    background-color: rgb(63, 63, 63)
+}
+
+.imgPlaceholder {
+    z-index: 5;
+}
+
+#upload_button {
+    background: rgba(88, 88, 88, 0.671);
+    border-radius: 6px;
+    display: inline-block;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 4px;
+    width: 50%;
+    z-index: 10;
+}
+  
+#upload_button input[type=file] {
+    display:none;
+}
+
+.upload{
+    margin-top: 20px;
+}
+
+
+
+/* general */
+
+.btn-edit,
+.btn-submit{
+    color: #fff;
+    font-size: 12px;
+    color: #fff;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.btn-edit{
+    background-color: rgb(123, 161, 98);
+}
+
+.btn-edit:hover,
+.btn-submit{
+    background-color: rgb(31, 170, 66);
+}
+
+
+button:hover{
+    outline: none;
+}
+
+.btn:active {
+    box-shadow: 0 0.2px rgba(0, 0, 0, 0.5);
+    transform: translateY(2px);
+}
+
+/* form */
+h3{
+    font-weight: bolder;
+    margin-bottom: 0;
+}
+
+hr{
+    margin-top: 12px;
+    margin-bottom: 12px;
+    background-color: #ccc;
+}
+
+
+/* editing form */
+.input-group select{
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#ced4da' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+}
+
+.input-group .form-control,
+.input-group-text{
+    font-size: 12px;
+}
+
+input:focus{
+  outline: none;
+  box-shadow: none;
+  border-color: rgb(206, 212, 218);
+}
+
+.form-control:focus {
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: none;
+}
+
+/* news */
+
+.sidebar-title{
+    /* text-decoration: underline; */
+    color: #000;
+    margin-bottom: 4px;
+    font-size: 24px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.sidebar-content{
+    width: 100%;
+    color: #000;
+}
+
+.sidebar-content .title{
+    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.power{
+    color: rgba(30, 143, 255, 0.719);
+    font-size: 10px;
+    box-shadow: 0px 5px 5px -5px #000;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+}
+
+.sidebar-content .description{
+    padding-left: 15px;
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.582);
+}
+
+.sidebar-content .link{
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+.article{
+    border-bottom: 1px solid #888;
+    padding: 10px 0;
+    text-align: justify;
+}
+
+/* profile box */
+
+.profile{
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-image: url('/assets/img/5.jpg');
+    background-size: contain;
+    background-position: center;
+}
+
+.overlay{
+    background: rgba(75, 75, 75, 0.692);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.editing .input-group-text{
+    background-color: #be3a3a;
+    color: #fff;
+}
+
+.edited .form-control:disabled{
+    background-color: #fff;
+}
+
+/* news */
+
+.part.row{
+    margin-bottom: 2rem;
+}
+
+.carousel-custom{
+    background: rgba(71, 71, 71, 0.726);
+    box-shadow: 6px 6px 32px rgba(43, 43, 43, 0.603), -6px -6px 32px rgba(43, 43, 43, 0.603);
+    border-radius: 12px;
+    color: white;
+    font-size: 28px;
+    text-transform: uppercase;
+}
+
+.carousel-custom .headlines{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.carousel-custom .headlines p{
+    margin: 0 auto;
+}
+
+p.credit{
+    font-size: 10px;
+    text-transform: initial;
+}
+
+.carousel-custom{
+    width: 600px;
+}

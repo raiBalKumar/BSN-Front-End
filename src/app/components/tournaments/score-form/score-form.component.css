@@ -1,0 +1,10 @@
+.form-group{
+    font-size: 12px;
+    display: inline-block;
+}
+
+input[type="submit"].btn.btn-block {
+    font-size: 12px;
+    width: 50%;
+    margin: auto;
+}
