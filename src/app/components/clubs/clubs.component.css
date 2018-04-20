@@ -1,10 +1,13 @@
-.club{
-    display: flex;
+.width-80{
+    width: 80%;
 }
 
 .club h1{
-    color: rgba(255, 0, 0, 0.637);
-    margin-bottom: 0;
+    color: #fff;
+    font-size: 60px;
+    text-shadow: 1px 1px 2px #585a60;
+    text-shadow: 3px 3px 2px #222562;
+    margin-bottom: 0px;
 }
 
 .club hr{
@@ -13,24 +16,19 @@
 }
 
 .club p{
-    margin-bottom: 8px;
+    color: #fff;
+    margin-bottom: 0;
 }
 
-.club .description{
-    position: absolute;
-    color: rgba(56, 56, 56, 0.815);
-    margin-bottom: 0;
-    bottom: 0;
-    font-size: 1.2vw;
-}
+/* logo */
 
 .logo-wrapper{
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
     display: flex;
-    background: #fff;
-    border-radius: 16px;
+    background: transparent;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.781);
 }
 
 .logo-wrapper img{
@@ -44,28 +42,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    box-shadow: 4px 4px 20px #888888;
-    border-radius: 16px;
-}
-
-/* sidebar */
-
-.sidebar-title{
-    color: #000;
-    margin-bottom: 15px;
-    font-size: 24px;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.sidebar-content{
-    width: 100%;
-    font-size: 16px;
-    color: #000;
-}
-
-.sidebar-content p{
-    margin-bottom: 6px;
+    filter: opacity(80%);
 }
 
 .logo-background{
@@ -75,30 +52,34 @@
     transform: translate(-50%, -50%);
     z-index: -1;
     overflow: hidden;
+    background-color: #fff;
 }
 
-.opponent{
-    color: red;
-    font-size: 18px;
-    text-align: center;
-    margin-top: 20px;
+/* tabs */
+
+:host /deep/ .nav-tabs .nav-link.active, 
+:host /deep/ .nav-tabs .nav-item.show .nav-link{
+    background-color: rgb(31, 170, 66);
+    color: #fff;
+    border: none;
+    font-size: 12px;
 }
 
-.opponent p{
+:host /deep/ .nav-tabs .nav-link{
+    background-color: rgba(78, 78, 78, 0.705);
+    color: #fff;
+    border: none;
+    font-size: 12px;
+}
+
+:host /deep/ .nav-tabs .nav-item{
     margin-bottom: 0;
-}
-
-.details{
-    text-decoration: underline;
-    text-transform: uppercase;
+    margin-right: 8px;
+    font-size: 12px;
 }
 
 
 @media (max-width: 991px){
-    .club .description{
-        display: none;
-    }
-
     .resize{
         width: 75%;
         margin: auto;
@@ -109,25 +90,8 @@
     }
 }
 
-@media (max-width: 767px){
-    h4{
-        font-size: 16px;
-    }
-
-    .sidebar-title{
-        margin-bottom: 6px;
-    }
-
-    .sidebar-content{
-        font-size: 14px;
-    }
-}
+@media (max-width: 767px){}
 
 
-@media (max-width: 575px){
-    .sidebar{
-        position: relative;
-        padding-top: 0;
-        border-left: none;
-    }
-}
+@media (max-width: 575px){}
+

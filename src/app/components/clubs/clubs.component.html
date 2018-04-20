@@ -1,4 +1,51 @@
-<div class="container-fluid">
+<div class="container width-80">
+  <div *ngIf="teamInfo$ | async as teamInfo">
+    <div class="row club">
+      <div class="col-lg-4">
+        <div class="logo-wrapper">
+          <!-- <div class="logo-background">
+            Upload Team Logo
+          </div> -->
+          <img src="{{teamInfo.logo}}" alt="">
+        </div>
+      </div>
+
+      <div class="col-lg-8 d-flex flex-column justify-content-end">
+        <p>Club Manager: {{teamInfo.manager_firstname}} {{teamInfo.manager_lastname}}</p>
+        <h1>{{teamInfo.teamname}}</h1>
+      </div>
+
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+
+        <ngb-tabset class="">
+          <ngb-tab title="Squad">
+            <ng-template ngbTabContent>
+              <app-squad></app-squad>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Fixtures">
+            <ng-template ngbTabContent>
+              <app-calendar></app-calendar>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Upcoming Match">
+            <ng-template ngbTabContent>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- <div class="container-fluid">
   <div class="row">
 
     <div class="col-lg-9 col-md-8">
@@ -68,4 +115,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

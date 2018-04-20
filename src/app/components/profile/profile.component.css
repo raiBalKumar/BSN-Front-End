@@ -2,10 +2,6 @@
     width: 70%;
 }
 
-.width-75{
-    width: 75%;
-}
-
 h1{
     text-transform:capitalize;
 }
@@ -22,8 +18,8 @@ h1{
 /* Profile Picture */
 .pic-wrapper{
     position: relative;
-    width: 75%;
-    padding-bottom: 75%;
+    width: 70%;
+    padding-bottom: 70%;
     display: flex;
     background: transparent;
     border-color: #fff;
@@ -201,11 +197,10 @@ input:focus{
     background-image: url('/assets/img/5.jpg');
     background-size: contain;
     background-position: center;
-    box-shadow: 2px 2px 16px rgba(71, 71, 71, 0.603), -2px -2px 16px rgba(71, 71, 71, 0.603);
 }
 
 .overlay{
-    background: rgba(138, 137, 137, 0.692);
+    background: rgba(75, 75, 75, 0.692);
     position: absolute;
     top: 0;
     bottom: 0;
@@ -249,4 +244,8 @@ input:focus{
 p.credit{
     font-size: 10px;
     text-transform: initial;
+}
+
+.carousel-custom{
+    width: 600px;
 }

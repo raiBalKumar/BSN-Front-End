@@ -3,7 +3,7 @@
 <ng-template #loginNavbar>
     <nav *ngIf="nav.visible" class="navbar navbar-expand-md navbar-light bg">
         <a class="navbar-brand" [routerLink]="['/']">
-            <img src="/assets/img/BSN.jpg" height="60" class="d-inline-block align-top" alt="">
+            <img src="/assets/img/BSN.png" height="40" class="d-inline-block align-top" alt="">
         </a>
 
         <button class="mr-auto btn-nav btn-portal">{{authService.status.status}} Portal</button>
@@ -47,7 +47,7 @@
 <ng-template #logoutNavbar>
     <nav *ngIf="nav.visible" class="navbar navbar-light bg">
         <a class="navbar-brand" [routerLink]="['/']">
-            <img src="/assets/img/BSN.jpg" height="60" class="d-inline-block align-top" alt="">
+            <img src="/assets/img/BSN.png" height="40" class="d-inline-block align-top" alt="">
         </a>
 
         <button class="btn btn-login my-1" [routerLink]="['/login']">

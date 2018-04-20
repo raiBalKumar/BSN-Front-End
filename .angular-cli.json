@@ -19,11 +19,11 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css",
         "../node_modules/bootstrap/dist/css/bootstrap.css",
         "../node_modules/font-awesome/css/font-awesome.css",
         "../node_modules/sweetalert2/dist/sweetalert2.css",
-        "../node_modules/angular-calendar/css/angular-calendar.css"
+        "../node_modules/angular-calendar/css/angular-calendar.css",
+        "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",

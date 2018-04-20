@@ -12,13 +12,15 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-blend-mode: soft-light;
+    background-color: rgba(37, 37, 37, 0.699)
 }
 
 select:focus{
     outline: none;
 }
 
-.sidebar{
+/* .sidebar{
     position: fixed;
     height: 100%;
     width: calc(25% - 15px);
@@ -32,4 +34,9 @@ select:focus{
     overflow: scroll;
     box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.534);
     background: rgba(0, 0, 0, 0.075);
+} */
+
+.modal-content{
+    background-color: transparent !important;
+    border: none;
 }
