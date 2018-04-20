@@ -1,16 +1,37 @@
 .frame{
-    border-radius: 16px;
     overflow: hidden;
     box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.308), -1px 3px 4px rgba(0, 0, 0, 0.308);
     padding-left: 20px;
     padding-right: 20px;
     margin-bottom: 2rem;
     max-height: calc(100vh - 140px);
+    background-color: rgba(71, 71, 71, 0.725);
+    color: #fff;
+}
+
+.fixtures{
+    max-height: calc(100vh - 180px);
+    overflow-y: scroll;
+    overflow-x: visible;
+}
+
+.fixtures .col-12{
+    padding: 0;
+}
+
+.row{
+    margin: 0 0;
+    padding: 1rem 0;
+    border-bottom: 2px solid rgba(136, 136, 136, 0.65);
+}
+
+.row:last-child{
+    border-bottom: none;
 }
 
 .title{
     height: 48px;
-    background: rgba(46, 111, 233, 0.699);
+    background: rgba(102, 204, 140, 0.719);
     margin-left: -20px;
     margin-right: -20px;
     padding: 12px 0;
@@ -24,75 +45,21 @@
 }
 
 .logo-wrapper{
-    position: relative;
-    width: 100%;
-    padding-bottom: 68.75%;
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 4px 4px 10px #888888;
+    width: 100px;
 }
 
 .logo-wrapper img,
 .logo-wrapper .default-text{
     object-fit: cover;
-    display: block;
-    width: 100%;
-    height: 81.81%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    border-bottom: 1px solid #fff;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0.5px 0.5px 8px rgba(136, 136, 136, 0.733);
 }
 
-.logo-wrapper .default-text{
-    background-color:rgba(170, 187, 204, 0.384);
-}
-
-.logo-wrapper .teamname{
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 18.19%;
-    bottom: 0;
-    border-bottom-left-radius: 16px;
-    border-bottom-right-radius: 16px;
-    display: flex;
-}
-
-.home{
-    background: rgba(255, 0, 0, 0.87);
-    color: #fff;
-}
-
-.away{
-    background: rgba(13, 141, 1, 0.678);
-    color: #fff;
-}
-
-.btn-info{
+.logo-wrapper p{
+    margin-top: 8px;
+    margin-bottom: 0;
     font-size: 12px;
-    color: #fff;
-    height: 40px;
-    background-color: rgb(46, 149, 233);
-    border-color: rgb(46, 149, 233);
-    border-radius: 4px;
-    text-transform: uppercase;
-}
-
-.fixtures{
-    height: calc(100vh - 180px);
-    overflow-y: scroll;
-    overflow-x: visible;
-}
-
-.row{
-    margin: 0 0;
-    padding: 1rem 0;
-    border-bottom: 2px solid rgba(136, 136, 136, 0.65);
 }
 
 .info p{
@@ -103,4 +70,8 @@
 
 .info p:last-child{
     margin-bottom: 0;
+}
+
+.no-update{
+    margin: 16px 0;
 }

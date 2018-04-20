@@ -43,3 +43,7 @@
 .date{
     font-size: 20px;
 }
+
+.bg-modal{
+    background: rgba(255, 255, 255, 0.952);
+}

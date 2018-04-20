@@ -1,8 +1,12 @@
-<ngb-carousel>
-  <ng-template ngbSlide *ngFor="let article of (news$ | async)?.articles">
-    <img src="{{article.urlToImage}}" class="filter">
-    <div class="carousel-caption d-flex">
-      <p class="title mx-auto">{{article.title}} - <a href="{{article.url}}" target="_blank">FULL ARTICLE</a></p>
-    </div>
-  </ng-template>
-</ngb-carousel>
+<div class="frame">
+  <ngb-carousel>
+    <ng-template ngbSlide *ngFor="let article of (news$ | async)?.articles">
+      <img src="{{article.urlToImage}}" class="filter">
+      <div class="carousel-caption d-flex">
+        <p class="title mx-auto">{{article.title}} -
+          <a href="{{article.url}}" target="_blank">FULL ARTICLE</a>
+        </p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
