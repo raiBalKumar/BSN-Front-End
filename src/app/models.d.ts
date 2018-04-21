@@ -109,6 +109,7 @@ declare module Models {
         runnerup_prize: string;
         entry_fee: number;
         tournament_name: string;
+        tournament_logo: string;
         date: Date;
         location: string;
         t_team_id: number;

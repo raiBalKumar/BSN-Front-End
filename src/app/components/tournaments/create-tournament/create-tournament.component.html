@@ -1,116 +1,131 @@
-<div class="container">
-  <form [formGroup]="createTournamentForm" (ngSubmit)="createTournament()">
+<div class="d-flex cover">
+  <div class="container bg my-auto">
+    <form [formGroup]="createTournamentForm" (ngSubmit)="createTournament()">
 
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>Name of tournament</label>
-          <input type="text" class="form-control" name="tournament_name" formControlName="tournament_name" [ngClass]="{'is-invalid': createTournamentForm.controls['tournament_name'].dirty && createTournamentForm.controls['tournament_name'].errors}">
-          <div *ngIf="createTournamentForm.controls['tournament_name'].dirty && createTournamentForm.controls['tournament_name'].hasError('required')" class="invalid-feedback">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Name of tournament</label>
+            <input type="text" class="form-control" name="tournament_name" formControlName="tournament_name" [ngClass]="{'is-invalid': createTournamentForm.controls['tournament_name'].dirty && createTournamentForm.controls['tournament_name'].errors}">
+            <div *ngIf="createTournamentForm.controls['tournament_name'].dirty && createTournamentForm.controls['tournament_name'].hasError('required')"
+              class="invalid-feedback">
               The name of tournament is required
-          </div>
-          <div *ngIf="createTournamentForm.controls['tournament_name'].dirty && createTournamentForm.controls['tournament_name'].hasError('maxlength')" class="invalid-feedback">
+            </div>
+            <div *ngIf="createTournamentForm.controls['tournament_name'].dirty && createTournamentForm.controls['tournament_name'].hasError('maxlength')"
+              class="invalid-feedback">
               The maxlength can be greater than 40
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-6">   
-        <div class="form-group">
-          <label>Category: </label>
-          <select formControlName="category" class="form-control" [ngClass]="{'is-invalid': createTournamentForm.controls['category'].touched && createTournamentForm.controls['category'].errors}">
-            <option *ngFor="let category of categories" [ngValue]="category">
-              {{ category }}
-            </option>
-          </select>
-          <div *ngIf="createTournamentForm.controls['category'].touched && createTournamentForm.controls['category'].hasError('required')" class="invalid-feedback">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Category: </label>
+            <select formControlName="category" class="form-control" [ngClass]="{'is-invalid': createTournamentForm.controls['category'].touched && createTournamentForm.controls['category'].errors}">
+              <option *ngFor="let category of categories" [ngValue]="category">
+                {{ category }}
+              </option>
+            </select>
+            <div *ngIf="createTournamentForm.controls['category'].touched && createTournamentForm.controls['category'].hasError('required')"
+              class="invalid-feedback">
               The category field is required
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>Number of team</label>
-          <input type="number" min='0' max='30' class="form-control" name="number_of_teams" formControlName="number_of_teams" [ngClass]="{'is-invalid': createTournamentForm.controls['number_of_teams'].dirty && createTournamentForm.controls['number_of_teams'].errors}">
-          <div *ngIf="createTournamentForm.controls['number_of_teams'].dirty && createTournamentForm.controls['number_of_teams'].hasError('required')" class="invalid-feedback">
-              The number of teams is required
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">   
-        <div class="form-group">
-          <label>Players on field: </label>
-          <select formControlName="game_size" class="form-control" [ngClass]="{'is-invalid': createTournamentForm.controls['game_size'].touched && createTournamentForm.controls['game_size'].errors}">
-            <option *ngFor="let game_size of game_sizes" [ngValue]="game_size">
-              {{ game_size }}
-            </option>
-          </select>
-          <div *ngIf="createTournamentForm.controls['game_size'].touched && createTournamentForm.controls['game_size'].hasError('required')" class="invalid-feedback">
-              The players on field is required
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>Winner prize</label>
-          <input type="text" class="form-control" name="winner_prize" formControlName="winner_prize" [ngClass]="{'is-invalid': createTournamentForm.controls['winner_prize'].dirty && createTournamentForm.controls['winner_prize'].errors}">
-          <div *ngIf="createTournamentForm.controls['winner_prize'].dirty && createTournamentForm.controls['winner_prize'].hasError('required')" class="invalid-feedback">
-              The winner prize field is required
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>Runner up prize</label>
-          <input type="text" class="form-control" name="runnerup_prize" formControlName="runnerup_prize" [ngClass]="{'is-invalid': createTournamentForm.controls['runnerup_prize'].dirty && createTournamentForm.controls['runnerup_prize'].errors}">
-          <div *ngIf="createTournamentForm.controls['runnerup_prize'].dirty && createTournamentForm.controls['runnerup_prize'].hasError('required')" class="invalid-feedback">
-              The runner field is required
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>Entry fee</label>
-          <div class="input-group">
-            <input type="number" min='0' max='50000' class="form-control" name="entry_fee" formControlName="entry_fee" [ngClass]="{'is-invalid': createTournamentForm.controls['entry_fee'].dirty && createTournamentForm.controls['entry_fee'].errors}">
-            <div *ngIf="createTournamentForm.controls['entry_fee'].dirty && createTournamentForm.controls['entry_fee'].hasError('required')" class="invalid-feedback">
-                The entry fee field is required
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>Date</label>
-          <input type="date" class="form-control" name="date" formControlName="date" [ngClass]="{'is-invalid': createTournamentForm.controls['date'].touched && createTournamentForm.controls['date'].errors}">
-          <div *ngIf="createTournamentForm.controls['date'].touched && createTournamentForm.controls['date'].hasError('required')" class="invalid-feedback">
-              The date field is required
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Number of team</label>
+            <input type="number" min='0' max='30' class="form-control" name="number_of_teams" formControlName="number_of_teams" [ngClass]="{'is-invalid': createTournamentForm.controls['number_of_teams'].dirty && createTournamentForm.controls['number_of_teams'].errors}">
+            <div *ngIf="createTournamentForm.controls['number_of_teams'].dirty && createTournamentForm.controls['number_of_teams'].hasError('required')"
+              class="invalid-feedback">
+              The number of teams is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Players on field: </label>
+            <select formControlName="game_size" class="form-control" [ngClass]="{'is-invalid': createTournamentForm.controls['game_size'].touched && createTournamentForm.controls['game_size'].errors}">
+              <option *ngFor="let game_size of game_sizes" [ngValue]="game_size">
+                {{ game_size }}
+              </option>
+            </select>
+            <div *ngIf="createTournamentForm.controls['game_size'].touched && createTournamentForm.controls['game_size'].hasError('required')"
+              class="invalid-feedback">
+              The players on field is required
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label>Location: </label>
-      <select formControlName="location" class="form-control" [ngClass]="{'is-invalid': createTournamentForm.controls['location'].touched && createTournamentForm.controls['location'].errors}">
-        <option *ngFor="let location of locations" [ngValue]="location">
-          {{ location }}
-        </option>
-      </select>
-      <div *ngIf="createTournamentForm.controls['location'].touched && createTournamentForm.controls['location'].hasError('required')" class="invalid-feedback">
-          The location field is required
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Winner prize</label>
+            <input type="text" class="form-control" name="winner_prize" formControlName="winner_prize" [ngClass]="{'is-invalid': createTournamentForm.controls['winner_prize'].dirty && createTournamentForm.controls['winner_prize'].errors}">
+            <div *ngIf="createTournamentForm.controls['winner_prize'].dirty && createTournamentForm.controls['winner_prize'].hasError('required')"
+              class="invalid-feedback">
+              The winner prize field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Runner up prize</label>
+            <input type="text" class="form-control" name="runnerup_prize" formControlName="runnerup_prize" [ngClass]="{'is-invalid': createTournamentForm.controls['runnerup_prize'].dirty && createTournamentForm.controls['runnerup_prize'].errors}">
+            <div *ngIf="createTournamentForm.controls['runnerup_prize'].dirty && createTournamentForm.controls['runnerup_prize'].hasError('required')"
+              class="invalid-feedback">
+              The runner field is required
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <a href="" class="btn btn-default" [routerLink]="['/tournaments/all']" [routerLinkActive]="['active']">Back</a>         
-    <input type='submit' value="Submit" class="btn btn-primary" [disabled]='createTournamentForm.invalid'>
-  </form>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Entry fee</label>
+            <div class="input-group">
+              <input type="number" min='0' max='50000' class="form-control" name="entry_fee" formControlName="entry_fee" [ngClass]="{'is-invalid': createTournamentForm.controls['entry_fee'].dirty && createTournamentForm.controls['entry_fee'].errors}">
+              <div *ngIf="createTournamentForm.controls['entry_fee'].dirty && createTournamentForm.controls['entry_fee'].hasError('required')"
+                class="invalid-feedback">
+                The entry fee field is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" class="form-control" name="date" formControlName="date" [ngClass]="{'is-invalid': createTournamentForm.controls['date'].touched && createTournamentForm.controls['date'].errors}">
+            <div *ngIf="createTournamentForm.controls['date'].touched && createTournamentForm.controls['date'].hasError('required')"
+              class="invalid-feedback">
+              The date field is required
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Location: </label>
+        <select formControlName="location" class="form-control" [ngClass]="{'is-invalid': createTournamentForm.controls['location'].touched && createTournamentForm.controls['location'].errors}">
+          <option *ngFor="let location of locations" [ngValue]="location">
+            {{ location }}
+          </option>
+        </select>
+        <div *ngIf="createTournamentForm.controls['location'].touched && createTournamentForm.controls['location'].hasError('required')"
+          class="invalid-feedback">
+          The location field is required
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between margin-top">
+        <a href="" class="btn btn-back" [routerLink]="['/tournaments/all']" [routerLinkActive]="['active']">Back</a>
+        <input type='submit' value="Submit" class="btn btn-submit" [disabled]='createTournamentForm.invalid'>
+      </div>
+
+    </form>
+  </div>
 </div>

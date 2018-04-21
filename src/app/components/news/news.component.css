@@ -31,6 +31,15 @@
     display: none;
 }
 
+:host /deep/ .carousel-control-prev, 
+:host /deep/ .carousel-control-next{
+    min-height: 340px;
+}
+
 :focus {
     outline: none;
+}
+
+.test{
+    height: 400px;
 }
