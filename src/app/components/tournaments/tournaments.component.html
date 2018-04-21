@@ -203,13 +203,13 @@
             </div>
 
             <div *ngIf="userStatus.status === 'manager' && userStatus.team_id != null" class="mt-2 text-center">
-              <div *ngIf="list.request_team_id === userStatus.team_id">
+              <div *ngIf="list.condition === 'R'">
                 <div class="btn btn-danger">Requesting</div>
               </div>
-              <div *ngIf="list.t_team_id === userStatus.team_id">
+              <div *ngIf="list.condition === 'I'">
                 <div class="btn btn-primary">In progress</div>
               </div>
-              <div *ngIf="list.request_team_id !== userStatus.team_id && list.t_team_id !== userStatus.team_id">
+              <div *ngIf="list.condition === 'J'">
                 <div class="btn btn-success" (click)="joinTournament(list.id)">Join</div>
               </div>
             </div>
