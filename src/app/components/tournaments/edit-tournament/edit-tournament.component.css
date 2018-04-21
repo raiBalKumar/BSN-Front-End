@@ -1,0 +1,34 @@
+.bg{
+    background-color: rgba(49, 49, 49, 0.705);
+    box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.603), -2px -2px 16px rgba(0, 0, 0, 0.603);
+    color: #fff;
+    padding: 1.5em;
+}
+
+.cover{
+    height: 100%;
+    width: 100vw;
+}
+
+.btn-update{
+    background-color: rgb(46, 149, 233);
+}
+
+.btn-back{
+    background-color: rgb(102, 192, 125);
+}
+
+.btn.disabled, 
+.btn:disabled{
+    opacity: 1;
+    cursor: no-drop;
+}
+
+.btn:focus, .btn.focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.margin-top{
+    margin-top: 1.5em;
+}

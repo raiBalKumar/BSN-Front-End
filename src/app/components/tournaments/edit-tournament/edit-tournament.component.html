@@ -1,4 +1,5 @@
-<div class="container">
+<div class="d-flex cover">
+  <div class="container bg my-auto">
     <form [formGroup]="editTournamentForm" (ngSubmit)="onUpdate()">
 
       <div class="row">
@@ -6,11 +7,13 @@
           <div class="form-group">
             <label>Name of tournament</label>
             <input type="text" class="form-control" name="tournament_name" formControlName="tournament_name" [ngClass]="{'is-invalid': editTournamentForm.controls['tournament_name'].dirty && editTournamentForm.controls['tournament_name'].errors}">
-            <div *ngIf="editTournamentForm.controls['tournament_name'].dirty && editTournamentForm.controls['tournament_name'].hasError('required')" class="invalid-feedback">
+            <div *ngIf="editTournamentForm.controls['tournament_name'].dirty && editTournamentForm.controls['tournament_name'].hasError('required')"
+              class="invalid-feedback">
               The name of tournament is required
             </div>
-            <div *ngIf="editTournamentForm.controls['tournament_name'].dirty && editTournamentForm.controls['tournament_name'].hasError('maxlength')" class="invalid-feedback">
-                The maxlength can be greater than 40
+            <div *ngIf="editTournamentForm.controls['tournament_name'].dirty && editTournamentForm.controls['tournament_name'].hasError('maxlength')"
+              class="invalid-feedback">
+              The maxlength can be greater than 40
             </div>
           </div>
         </div>
@@ -22,8 +25,9 @@
                 {{ category }}
               </option>
             </select>
-            <div *ngIf="editTournamentForm.controls['category'].touched && editTournamentForm.controls['category'].hasError('required')" class="invalid-feedback">
-                The category field is required
+            <div *ngIf="editTournamentForm.controls['category'].touched && editTournamentForm.controls['category'].hasError('required')"
+              class="invalid-feedback">
+              The category field is required
             </div>
           </div>
         </div>
@@ -34,8 +38,9 @@
           <div class="form-group">
             <label>Number of team</label>
             <input type="number" min='0' max='30' class="form-control" name="number_of_teams" formControlName="number_of_teams" [ngClass]="{'is-invalid': editTournamentForm.controls['number_of_teams'].dirty && editTournamentForm.controls['number_of_teams'].errors}">
-            <div *ngIf="editTournamentForm.controls['number_of_teams'].dirty && editTournamentForm.controls['number_of_teams'].hasError('required')" class="invalid-feedback">
-                The number of teams is required
+            <div *ngIf="editTournamentForm.controls['number_of_teams'].dirty && editTournamentForm.controls['number_of_teams'].hasError('required')"
+              class="invalid-feedback">
+              The number of teams is required
             </div>
           </div>
         </div>
@@ -47,8 +52,9 @@
                 {{ game_size }}
               </option>
             </select>
-            <div *ngIf="editTournamentForm.controls['game_size'].touched && editTournamentForm.controls['game_size'].hasError('required')" class="invalid-feedback">
-                The players on field is required
+            <div *ngIf="editTournamentForm.controls['game_size'].touched && editTournamentForm.controls['game_size'].hasError('required')"
+              class="invalid-feedback">
+              The players on field is required
             </div>
           </div>
         </div>
@@ -59,8 +65,9 @@
           <div class="form-group">
             <label>Winner prize</label>
             <input type="text" class="form-control" name="winner_prize" formControlName="winner_prize" [ngClass]="{'is-invalid': editTournamentForm.controls['winner_prize'].dirty && editTournamentForm.controls['winner_prize'].errors}">
-            <div *ngIf="editTournamentForm.controls['winner_prize'].dirty && editTournamentForm.controls['winner_prize'].hasError('required')" class="invalid-feedback">
-                The winner prize field is required
+            <div *ngIf="editTournamentForm.controls['winner_prize'].dirty && editTournamentForm.controls['winner_prize'].hasError('required')"
+              class="invalid-feedback">
+              The winner prize field is required
             </div>
           </div>
         </div>
@@ -68,8 +75,9 @@
           <div class="form-group">
             <label>Runner up prize</label>
             <input type="text" class="form-control" name="runnerup_prize" formControlName="runnerup_prize" [ngClass]="{'is-invalid': editTournamentForm.controls['runnerup_prize'].dirty && editTournamentForm.controls['runnerup_prize'].errors}">
-            <div *ngIf="editTournamentForm.controls['runnerup_prize'].dirty && editTournamentForm.controls['runnerup_prize'].hasError('required')" class="invalid-feedback">
-                The runner field is required
+            <div *ngIf="editTournamentForm.controls['runnerup_prize'].dirty && editTournamentForm.controls['runnerup_prize'].hasError('required')"
+              class="invalid-feedback">
+              The runner field is required
             </div>
           </div>
         </div>
@@ -81,8 +89,9 @@
             <label>Entry fee</label>
             <div class="input-group">
               <input type="number" min='0' max='50000' class="form-control" name="entry_fee" formControlName="entry_fee" [ngClass]="{'is-invalid': editTournamentForm.controls['entry_fee'].dirty && editTournamentForm.controls['entry_fee'].errors}">
-              <div *ngIf="editTournamentForm.controls['entry_fee'].dirty && editTournamentForm.controls['entry_fee'].hasError('required')" class="invalid-feedback">
-                  The entry fee field is required
+              <div *ngIf="editTournamentForm.controls['entry_fee'].dirty && editTournamentForm.controls['entry_fee'].hasError('required')"
+                class="invalid-feedback">
+                The entry fee field is required
               </div>
             </div>
           </div>
@@ -92,7 +101,7 @@
             <label>Date</label>
             <input type="date" class="form-control" name="date" formControlName="date" [ngClass]="{'is-invalid': editTournamentForm.controls['date'].touched && editTournamentForm.controls['date'].errors}">
             <div *ngIf="editTournamentForm.controls['date'].touched && editTournamentForm.controls['date'].hasError('required')" class="invalid-feedback">
-                The date field is required
+              The date field is required
             </div>
           </div>
         </div>
@@ -105,16 +114,17 @@
             {{ location }}
           </option>
         </select>
-        <div *ngIf="editTournamentForm.controls['location'].touched && editTournamentForm.controls['location'].hasError('required')" class="invalid-feedback">
-            The location field is required
+        <div *ngIf="editTournamentForm.controls['location'].touched && editTournamentForm.controls['location'].hasError('required')"
+          class="invalid-feedback">
+          The location field is required
         </div>
       </div>
 
-      <div class="d-flex">
-          <button type="button" class="btn btn-success mr-auto" [routerLink]="['/tournaments/all']" [routerLinkActive]="['active']">Back</button>         
-          <input (click)="onUpdate()" value="Update" class="btn btn-primary ml-auto" [disabled]='editTournamentForm.invalid'>
+      <div class="d-flex justify-content-between margin-top">
+        <button type="button" class="btn btn-back mr-auto" [routerLink]="['/tournaments/all']" [routerLinkActive]="['active']">Back</button>
+        <input (click)="onUpdate()" value="Update" class="btn btn-update" [disabled]='editTournamentForm.invalid'>
       </div>
-      
+
     </form>
   </div>
-  
+</div>
