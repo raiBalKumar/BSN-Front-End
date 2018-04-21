@@ -54,7 +54,8 @@ export class UserService {
               reportProgress: true,
               observe: 'events',
               headers: {
-                'Content-Type': pic.type
+                'Content-Type': pic.type,
+                'Access-Control-Request-Method': '*'
               } 
              });
              
@@ -62,7 +63,7 @@ export class UserService {
   updateProfilePic(data){
     let options = this.createHeaders();
 
-    let img = 'https://s3.ap-northeast-2.amazonaws.com/building-sports-network/' + data['key'];
+    let img = 'https://s3.ap-southeast-2.amazonaws.com/soccer-tournament-image/' + data['key'];
               
     return this.http.put(`${environment.apiServer}/api/users/uploadPic`,{img} ,options).toPromise();
           
