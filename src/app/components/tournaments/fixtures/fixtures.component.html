@@ -2,45 +2,38 @@
   <div class="title">
     <p>Fixtures</p>
   </div>
-  <div class="fixtures">
+  <div *ngIf="(fixtures$ | async).length else noFixture" class="fixtures">
     <div *ngFor="let fixture of fixtures$ | async" class="row">
-      <div class="col-lg-4">
-        <div class="logo-wrapper">
-          <div *ngIf="fixture.home_logo else defaultText">
-            <img src="{{fixture.home_logo}}">
-          </div>
-          <ng-template #defaultText>
-            <div class="default-text d-flex">
-              <p class="mx-auto my-auto">TEAM LOGO</p>
-            </div>
-          </ng-template>
-          <div class="teamname home">
-            <p class="mx-auto my-auto">{{fixture.home_teamname}}</p>
-          </div>
+      <div class="col-12 d-flex justify-content-between">
+
+        <div class="logo-wrapper d-flex flex-column align-items-center">
+          <img *ngIf="fixture.home_logo else defaultText" src="{{fixture.home_logo}}">
+          <p class="text-center">{{fixture.away_teamname}}</p>
         </div>
-      </div>
-      <div class="col-lg-4 d-flex">
-        <div class="my-auto mx-auto info">
+
+        <div class="info">
           <p>{{fixture.date | date : 'mediumDate'}}</p>
           <p>{{fixture.date | date : 'hh:mm a'}}</p>
-          <p>{{fixture.park_name}}, {{fixture.street}}, {{fixture.district}}</p>
+          <p>{{fixture.park_name}}</p>
         </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="logo-wrapper">
-          <div *ngIf="fixture.away_logo else defaultText">
-            <img src="{{fixture.away_logo}}">
-          </div>
-          <ng-template #defaultText>
-            <div class="default-text d-flex">
-              <p class="mx-auto my-auto">TEAM LOGO</p>
-            </div>
-          </ng-template>
-          <div class="teamname away">
-            <p class="mx-auto my-auto">{{fixture.away_teamname}}</p>
-          </div>
+
+        <div class="logo-wrapper d-flex flex-column align-items-center">
+          <img *ngIf="fixture.away_logo else defaultText" src="{{fixture.away_logo}}">
+          <p class="text-center">{{fixture.away_teamname}}</p>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #noFixture>
+  <div class="col-12">
+    <p class="text-center no-update">No update from organizer</p>
+  </div>
+</ng-template>
+
+<ng-template #defaultText>
+  <div class="default-text d-flex flex-column align-items-center">
+    <p class="text-center mx-auto my-auto">TEAM LOGO</p>
+  </div>
+</ng-template>

@@ -38,11 +38,13 @@
   </div>
 
   <ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header bg-color d-flex align-items-center">
-      <h4 class="modal-title">Create New Account</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
+    <div class="bg-white">
+      <div class="modal-header bg-color d-flex align-items-center">
+        <h4 class="modal-title">Create New Account</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     </div>
 
     <app-register (submit_register)="onSubmitRegister($event)"></app-register>

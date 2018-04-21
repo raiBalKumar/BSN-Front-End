@@ -1,53 +1,3 @@
-.logo-wrapper{
-    position: relative;
-    width: 100%;
-    padding-bottom: 68.75%;
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 4px 4px 10px #888888;
-}
-
-.logo-wrapper img,
-.logo-wrapper .default-text{
-    object-fit: cover;
-    display: block;
-    width: 100%;
-    height: 81.81%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    border-bottom: 1px solid #fff;
-}
-
-.logo-wrapper .default-text{
-    background-color:rgba(170, 187, 204, 0.384);
-}
-
-.logo-wrapper .teamname{
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 18.19%;
-    bottom: 0;
-    border-bottom-left-radius: 16px;
-    border-bottom-right-radius: 16px;
-    display: flex;
-}
-
-.home{
-    background: rgba(255, 0, 0, 0.87);
-    color: #fff;
-}
-
-.away{
-    background: rgba(13, 141, 1, 0.678);
-    color: #fff;
-}
-
 .btn-info{
     font-size: 12px;
     color: #fff;
@@ -70,6 +20,7 @@
 .upcoming h5{
     text-decoration: underline;
     color: blue;
+    font-size: 16px;
 }
 
 .empty{
@@ -77,6 +28,24 @@
 }
 
 .empty p{
-    font-size: 32px;
-    color: red;
+    font-size: 16px;
+}
+
+.match{
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.match img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+p.teamname{
+    margin-top: 8px;
+}
+
+.margin-zero{
+    margin: 0;
 }
