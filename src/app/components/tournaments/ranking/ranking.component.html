@@ -20,7 +20,7 @@
         </tr>
 
         <tr *ngFor="let team of ranking$ | async; let i = index" class="{{i%2 == 0 ? 'even' : 'odd'}}">
-          <td colspan="1">{{i}}</td>
+          <td>{{i}}</td>
           <td><img src="{{team.logo}}"> &nbsp; {{team.teamname}}</td>
           <td>{{team.games}}</td>
           <td>{{team.win}}</td>

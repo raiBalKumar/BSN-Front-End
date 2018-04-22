@@ -1,18 +1,18 @@
 <!-- if user is organizer -->
-<div *ngIf="userStatus.status === 'organizer'" class="container width-70">
+<div *ngIf="userStatus.status === 'organizer'" class="container width-resize">
   <div class="row">
     <ng-container *ngFor="let list of listAllTournaments | async">
-      <div class="col-lg-6" *ngIf="userStatus.user_id === list.organizer_id">
+      <div class="col-md-6" *ngIf="userStatus.user_id === list.organizer_id">
         <div class="block">
           <div class="row">
-            <div class="col-lg-12 text-center">
+            <div class="col-md-12 text-center">
               <div class="title">
                 {{list.tournament_name}}
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-4 offset-lg-1">
+            <div class="col-md-4 offset-lg-1">
               <div class="flag-wrapper">
                 <div *ngIf="list.tournament_logo else defaultText">
                   <img src="{{list.tournament_logo}}">
@@ -36,7 +36,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-6 info">
+            <div class="col-md-6 info">
               <ul>
                 <li>Start Date - {{ list.date | date: 'dd' }} / {{ list.date | date: 'MM'}} / {{ list.date | date: 'y'}}</li>
                 <li>Location - {{list.location}}</li>
@@ -49,7 +49,7 @@
             </div>
           </div>
           <div class="row margin-zero">
-            <div class="col-lg-12">
+            <div class="col-md-12">
               <div class="action d-flex justify-content-between">
 
                 <div ngbDropdown>
@@ -72,63 +72,22 @@
       </div>
     </ng-container>
   </div>
-
-
-  <!-- <div *ngFor="let list of listAllTournaments | async">
-    <div class="list row" *ngIf="userStatus.user_id === list.organizer_id">
-      <div class="col-lg-3 offset-lg-1 d-flex">
-        <div class="flag-wrapper my-auto">
-          <div class="name-box">
-            <h3 class="name mx-auto my-auto">{{list.tournament_name}}</h3>
-          </div>
-          <div *ngIf="list.tournament_logo else defaultText">
-            <img src="{{list.tournament_logo}}">
-          </div>
-          <ng-template #defaultText>
-            <div class="default-text d-flex">
-              <p class="mx-auto my-auto">TOURNAMENT LOGO</p>
-            </div>
-          </ng-template>
-        </div>
-      </div>
-
-      <div class="col-lg-3 d-flex">
-        <div class="my-auto">
-          <ul class="details">
-            <li>Start Date: {{ list.date | date: 'dd' }} / {{ list.date | date: 'MM'}} / {{ list.date | date: 'y'}}</li>
-            <li>Location - {{list.location}}</li>
-            <li>Number of Teams - {{list.number_of_teams}}</li>
-            <li>Players on field: {{list.game_size}} players</li>
-            <li>Game System: {{list.category}}</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="col-lg-4 d-flex flex-column">
-        <a class="btn btn-edit" [routerLink]="['/tournament/edit', list.tournament_id]" routerLinkActive="active-link">Edit Tournament</a>
-        <div class="btn btn-delete mt-1" (click)="onDelete(list.tournament_id)">Delete Tournament</div>
-        <a class="btn btn-add mt-1" [routerLink]="['/tournament', list.tournament_id, 'fixture']">Edit/Add Fixtures</a>
-        <a class="btn btn-add mt-1" [routerLink]="['/tournament/score', list.tournament_id]">Update Score</a>
-        <a class="btn btn-ranking mt-1" [routerLink]="['/tournament/fixtures-ranking', list.tournament_id]">Ranking</a>
-      </div>
-    </div>
-  </div> -->
 </div>
 
 <!-- if user if player -->
-<div *ngIf="userStatus.status === 'player'" class="container width-70">
+<div *ngIf="userStatus.status === 'player'" class="container width-resize">
   <div class="row">
-    <div class="col-lg-6" *ngFor="let list of listAllTournaments | async">
+    <div class="col-md-6" *ngFor="let list of listAllTournaments | async">
       <div class="block">
         <div class="row">
-          <div class="col-lg-12 text-center">
+          <div class="col-md-12 text-center">
             <div class="title">
               {{list.tournament_name}}
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-4 offset-lg-1">
+          <div class="col-md-4 offset-lg-1">
             <div class="flag-wrapper">
               <div *ngIf="list.tournament_logo else defaultText">
                 <img src="{{list.tournament_logo}}">
@@ -152,7 +111,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-6 info">
+          <div class="col-md-6 info">
             <ul>
               <li>Organizer - {{list.firstname}} {{list.lastname}}</li>
               <li>Start Date - {{ list.date | date: 'dd' }} / {{ list.date | date: 'MM'}} / {{ list.date | date: 'y'}}</li>
@@ -166,7 +125,7 @@
           </div>
         </div>
         <div class="row margin-zero">
-          <div class="col-lg-12">
+          <div class="col-md-12">
             <div class="match">
               <app-match [tournamentId]="list.tournament_id"></app-match>
             </div>
@@ -178,19 +137,19 @@
 </div>
 
 <!-- if user is manager -->
-<div *ngIf="userStatus.status === 'manager'" class="container width-70">
+<div *ngIf="userStatus.status === 'manager'" class="container width-resize">
   <div class="row">
-    <div id="manager" class="col-lg-6" *ngFor="let list of listAllTournamentsForManager | async">
+    <div id="manager" class="col-md-6" *ngFor="let list of listAllTournamentsForManager | async">
       <div class="block">
         <div class="row">
-          <div class="col-lg-12 text-center">
+          <div class="col-md-12 text-center">
             <div class="title">
               {{list.tournament_name}}
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-4 offset-lg-1">
+          <div class="col-md-4 offset-lg-1">
             <div class="flag-wrapper">
               <div *ngIf="list.tournament_logo else defaultText">
                 <img src="{{list.tournament_logo}}">
@@ -214,7 +173,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-6 info">
+          <div class="col-md-6 info">
             <ul>
               <li>Organizer - {{list.firstname}} {{list.lastname}}</li>
               <li>Start Date - {{ list.date | date: 'dd' }} / {{ list.date | date: 'MM'}} / {{ list.date | date: 'y'}}</li>
@@ -228,7 +187,7 @@
           </div>
         </div>
         <div class="row margin-zero">
-          <div class="col-lg-12">
+          <div class="col-md-12">
             <div class="match">
               <app-match [tournamentId]="list.id"></app-match>
             </div>

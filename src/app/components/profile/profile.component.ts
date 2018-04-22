@@ -155,6 +155,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if (this.file) {
       this.userService.getPresignedUrl(this.file)
         .then((data) => {
+          console.log(data);
           this.userService.uploadToS3(data, this.file)
             .subscribe((event) => {
               if (event['type'] === HttpEventType.UploadProgress) {

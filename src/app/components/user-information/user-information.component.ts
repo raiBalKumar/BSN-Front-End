@@ -15,7 +15,6 @@ export class UserInformationComponent implements OnInit {
 
   // set value to select option
   private locations = ["Hong Kong", "Kowloon", "New Territories"];  
-  private status = ['Player', 'Manager', 'Organizer'];
 
   constructor(private _formBuilder: FormBuilder,
               private tournamentService: TournamentService,
@@ -25,18 +24,13 @@ export class UserInformationComponent implements OnInit {
   ngOnInit() {
     this.userId = this.authService.userId;
     this.userInformation = this._formBuilder.group({
-      firstname: [null, [Validators.required]],
-      lastname: [null, [Validators.required]],
-      location: [null, [Validators.required]],
       status: [null, [Validators.required]]
     })
-
-    
   }
 
   updateUserInfo() {
     if (this.userInformation.valid) {
-      this.userService.editUserInfo(this.userId, this.userInformation.value);
+      this.userService.editUserInfo(this.userInformation.value);
     }
   }
 }

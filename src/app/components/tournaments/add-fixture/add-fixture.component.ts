@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder,Validators } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TournamentService } from '../../../services/tournament.service';
 
 @Component({
-  selector: 'app-add-fixture',
+  selector: '[app-add-fixture]',
   templateUrl: './add-fixture.component.html',
   styleUrls: ['./add-fixture.component.css']
 })
@@ -13,11 +13,12 @@ export class AddFixtureComponent implements OnInit {
   id: Params;
   teams: string;
   venues: string;
-;
+  @Input() test;
+
   constructor(private _formBuilder: FormBuilder,
-              private router: Router,
-              private route: ActivatedRoute,
-              private tournamentService: TournamentService) { }
+    private router: Router,
+    private route: ActivatedRoute,
+    private tournamentService: TournamentService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
@@ -27,7 +28,7 @@ export class AddFixtureComponent implements OnInit {
           this.teams = data.teams;
           this.venues = data.venues;
         })
-      })
+    })
 
     this.addFixtureForm = this._formBuilder.group({
       home_team: [null, Validators.required],
@@ -38,10 +39,12 @@ export class AddFixtureComponent implements OnInit {
   }
 
   createFixture() {
-    if (this.addFixtureForm.valid) {
+    if (this.addFixtureForm.invalid) {
+      return;
+    } else if (this.addFixtureForm.valid) {
       this.tournamentService.createFixture(this.id, this.addFixtureForm.value);
     } else {
-      this.router.navigate(['/tournaments'])
+      this.router.navigate(['/tournaments/all'])
     }
   }
 }

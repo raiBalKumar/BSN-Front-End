@@ -1,0 +1,27 @@
+.bg{
+    background-color: rgba(49, 49, 49, 0.705);
+    box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.603), -2px -2px 16px rgba(0, 0, 0, 0.603);
+    color: #fff;
+    padding: 1.5em;
+}
+
+.cover{
+    height: 100%;
+    width: 100vw;
+}
+
+.btn.disabled, 
+.btn:disabled{
+    opacity: 1;
+    cursor: no-drop;
+}
+
+.width-resize{
+    width: 60%;
+}
+
+@media (max-width: 767px){
+    .width-resize{
+        width: 85%;
+    }
+}

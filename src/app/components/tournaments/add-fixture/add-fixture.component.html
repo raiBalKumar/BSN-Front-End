@@ -57,3 +57,61 @@
     <input type="submit" value="Submit" class="btn btn-success">
   </form>
 </div>
+
+
+
+<!-- <tr [formGroup]="addFixtureForm">
+  <td>
+    <div class="form-group">
+      <select name="home_team" formControlName="home_team" class="form-control" [ngClass]="{'is-invalid': addFixtureForm.controls['home_team'].touched && addFixtureForm.controls['home_team'].errors}">
+        <option *ngFor="let team of teams" value="{{team.team_id}}">
+          {{ team.teamname }}
+        </option>
+      </select>
+      <div *ngIf="addFixtureForm.controls['home_team'].touched && addFixtureForm.controls['home_team'].hasError('required')" class="invalid-feedback">
+        The Home Team field is required
+      </div>
+    </div>
+  </td>
+
+  <td>
+    <div class="form-group">
+      <select name="away_team" formControlName="away_team" class="form-control" [ngClass]="{'is-invalid': addFixtureForm.controls['away_team'].touched && addFixtureForm.controls['away_team'].errors}">
+        <option *ngFor="let team of teams" value="{{team.team_id}}">
+          {{ team.teamname }}
+        </option>
+      </select>
+      <div *ngIf="addFixtureForm.controls['away_team'].touched && addFixtureForm.controls['away_team'].hasError('required')" class="invalid-feedback">
+        The Away Team field is required
+      </div>
+    </div>
+  </td>
+
+  <td colspan="2">
+    <div class="form-group">
+      <input type="datetime-local" class="form-control" name="date" formControlName="date" [ngClass]="{'is-invalid': addFixtureForm.controls['date'].touched && addFixtureForm.controls['date'].errors}">
+      <div *ngIf="addFixtureForm.controls['date'].touched && addFixtureForm.controls['date'].hasError('required')" class="invalid-feedback">
+        The Venue field is required
+      </div>
+    </div>
+  </td>
+
+  <td>
+    <div class="form-group">
+      <label>Venue: </label>
+      <select name="venue" formControlName="venue" class="form-control" [ngClass]="{'is-invalid': addFixtureForm.controls['venue'].touched && addFixtureForm.controls['venue'].errors}">
+        <option *ngFor="let venue of venues" value="{{venue.venue_id}}">
+          {{ venue.street }}, {{ venue.park_name}}, {{ venue.district }}
+        </option>
+      </select>
+      <div *ngIf="addFixtureForm.controls['venue'].touched && addFixtureForm.controls['venue'].hasError('required')" class="invalid-feedback">
+        The Venue field is required
+      </div>
+    </div>
+  </td>
+
+
+  <td>
+    <input type="submit" value="Submit" class="btn btn-success" (click)="createFixture()" [disabled]='addFixtureForm.invalid'>
+  </td>
+</tr> -->

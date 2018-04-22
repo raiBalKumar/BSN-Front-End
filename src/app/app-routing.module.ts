@@ -19,6 +19,7 @@ import { EditFixtureComponent } from './components/tournaments/edit-fixture/edit
 import { FixturesAndRankingComponent } from './components/tournaments/fixtures-and-ranking/fixtures-and-ranking.component';
 import { UserInformationComponent } from './components/user-information/user-information.component';
 import { AboutComponent } from './components/about/about.component';
+import { RoleGuard } from './services/role-guard.service';
 
 
 
@@ -27,20 +28,21 @@ const routes: Routes = [
     {path: 'about', component: AboutComponent},
     {path: 'login', component: LoginComponent},
     {path: 'auth/facebook/callback',component: FacebookComponent,},
-    {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
-    {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
-    {path: 'clubs', component: ClubsComponent, canActivate:[AuthGuard]},
-    {path: 'tournaments/all', component: TournamentsComponent, canActivate:[AuthGuard]},
+    {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard, RoleGuard]},
+    {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard, RoleGuard]},
+    {path: 'clubs', component: ClubsComponent, canActivate:[AuthGuard, RoleGuard]},
+    {path: 'tournaments/all', component: TournamentsComponent, canActivate:[AuthGuard, RoleGuard]},
     // need to set authentication to restrict only organizer can create tournament
-    {path: 'tournaments/create', component: CreateTournamentComponent, canActivate: [AuthGuard]},
-    {path: 'tournament/edit/:id', component: EditTournamentComponent, canActivate: [AuthGuard]},
-    {path: 'tournament/score/:id', component: UpdateScoreComponent, canActivate: [AuthGuard]},
-    {path: 'tournament/fixtures-ranking/:id', component: FixturesAndRankingComponent, canActivate: [AuthGuard]},
-    {path: 'tournament/:id/fixture', component: ListFixtureComponent, canActivate: [AuthGuard]},
-    {path: 'tournament/:id/addfixture', component: AddFixtureComponent, canActivate: [AuthGuard]},
-    {path: 'tournament/:tournamentId/fixture/:fixtureId/edit', component: EditFixtureComponent, canActivate: [AuthGuard]},
+    {path: 'tournaments/create', component: CreateTournamentComponent, canActivate: [AuthGuard, RoleGuard]},
+    {path: 'tournament/edit/:id', component: EditTournamentComponent, canActivate: [AuthGuard, RoleGuard]},
+    {path: 'tournament/score/:id', component: UpdateScoreComponent, canActivate: [AuthGuard, RoleGuard]},
+    {path: 'tournament/fixtures-ranking/:id', component: FixturesAndRankingComponent, canActivate: [AuthGuard, RoleGuard]},
+    {path: 'tournament/:id/fixture', component: ListFixtureComponent, canActivate: [AuthGuard, RoleGuard]},
+    {path: 'tournament/:id/addfixture', component: AddFixtureComponent, canActivate: [AuthGuard, RoleGuard]},
+    {path: 'tournament/:tournamentId/fixture/:fixtureId/edit', component: EditFixtureComponent, canActivate: [AuthGuard, RoleGuard]},
     // end
-    {path: 'userinformation', component: UserInformationComponent, canActivate: [AuthGuard]}
+    {path: 'role', component: UserInformationComponent, canActivate: [AuthGuard]},
+    {path: '**', component: LandingComponent}
 ]
 
 @NgModule({

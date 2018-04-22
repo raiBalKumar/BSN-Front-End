@@ -52,6 +52,7 @@ import { UserInformationComponent } from './components/user-information/user-inf
 import { NavbarService } from './services/navbar.service';
 import { AboutComponent } from './components/about/about.component';
 import { NewsComponent } from './components/news/news.component';
+import { RoleGuard } from './services/role-guard.service';
 
 
 @NgModule({
@@ -111,7 +112,8 @@ import { NewsComponent } from './components/news/news.component';
     WebsocketService,
     ChatService,
     NewsService,
-    NavbarService
+    NavbarService,
+    RoleGuard
   ],
   bootstrap: [AppComponent]
 })

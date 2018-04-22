@@ -45,7 +45,7 @@
 
 /* new */
 
-.width-70{
+.width-resize{
     width: 70%;
 }
 
@@ -105,4 +105,10 @@
 
 .action{
     padding: 1rem 2rem;
+}
+
+@media (max-width: 991px){
+    .width-resize{
+        width: 100%;
+    }
 }

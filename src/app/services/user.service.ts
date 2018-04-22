@@ -74,13 +74,12 @@ export class UserService {
   }
 
   // edit user information for facebook login
-  editUserInfo(userId: number, userInfo: Models.userInfoForFacebookLogin) {
+  editUserInfo(userInfo: Models.userInfoForFacebookLogin) {
     let options = this.createHeaders();
-    this.http.put(`${environment.apiServer}/api/users/${userId}`, {userInfo}, options).subscribe((res) => {
-      this.authService.status.status = res;
-      // console.log(res);
-      // console.log(this.authService.status.status);
-      this.router.navigate(['/dashboard']);
+    this.http.patch(`${environment.apiServer}/api/users`, userInfo, options).subscribe((res) => {
+      this.authService.storeUserStatus({status: userInfo.status});
+      this.reloadProfile();
+      this.router.navigate(['/profile']);
     })
   }
 }
