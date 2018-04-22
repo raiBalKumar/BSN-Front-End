@@ -10,7 +10,7 @@
     <div class="d-flex">
       <button *ngIf="!authService.isAuthenticated(); else profile" type="button" class="btn-start mx-auto" [routerLink]="['/login']">Get Started</button>
       <ng-template #profile>
-        <button type="button" class="btn-start mx-auto" [routerLink]="['/profile']">Enter</button>
+        <button type="button" class="btn-start mx-auto" [routerLink]="['/dashboard']">Enter</button>
       </ng-template>
     </div>
 

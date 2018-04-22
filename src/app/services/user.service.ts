@@ -80,7 +80,7 @@ export class UserService {
     this.http.patch(`${environment.apiServer}/api/users`, userInfo, options).subscribe((res) => {
       this.authService.storeUserStatus({status: userInfo.status});
       this.reloadProfile();
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/dashboard']);
     })
   }
 }

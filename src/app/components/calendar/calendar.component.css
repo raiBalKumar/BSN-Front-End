@@ -47,3 +47,13 @@
 .bg-modal{
     background: rgba(255, 255, 255, 0.952);
 }
+
+.btn-light,
+.btn-outline-dark{
+    color: #000;
+}
+
+.btn-outline-dark:hover{
+    color: #fff;
+}
+

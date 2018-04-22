@@ -107,6 +107,10 @@
     padding: 1rem 2rem;
 }
 
+.color-black{
+    color: #000;
+}
+
 @media (max-width: 991px){
     .width-resize{
         width: 100%;

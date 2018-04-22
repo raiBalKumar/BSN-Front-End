@@ -40,19 +40,9 @@ export class AuthService {
         this.router.navigate(['/role']);
       } else {
         this.storeUserStatus({status: res.status})
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/dashboard']);
       }
     })
-
-      // .subscribe((res: any)=>{
-      //   this.token = res.token;
-      //   localStorage.setItem('myToken',this.token);
-
-      //   this.router.navigate(['/profile']);
-      // }
-      // ,(err)=>{
-      //     alert("You are not logged in. Dude!");
-      // });
   }
   
   authenticateUser(user): Observable<any>{
