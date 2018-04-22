@@ -1,10 +1,10 @@
-.form-group{
-    font-size: 12px;
-    display: inline-block;
+td img{
+    width:20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-input[type="submit"].btn.btn-block {
-    font-size: 12px;
-    width: 50%;
-    margin: auto;
+.max-width-zero{
+    max-width: 0;
 }

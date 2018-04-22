@@ -1,19 +1,17 @@
-<form [formGroup]="scoreForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label>Home Score: </label>
-    <input type='text' name="home_score" class="form-control width-50" formControlName="home_score" />
-    <div *ngIf="scoreForm.controls['home_score'].dirty && scoreForm.controls['home_score'].hasError('required')">
-      This field is required
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label>Away Score: </label>
-    <input type='text' name="away_score" class="form-control width-50" formControlName="away_score" />
-    <div *ngIf="scoreForm.controls['away_score'].dirty && scoreForm.controls['away_score'].hasError('required')">
-      This field is required
-    </div>
-  </div>
-
-  <input type='submit' value="Update" class="btn btn-warning btn-block text-white" [disabled]="!scoreForm.valid" />
-</form>
+<tr [formGroup]="scoreForm">
+  <td>
+    <img src="{{fixture.home_logo}}"> &nbsp; {{fixture.home_teamname}}</td>
+  <td>
+    <img src="{{fixture.away_logo}}"> &nbsp; {{fixture.away_teamname}}</td>
+  <td>{{fixture.date | date: 'dd'}} / {{fixture.date | date: 'MM'}} / {{fixture.date | date: 'y'}}</td>
+  <td>{{fixture.date | date: 'shortTime'}}</td>
+  <td class="max-width-zero">
+    <input type='text' name="home_score" class="form-control text-center" formControlName="home_score" />
+  </td>
+  <td class="max-width-zero">
+    <input type='text' name="away_score" class="form-control text-center" formControlName="away_score" />
+  </td>
+  <td>
+    <input (click)="onSubmit()" type='submit' value="Update" class="btn btn-warning btn-block text-white" [disabled]="!scoreForm.valid" />
+  </td>
+</tr>

@@ -4,7 +4,7 @@ import { TournamentService } from '../../../services/tournament.service';
 import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-score-form',
+  selector: '[app-score-form]',
   templateUrl: './score-form.component.html',
   styleUrls: ['./score-form.component.css']
 })
@@ -23,6 +23,7 @@ export class ScoreFormComponent implements OnInit {
       home_score: this.fixture.home_score,
       away_score: this.fixture.away_score,
     })
+    console.log(this.fixture);
   }
 
   async onSubmit() {

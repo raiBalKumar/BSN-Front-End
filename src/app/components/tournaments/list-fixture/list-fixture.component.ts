@@ -11,17 +11,26 @@ import { Observable } from 'rxjs/Observable';
 export class ListFixtureComponent implements OnInit {
   tournamentId: Params;
   fixtures: Observable<Models.TournamentFixture[]>;
+  newFixture: boolean = false;
 
   constructor(private route: ActivatedRoute,
               private tournamentService: TournamentService,
               private router: Router) { }
 
   ngOnInit() {
-    this.fixtures = this.tournamentService.fixtures$; // get fixture from tournament service using subject
+    this.fixtures = this.tournamentService.getFixtureAsObservable(); // get fixture from tournament service using subject
     this.route.params.subscribe((params: Params) => {
       this.tournamentId = params['id'];
       this.tournamentService.getFixture(this.tournamentId);
     })
+  }
+
+  enable(){
+    this.newFixture = true;
+  }
+
+  cancel(){
+    this.newFixture = false;
   }
 
 }
