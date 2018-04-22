@@ -41,9 +41,7 @@ export class AddFixtureComponent implements OnInit {
       return;
     } else if (this.addFixtureForm.valid) {
       this.tournamentService.createFixture(this.id, this.addFixtureForm.value);
-
       this.addFixtureForm.reset();
-      this.tournamentService.getFixture(this.id);
     } 
   }
 

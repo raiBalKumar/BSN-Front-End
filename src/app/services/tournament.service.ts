@@ -130,7 +130,7 @@ export class TournamentService {
   }
 
   // add tournament fixture
-  createFixture(id: any, fixtureValue: Models.CreateTournamentFixture) {
+  createFixture(id: number, fixtureValue: Models.CreateTournamentFixture) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = { headers: headers };
     this.http.post(`${environment.apiServer}/api/organizers/tournament/${id}/createfixture`, { fixtureValue }, (options))
@@ -138,7 +138,9 @@ export class TournamentService {
         let successfulMessage = "Successfully created fixture!";
         let errorMessage = "Your fixture have't been created! Please try again!";
         this.notification(res, successfulMessage, errorMessage);
-      })
+      },
+      (err) => {throw new Error()},
+      () => this.getFixture(id))
   }
 
   // update tournament fixture
@@ -157,7 +159,6 @@ export class TournamentService {
 
   notification(res: object, successfulMessage: string, errorMessage: string) {
     if (res["success"] === true) {
-      console.log('abc')
       this.flashMessage.show(successfulMessage, {
         cssClass: 'alert-success',
         timeout: 3000

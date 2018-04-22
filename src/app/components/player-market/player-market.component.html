@@ -1,6 +1,6 @@
 <div class="row mb-3">
-  <div class="col text-center">
-    <a [ngClass]="{'bg-danger': color}" class="market btn btn-lg bg-warning fa" (click)="search($event)">Show players in market</a>
+  <div class="col text-left">
+    <a [ngClass]="{'bg-danger': color}" class="market btn btn-lg bg-warning fa" (click)="search($event)">Search players in market</a>
   </div>
 </div>
 <div class="row">
@@ -8,25 +8,38 @@
 
     <div class="box" *ngFor="let player of (players$ | async)?.invitedPlayers">
       <div class="card player-card p-2">
-        <img class="card-img-top img-fluid img-click image"  src="{{player.image}}"  alt="Player picture">
+        <img class="card-img-top img-fluid img-click image" src="{{player.image}}" alt="Player picture">
         <div class="card-block pt-2">
-          <p><strong>{{player.firstname}} {{player.lastname}}</strong></p>
+          <p>
+            <strong>{{player.firstname}} {{player.lastname}}</strong>
+          </p>
           <hr>
-          <p><small>Position: {{player.position}}</small></p>
-          <p><small>Location: {{player.location}}</small></p>
+          <p>
+            <small>Position: {{player.position}}</small>
+          </p>
+          <p>
+            <small>Location: {{player.location}}</small>
+          </p>
         </div>
-        <a class="btn btn-danger bnt-block text-white" (click)="invitation(player.user_id,$event)">Cancel</a>
+        <a class="btn btn-danger btn-block text-white" (click)="invitation(player.user_id,$event)">Cancel</a>
       </div>
     </div>
 
     <div class="box" *ngFor="let player of (players$ | async)?.players">
       <div class="card player-card p-2">
-        <img class="card-img-top img-fluid img-click image"  src="{{player.image}}"  alt="Player picture">
+        <div class="card-header">
+          <p class="text-center">
+            {{player.firstname}} {{player.lastname}}
+          </p>
+        </div>
+        <img class="card-img-top img-fluid img-click image" src="{{player.image}}" alt="Player picture">
         <div class="card-block pt-2">
-          <p><strong>{{player.firstname}} {{player.lastname}}</strong></p>
-          <hr>
-          <p><small>Position: {{player.position}}</small></p>
-          <p><small>Location: {{player.location}}</small></p>
+          <p>
+            <small>Position: {{player.position}}</small>
+          </p>
+          <p>
+            <small>Location: {{player.location}}</small>
+          </p>
         </div>
         <a class="btn btn-info bnt-block text-white" (click)="invitation(player.user_id,$event)">Invite</a>
       </div>

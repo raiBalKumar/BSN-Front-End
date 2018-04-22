@@ -30,7 +30,6 @@
 
 #enterChat {
     box-shadow: 1px 2px 2px #000;
-    border-radius: 20px;
 }
 .card-header {
     /* height: 40px !important; */
@@ -65,6 +64,12 @@
 }
 .onlinePlayers {
     box-shadow: 1px 2px 2px #000;
+}
+
+h2 {
+    color: #f2f5f5;
+    text-shadow: 1px 1px 2px #585a60;
+    text-shadow: 3px 3px 2px #22252b;
 }
 
 @media(max-width: 1200px) {

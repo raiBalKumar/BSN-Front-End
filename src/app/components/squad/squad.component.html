@@ -14,6 +14,12 @@
               <ng-template #content let-c="close" let-d="dismiss">
                 <div class="modal-body">
                   <div class="card player-card d-flex">
+                    <div class="card-header">
+                      {{player.firstname}} {{player.lastname}}
+                      <button type="button" class="close text-white" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
 
                     <div class="img-wrapper mx-auto">
                       <img class="card-img-top" src="{{player.image}}" alt="">
@@ -21,11 +27,11 @@
 
 
                     <div class="card-body">
-                      <p class="card-text">Name: {{player.firstname}} {{player.lastname}}</p>
-                      <p class="card-text">Position: {{player.position}}</p>
-                      <p class="card-text">Age: {{player.age}}</p>
-                      <p class="card-text">Height: {{player.height}}</p>
-                      <p class="card-text">Weight: {{player.weight}}</p>
+                      <div class="card-text">Position: <div *ngIf="player.position; else na">{{player.position}}</div></div>
+                      <div class="card-text">Age: <div *ngIf="player.age; else na">{{player.age}}</div></div>
+                      <div class="card-text">Height: <div *ngIf="player.height; else na">{{player.height}}</div></div>
+                      <div class="card-text">Weight: <div *ngIf="player.weight; else na">{{player.weight}}</div></div>
+                      <ng-template #na>N/A</ng-template>
                     </div>
                   </div>
                 </div>
