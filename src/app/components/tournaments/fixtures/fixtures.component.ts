@@ -19,8 +19,6 @@ export class FixturesComponent implements OnInit {
         this.tournamentService.reloadTournamentFixtures(+params.get('id'));
         return this.tournamentService.getTournamentFixtures();
       });
-
-    this.fixtures$.subscribe(res => console.log(res))
   }
 
 }

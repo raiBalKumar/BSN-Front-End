@@ -18,15 +18,14 @@ export class WebsocketService {
 
     let observable = new Observable(observer => {
       this.socket.on('online', (online) => {
-        console.log('online',online)
-       const data = {
+        const data = {
           type: 'online',
           data: online
         };
         observer.next(data);
       });
       this.socket.on('initial messages', (data) => {
-        console.log("from websock, ", data)
+        // console.log("from websock, ", data)
         data = {
           type: 'initial messages',
           data: data
@@ -34,7 +33,7 @@ export class WebsocketService {
         observer.next(data);
       });
       this.socket.on('message', (data) => {
-        console.log("incoming msg,", data);
+        // console.log("incoming msg,", data);
         data = {
           type: 'message',
           data: data

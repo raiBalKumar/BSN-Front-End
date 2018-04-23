@@ -46,7 +46,6 @@ export class DashboardService {
   getUserInfo(){
     let httpOptions = this.createHeaders();
       return this.http.get(`${environment.apiServer}/api/users/dashboard`, httpOptions).subscribe(user=>{
-        console.log("service ..getUserInfo..",user)
         this.userSubject.next(user);
       })
                            
@@ -100,11 +99,9 @@ export class DashboardService {
   }
 
   leaveClub(){
-    console.log("service leave");
     let httpOptions = this.createHeaders();
     return this.http.get(`${environment.apiServer}/api/players/leaveTeam`,httpOptions)
               .subscribe(()=>{
-                console.log("left the club");
                 this.getUserInfo();
               })
   }

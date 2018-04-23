@@ -38,7 +38,6 @@ export class DashboardComponent implements OnInit {
   }
 
   leaveClub(){
-    console.log("leave club");
     this.dashboardService.leaveClub();
   }
 }

@@ -18,7 +18,6 @@ export class RequestsComponent implements OnInit {
               private chat: ChatService,
               private authService: AuthService
   ) {
-    console.log("constructor");
     this.userStatus = this.authService.status;
 
   }
@@ -32,7 +31,6 @@ export class RequestsComponent implements OnInit {
 
     this.dashboardService.user$.subscribe(user => {
       this.user = user;
-      console.log("check request");
 
       if (this.user.status) {
         if (this.user.status === "manager") {
@@ -53,10 +51,8 @@ export class RequestsComponent implements OnInit {
   
   // accept request to join the club
   acceptClub(manager_id: number, team_id: number) {
-    console.log('accept club');
     this.dashboardService.acceptClub(manager_id, team_id)
       .subscribe((res) => {
-        console.log("update userinfo");
         this.dashboardService.getUserInfo();
         this.chat.sendEvent('Club');
         this.chat.messages.subscribe((res) => {
@@ -74,7 +70,6 @@ export class RequestsComponent implements OnInit {
         this.chat.sendEvent('Club');
         this.chat.messages.subscribe((res) => {
           if(res['type'] === 'event'){
-            console.log("res on request comp", res)
             this.refresh();
           }      
          })

@@ -45,7 +45,6 @@ export class CalendarComponent implements OnInit {
   }
 
   eventClicked(event): void {
-    console.log(event)
     this.fixture = event.meta;
   }
 

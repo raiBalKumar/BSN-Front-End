@@ -36,7 +36,6 @@ export class PlayerMarketComponent implements OnInit {
   }
   updatePlayersList() {
     this.players$ = this.dashboardService.players$;
-    this.players$.subscribe(player => console.log('player image',player));
     this.dashboardService.getPlayers().subscribe(players => {
       this.dashboardService.runNext(players);
     })
@@ -54,10 +53,8 @@ export class PlayerMarketComponent implements OnInit {
               this.refresh();
             }   
           })
-        console.log(test);
       })
     }else {
-      console.log('player_id,',id);
       event.target.text = "Invite";
       event.target.classList.remove('btn-danger');
       event.target.classList.add('btn-info');
@@ -68,13 +65,8 @@ export class PlayerMarketComponent implements OnInit {
             this.refresh();
           }
         })
-         console.log(test);
        });
     }
-  }
-
-  playerInfo(id:number){
-    console.log(id)
   }
 
   refresh(){

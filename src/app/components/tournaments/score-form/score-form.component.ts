@@ -23,7 +23,6 @@ export class ScoreFormComponent implements OnInit {
       home_score: this.fixture.home_score,
       away_score: this.fixture.away_score,
     })
-    console.log(this.fixture);
   }
 
   async onSubmit() {

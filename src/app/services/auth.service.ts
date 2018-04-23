@@ -56,7 +56,6 @@ export class AuthService {
   storeUserData(token ,status){
     this.storeUserToken(token);
     this.storeUserStatus(status);
-    console.log(status,"status");
   }
 
   storeUserToken(token){

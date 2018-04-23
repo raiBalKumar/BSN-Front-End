@@ -195,7 +195,7 @@ export class TournamentService {
     let options = { headers: headers };
     let data = { fixture: fixture, score: score };
     this.http.post(`${environment.apiServer}/api/organizers/tournament/score`, data, options)
-      .subscribe(res => console.log('post!'))
+      .subscribe(res => res)
   }
 
   reloadRanking(tournamentId: number) {

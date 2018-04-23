@@ -12,7 +12,6 @@ export class ChatService {
     this.messages = <Subject<any>>wsService
       .connect()
       .map((response: any): any => {
-        console.log("from chat service,",response)
         return response;
       })
    }

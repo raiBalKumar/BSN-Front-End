@@ -155,14 +155,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if (this.file) {
       this.userService.getPresignedUrl(this.file)
         .then((data) => {
-          console.log(data);
           this.userService.uploadToS3(data, this.file)
             .subscribe((event) => {
               if (event['type'] === HttpEventType.UploadProgress) {
                this.percentDone = Math.round(100 * event['loaded'] / event['total']);
-                console.log(`File is ${this.percentDone}% uploaded.`);
+                // console.log(`File is ${this.percentDone}% uploaded.`);
               } else if (event instanceof HttpResponse) {
-                console.log('File is completely uploaded!');
+                // console.log('File is completely uploaded!');
                 this.userService.updateProfilePic(data)
                   .then((res) => {
                     this.userService.reloadProfile();
