@@ -9,21 +9,21 @@
 
   <div *ngIf="match else noMatch">
     <div class="row match">
-      <div class="col-lg-4 d-flex flex-column">
+      <div class="col-4 d-flex flex-column">
         <div class="mx-auto">
           <img src={{match.home_logo}}>
         </div>
         <p class="text-center teamname">{{match.home_teamname}}</p>
       </div>
 
-      <div class="col-lg-4 d-flex">
+      <div class="col-4 d-flex">
         <div class="mx-auto d-flex flex-column">
           <p>{{ match.date | date: 'mediumDate' }}</p>
           <p class="mx-auto">VS</p>
         </div>
       </div>
 
-      <div class="col-lg-4 d-flex flex-column">
+      <div class="col-4 d-flex flex-column">
         <div class="mx-auto">
           <img src={{match.away_logo}}>
         </div>
@@ -33,7 +33,7 @@
   </div>
 
   <div class="row margin-zero">
-    <div class="d-flex col-lg-12">
+    <div class="d-flex col-12">
       <button class="btn btn-info mx-auto" [routerLink]="['/tournament/fixtures-ranking', tournamentId]">Full Fixtures & Ranking</button>
     </div>
   </div>

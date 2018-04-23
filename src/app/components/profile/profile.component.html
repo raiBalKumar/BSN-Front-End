@@ -1,15 +1,16 @@
-<div class="container width-70">
+<br>
+<div class="container width-resize">
   <div *ngIf="user$ | async as user">
 
     <div class="row profile part">
       <div class="overlay"></div>
 
-      <div class="col-lg-4 d-flex flex-column">
+      <div class="col-md-4 d-flex flex-column">
         <div>
           <ngb-progressbar *ngIf="percentDone" [value]="percentDone"></ngb-progressbar>
         </div>
 
-        <div class="pic-wrapper ml-auto">
+        <div class="pic-wrapper my-auto">
           <img [src]="localImg" *ngIf="localImg" class="imgPlaceholder">
           <img src="{{user.image}}" alt="" class="realImg">
           <div id="upload_button" class="text-center d-flex">
@@ -22,13 +23,14 @@
             </label>
           </div>
         </div>
+        <br>
 
-        <div class="width-70 ml-auto d-flex">
+        <div class="width-resize ml-auto d-flex">
           <button *ngIf="upload" class="btn btn-edit mx-auto upload" (click)="onUploadFile()">Upload Picture</button>
         </div>
       </div>
 
-      <div class="col-lg-7 text-white">
+      <div class="col-md-7 text-white">
         <div *ngIf="editing; then editingBlock else editedBlock"></div>
 
         <ng-template #editedBlock>
@@ -38,7 +40,7 @@
           </h3>
           <hr>
           <div class="row info edited">
-            <div class="col-6">
+            <div class="col-sm-6">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text">POSITION:</span>
@@ -61,7 +63,7 @@
               </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-sm-6">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text">AGE:</span>
@@ -87,7 +89,7 @@
         <ng-template #editingBlock>
           <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
             <h3 class="row d-flex editing">
-              <div class="col-5 d-flex">
+              <div class="col-sm-5 mb-3 d-flex">
                 <div class="input-group my-auto">
                   <div class="input-group-prepend">
                     <span class="input-group-text">FIRST NAME:</span>
@@ -95,7 +97,7 @@
                   <input type='text' name="firstname" class="form-control" formControlName="firstname" />
                 </div>
               </div>
-              <div class="col-5 d-flex">
+              <div class="col-sm-5 mb-3 d-flex">
                 <div class="input-group my-auto">
                   <div class="input-group-prepend">
                     <span class="input-group-text">LAST NAME:</span>
@@ -104,7 +106,7 @@
                 </div>
               </div>
 
-              <div class="col-2 d-flex">
+              <div class="col-sm-2 mb-3 d-flex">
                 <button class="btn btn-edit ml-auto my-auto" (click)='back()'>Back</button>
               </div>
 
@@ -112,7 +114,7 @@
             <hr>
 
             <div class="row info editing">
-              <div class="col-6">
+              <div class="col-sm-6">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">POSITION:</span>
@@ -139,7 +141,7 @@
                 </div>
               </div>
 
-              <div class="col-6">
+              <div class="col-sm-6">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">AGE:</span>
@@ -177,7 +179,7 @@
           <p class="text-center">World Sport Headlines</p>
           <p class="text-right credit pr-3">@Powered by News API</p>
         </div>
-        <app-news class="carousel-custom"></app-news>
+        <app-news></app-news>
       </div>
     </div>
 
