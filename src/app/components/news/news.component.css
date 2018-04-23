@@ -40,6 +40,9 @@
     outline: none;
 }
 
-.test{
-    height: 400px;
+@media (max-width: 767px){
+    :host /deep/ .carousel-control-prev, 
+    :host /deep/ .carousel-control-next{
+        min-height: 140px;
+    }
 }
