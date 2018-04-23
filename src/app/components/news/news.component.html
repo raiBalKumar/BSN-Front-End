@@ -1,8 +1,5 @@
 
   <ngb-carousel>
-    <div class="test">
-      
-    </div>
     <ng-template ngbSlide *ngFor="let article of (news$ | async)?.articles">
       <img src="{{article.urlToImage}}" class="filter">
       <div class="carousel-caption d-flex">

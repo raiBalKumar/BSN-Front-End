@@ -7,7 +7,7 @@
   <div class="col-md-4 mb-3">
     <a id="enterChat" class="btn btn-danger text-white" (click)="enterChat($event)">
       <i class="fas fa-sign-out-alt"></i> Exit</a>
-    <div *ngIf="showMessage" class="my-3">
+    <div *ngIf="showMessage" class="my-3 online">
       <p class="text-white mb-1">Online players:</p>
       <button *ngFor="let user of (onlineUsers$ | async)" class="m-1 btn btn-primary btn-sm onlinePlayers">
         <i class="fa fa-user"></i> {{user}}
