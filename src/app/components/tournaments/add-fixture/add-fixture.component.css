@@ -3,3 +3,14 @@
     opacity: 1;
     cursor: no-drop;
 }
+
+.max-width-zero{
+   max-width: 0;
+}
+
+.prompt{
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #dc3545;
+}

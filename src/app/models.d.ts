@@ -119,7 +119,7 @@ declare module Models {
     interface TournamentFixtureForEdit {
         venues: string[];
         teams: string[];
-        fixtures: string[];
+        fixtures: CreateTournamentFixture[];
     }
     
     interface News{

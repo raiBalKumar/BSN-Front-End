@@ -29,11 +29,7 @@ export class DashboardComponent implements OnInit {
   }
 
   open(content) {
-    this.ref = this.modalService.open(content);
-    this.ref.result.then((result) => {    
-    }, (reason) => {
-      
-    });
+    this.ref = this.modalService.open(content, { centered: true });
   }
 
   onCreateClub(value:{}){

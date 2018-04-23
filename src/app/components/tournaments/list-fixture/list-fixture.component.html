@@ -7,6 +7,8 @@
   <br>
   <div class="table-responsive frame">
     <table class="table">
+      
+
       <tbody>
         <tr class="header">
           <th>Home team</th>
@@ -15,10 +17,15 @@
           <th>Time</th>
           <th>Venue</th>
           <th class="text-right">
-            <button class="btn btn-primary ml-auto" [routerLink]="['/tournament', tournamentId, 'addfixture']">Add Fixture</button>
+            <button class="btn btn-primary ml-auto" (click)="enable()" *ngIf="!newFixture">Add Fixture</button>
+            <button class="btn btn-primary ml-auto" (click)="cancel()" *ngIf="newFixture">Cancel</button>
           </th>
         </tr>
+      </tbody>
 
+      <tbody *ngIf="newFixture" app-add-fixture [id]="tournamentId"></tbody>
+
+      <tbody>
         <tr *ngFor="let fixture of fixtures | async; let i = index" class="{{i%2 == 0 ? 'even' : 'odd'}}">
           <td>
             <img src="{{fixture.home_logo}}"> &nbsp; {{fixture.home_teamname}}</td>
@@ -35,8 +42,6 @@
           </td>
         </tr>
       </tbody>
-
-      <!-- <tbody app-add-fixture></tbody> -->
 
     </table>
   </div>

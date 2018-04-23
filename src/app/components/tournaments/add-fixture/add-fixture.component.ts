@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TournamentService } from '../../../services/tournament.service';
 
@@ -10,10 +10,9 @@ import { TournamentService } from '../../../services/tournament.service';
 })
 export class AddFixtureComponent implements OnInit {
   addFixtureForm: FormGroup;
-  id: Params;
+  @Input() id: number;
   teams: string;
   venues: string;
-  @Input() test;
 
   constructor(private _formBuilder: FormBuilder,
     private router: Router,
@@ -21,20 +20,19 @@ export class AddFixtureComponent implements OnInit {
     private tournamentService: TournamentService) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.id = params['id'];
-      this.tournamentService.getTeamInfoForAddingFixture(this.id)
-        .subscribe((data: Models.TeamInfoForTournamentFixture) => {
-          this.teams = data.teams;
-          this.venues = data.venues;
-        })
-    })
+    this.tournamentService.getTeamInfoForAddingFixture(this.id)
+      .subscribe((data: Models.TeamInfoForTournamentFixture) => {
+        this.teams = data.teams;
+        this.venues = data.venues;
+      })
 
     this.addFixtureForm = this._formBuilder.group({
       home_team: [null, Validators.required],
       away_team: [null, Validators.required],
       venue: [null, Validators.required],
       date: [null, Validators.required]
+    },{
+      validator: this.matchValidator // your validation method
     })
   }
 
@@ -43,8 +41,11 @@ export class AddFixtureComponent implements OnInit {
       return;
     } else if (this.addFixtureForm.valid) {
       this.tournamentService.createFixture(this.id, this.addFixtureForm.value);
-    } else {
-      this.router.navigate(['/tournaments/all'])
-    }
+      this.addFixtureForm.reset();
+    } 
   }
+
+  matchValidator(control: AbstractControl) {
+    return control.get('home_team').value == control.get('away_team').value && control.get('home_team').value != null && control.get('away_team').value != null ? {'mismatch': true} : null ;
+ }
 }

@@ -1,63 +1,66 @@
-<p>
-  edit-fixture works!
-</p>
-
-<div class="container">
-  <form [formGroup]="editFixtureForm" (ngSubmit)="updateFixture()">
-    <div class="row">
-      <div class="col-md-5 form-group">
-        <label>Home Team: </label>
-        <select name="home_team" formControlName="home_team" class="form-control" [ngClass]="{'is-invalid': editFixtureForm.controls['home_team'].touched && editFixtureForm.controls['home_team'].errors}">
-          <option *ngFor="let team of teams" value="{{team.team_id}}">
-            {{ team.teamname }}
-          </option>
-        </select>
-        <div *ngIf="editFixtureForm.controls['home_team'].touched && editFixtureForm.controls['home_team'].hasError('required')" class="invalid-feedback">
+<div class="d-flex cover">
+  <div class="container bg my-auto">
+    <form [formGroup]="editFixtureForm" (ngSubmit)="updateFixture()">
+      <div class="row">
+        <div class="col-md-5 form-group">
+          <label>Home Team: </label>
+          <select name="home_team" formControlName="home_team" class="form-control" [ngClass]="{'is-invalid': editFixtureForm.controls['home_team'].touched && editFixtureForm.controls['home_team'].errors}">
+            <option *ngFor="let team of teams" value="{{team.team_id}}">
+              {{ team.teamname }}
+            </option>
+          </select>
+          <div *ngIf="editFixtureForm.controls['home_team'].touched && editFixtureForm.controls['home_team'].hasError('required')"
+            class="invalid-feedback">
             The Home Team field is required
+          </div>
         </div>
-      </div>
-      <div class="col-md-2 form-group text-center">
-        <br>        
-        <div>VS</div>
-      </div>
-      <div class="col-md-5 form-group">
-        <label>Away Team: </label>
-        <select name="away_team" formControlName="away_team" class="form-control" [ngClass]="{'is-invalid': editFixtureForm.controls['away_team'].touched && editFixtureForm.controls['away_team'].errors}">
-          <option *ngFor="let team of teams" value="{{team.team_id}}">
-            {{ team.teamname }}
-          </option>
-        </select>
-        <div *ngIf="editFixtureForm.controls['away_team'].touched && editFixtureForm.controls['away_team'].hasError('required')" class="invalid-feedback">
+        <div class="col-md-2 form-group text-center">
+          <br>
+          <div>VS</div>
+        </div>
+        <div class="col-md-5 form-group">
+          <label>Away Team: </label>
+          <select name="away_team" formControlName="away_team" class="form-control" [ngClass]="{'is-invalid': editFixtureForm.controls['away_team'].touched && editFixtureForm.controls['away_team'].errors}">
+            <option *ngFor="let team of teams" value="{{team.team_id}}">
+              {{ team.teamname }}
+            </option>
+          </select>
+          <div *ngIf="editFixtureForm.controls['away_team'].touched && editFixtureForm.controls['away_team'].hasError('required')"
+            class="invalid-feedback">
             The Away Team field is required
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-12 form-group">
-        <label>Venue: </label>
-        <select name="venue" formControlName="venue" class="form-control" [ngClass]="{'is-invalid': editFixtureForm.controls['venue'].touched && editFixtureForm.controls['venue'].errors}">
-          <option *ngFor="let venue of venues" value="{{venue.venue_id}}">
-            {{ venue.street }}, {{ venue.park_name}}, {{ venue.district }}
-          </option>
-        </select>
-        <div *ngIf="editFixtureForm.controls['venue'].touched && editFixtureForm.controls['venue'].hasError('required')" class="invalid-feedback">
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>Venue: </label>
+          <select name="venue" formControlName="venue" class="form-control" [ngClass]="{'is-invalid': editFixtureForm.controls['venue'].touched && editFixtureForm.controls['venue'].errors}">
+            <option *ngFor="let venue of venues" value="{{venue.venue_id}}">
+              {{ venue.street }}, {{ venue.park_name}}, {{ venue.district }}
+            </option>
+          </select>
+          <div *ngIf="editFixtureForm.controls['venue'].touched && editFixtureForm.controls['venue'].hasError('required')" class="invalid-feedback">
             The Venue field is required
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-12 form-group">
-        <label>Date: </label>
-        <input type="datetime-local" class="form-control" name="date" formControlName="date" [ngClass]="{'is-invalid': editFixtureForm.controls['date'].touched && editFixtureForm.controls['date'].errors}">
-        <div *ngIf="editFixtureForm.controls['date'].touched && editFixtureForm.controls['date'].hasError('required')" class="invalid-feedback">
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label>Date: </label>
+          <input type="datetime-local" class="form-control" name="date" formControlName="date" [ngClass]="{'is-invalid': editFixtureForm.controls['date'].touched && editFixtureForm.controls['date'].errors}">
+          <div *ngIf="editFixtureForm.controls['date'].touched && editFixtureForm.controls['date'].hasError('required')" class="invalid-feedback">
             The Venue field is required
+          </div>
         </div>
       </div>
-    </div>
 
-    <a href="" class="btn btn-default" [routerLink]="['/tournament', tournamentId, 'fixture']" [routerLinkActive]="['active']">Back</a>         
-    <input type="submit" value="Submit" class="btn btn-success">
-  </form>
+      <div class="d-flex">
+        <button class="btn btn-back mr-auto" [routerLink]="['/tournament', tournamentId, 'fixture']" [routerLinkActive]="['active']">Back</button>
+        <input type="submit" value="Submit" class="btn btn-submit ml-auto">
+      </div>
+
+    </form>
+  </div>
 </div>

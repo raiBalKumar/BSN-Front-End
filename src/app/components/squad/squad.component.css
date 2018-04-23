@@ -123,9 +123,13 @@
     filter: opacity(85%);
 }
 
-p.card-text{
+.card-text{
     margin-bottom: 4px;
     font-size: 14px;
+}
+
+.card-text div{
+    display: inline-block;
 }
 
 .modal-title{
@@ -135,4 +139,13 @@ p.card-text{
 .player-card{
     color: white;
     background: rgba(0, 0, 0, 0.726);
+}
+
+.close,
+.close:hover{
+    opacity: 1;
+}
+
+:focus {
+    outline: none;
 }

@@ -16,7 +16,7 @@ export class TournamentService {
   // get single tournament
   getSingleTournament: BehaviorSubject<object>;
   // get all fixtures by tournamentId
-  fixtures$: BehaviorSubject<Models.TournamentFixture[]>;
+  fixtures$: Subject<Models.TournamentFixture[]>;
   // get single match by tournamentId
   ranking$: Subject<Models.Ranking[]>
   // get all tournaments for manager
@@ -27,12 +27,11 @@ export class TournamentService {
     private authService: AuthService,
     private router: Router,
     private flashMessage: FlashMessagesService,
-    private userService: UserService) 
-{
+    private userService: UserService) {
     this.tournament$ = new BehaviorSubject([]);
     this.getSingleTournament = new BehaviorSubject({});
     this.listAllTournaments();
-    this.fixtures$ = new BehaviorSubject([]);
+    this.fixtures$ = new Subject();
     this.ranking$ = new Subject();
     this.tournamentForManager = new BehaviorSubject([]);
   }
@@ -48,7 +47,7 @@ export class TournamentService {
   }
 
   //list all tournaments
-  private listAllTournaments(){
+  private listAllTournaments() {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = { headers: headers };
     this.http.get(`${environment.apiServer}/api/organizers/tournament`, options).subscribe((res: object[]) => {
@@ -103,50 +102,62 @@ export class TournamentService {
   }
 
   // get fixture for single tournament
-  getFixture(id: Params) {
+  getFixture(id: any) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
-    let options = {headers:headers};
+    let options = { headers: headers };
     this.http.get(`${environment.apiServer}/api/organizers/tournament/${id}/fixture`, (options))
       .subscribe((res: Models.TournamentFixture[]) => {
         return this.fixtures$.next(res);
       })
   }
 
+  getFixtureAsObservable(){
+    return this.fixtures$.asObservable();
+  }
+
   // get team info for adding fixture
-  getTeamInfoForAddingFixture(id: Params) {
+  getTeamInfoForAddingFixture(id: number) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
-    let options = {headers:headers};
+    let options = { headers: headers };
     return this.http.get<Models.TeamInfoForTournamentFixture>(`${environment.apiServer}/api/organizers/tournament/${id}/getteaminfo`, (options));
   }
 
   // get fixture for edit
   editFixtureInfo(tournamentId: Params, fixtureId: Params) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
-    let options = {headers:headers};
+    let options = { headers: headers };
     return this.http.get<Models.TournamentFixtureForEdit>(`${environment.apiServer}/api/organizers/tournament/${tournamentId}/fixture/${fixtureId}`, (options));
   }
 
   // add tournament fixture
-  createFixture(id: Params, fixtureValue: Models.CreateTournamentFixture) {
+  createFixture(id: number, fixtureValue: Models.CreateTournamentFixture) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
-    let options = {headers:headers};
+    let options = { headers: headers };
     this.http.post(`${environment.apiServer}/api/organizers/tournament/${id}/createfixture`, { fixtureValue }, (options))
       .subscribe((res: object) => {
         let successfulMessage = "Successfully created fixture!";
         let errorMessage = "Your fixture have't been created! Please try again!";
-        this.redirectPage(res, successfulMessage, errorMessage);
-      })
+        this.notification(res, successfulMessage, errorMessage);
+      },
+      (err) => {throw new Error()},
+      () => this.getFixture(id))
   }
 
   // update tournament fixture
   updateFixture(fixtureId: Params, tournamentId: Params, fixtureValue: Models.CreateTournamentFixture) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
-    let options = {headers:headers};
+    let options = { headers: headers };
     return this.http.put<Models.CreateTournamentFixture>(`${environment.apiServer}/api/organizers/tournament/${tournamentId}/fixture/${fixtureId}`, { fixtureValue }, (options));
   }
 
   // redirect to and update all tournaments page
   redirectPage(res: object, successfulMessage: string, errorMessage: string) {
+    this.notification(res, successfulMessage, errorMessage)
+    this.listAllTournaments();
+    this.router.navigate(["/tournaments/all"]);
+  }
+
+  notification(res: object, successfulMessage: string, errorMessage: string) {
     if (res["success"] === true) {
       this.flashMessage.show(successfulMessage, {
         cssClass: 'alert-success',
@@ -158,8 +169,6 @@ export class TournamentService {
         timeout: 3000
       });
     }
-    this.listAllTournaments();
-    this.router.navigate(["/tournaments/all"]);
   }
 
   reloadTournamentFixtures(tournamentId: number) {
@@ -177,7 +186,7 @@ export class TournamentService {
 
   getMatch(id: Params) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
-    let options = {headers:headers};
+    let options = { headers: headers };
     return this.http.get<Models.TournamentFixture[]>(`${environment.apiServer}/api/organizers/tournament/${id}/fixture`, (options))
   }
 
@@ -189,7 +198,7 @@ export class TournamentService {
       .subscribe(res => console.log('post!'))
   }
 
-  reloadRanking(tournamentId: number){
+  reloadRanking(tournamentId: number) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = { headers: headers };
     this.http.get<Models.Ranking[]>(`${environment.apiServer}/api/organizers/tournament/${tournamentId}/ranking`, options)
@@ -206,8 +215,8 @@ export class TournamentService {
   requestToJoinTournament(tournamentId: number, teamId: number) {
     let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.token });
     let options = { headers: headers };
-    let data = { tournamentId: tournamentId, teamId: teamId};
-   return this.http.post(`${environment.apiServer}/api/managers/joinTournament`, {data}, options);
+    let data = { tournamentId: tournamentId, teamId: teamId };
+    return this.http.post(`${environment.apiServer}/api/managers/joinTournament`, { data }, options);
   }
 }
 

@@ -1,23 +1,19 @@
-<div class="container dash">
-  <h2>Chatroom</h2>
+<br>
+<div class="container">
   
-  <hr>
   <app-requests></app-requests>
-
 
   <div *ngIf=" user$ | async as user">
     <div *ngIf="user.team_id && user.status !== 'organizer'">
       <app-discussion-room [user]="user"></app-discussion-room>
     </div>
-    <br>
-    <br>
     <!-- manager -->
     <div *ngIf="user.status === 'manager' && user.team_id === null" class="text-center ">
       <!-- create team template -->
       <ng-template #content let-c="close" let-d="dismiss">
-        <div class="modal-header bg-info text-white">
-          <h4 class="modal-title ">Creat your own team</h4>
-          <button type="button" class="close text-white" aria-label="Close" (click)="d('Cross click')">
+        <div class="modal-header bg-white">
+          <h4 class="modal-title ">Form Your Own Team</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -28,8 +24,6 @@
       <a class="btn btn-info btn-lg text-white create mb-5" (click)="open(content)">
         <small>Form your team</small>
       </a>
-      <br>
-      <br>
     </div>
 
     <div *ngIf="user.status === 'manager' && user.team_id !== null">

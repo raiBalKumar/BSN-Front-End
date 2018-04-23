@@ -44,3 +44,8 @@
     height: 200px;
     object-fit: cover;
 }
+
+.card-header p{
+    margin-bottom: 0;
+    font-size: 22px;
+}
